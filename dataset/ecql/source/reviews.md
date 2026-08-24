@@ -197,7 +197,7 @@
   → FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @rating IS 4 && @city IS 'Кисловодск'
   # слот 127 · 3 условия · && · без суффикса · предмет назван · поля @aspects @rating @city · операторы CONTAINS IS
 
-- Отзывы на четыре про парковку, завтрак не упомянут
+- Что пишут про парковку в отзывах на четвёрку? Завтрак не интересует
   → FETCH [REVIEWS] WHERE @aspects CONTAINS 'парковка' && @rating IS 4 && @aspects NOT CONTAINS 'завтрак'
   # слот 136 · 3 условия · && · без суффикса · предмет назван · поля @aspects @rating · операторы CONTAINS IS NOT CONTAINS
 

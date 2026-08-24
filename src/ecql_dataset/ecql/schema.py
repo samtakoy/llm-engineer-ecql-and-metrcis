@@ -20,8 +20,12 @@ EQUALITY_OPERATORS: tuple[str, ...] = ("IS", "NOT")
 # Операторы для числовых полей.
 ORDER_OPERATORS: tuple[str, ...] = ("ABOVE", "BELOW")
 
-# Операторы вхождения для строк с перечислением через запятую.
+# Операторы вхождения: поиск подстроки. Допустимы у любого строкового поля.
 CONTAINMENT_OPERATORS: tuple[str, ...] = ("CONTAINS", "NOT CONTAINS")
+
+# Операторы строкового поля: сравнение целиком и поиск подстроки. Перечни сюда
+# не входят - искать подстроку в коде значения нечего.
+STRING_OPERATORS: tuple[str, ...] = EQUALITY_OPERATORS + CONTAINMENT_OPERATORS
 
 
 @dataclass(frozen = True)
@@ -36,6 +40,13 @@ class FieldSpec:
         derived: пояснение для производных полей; None у прямых.
         operators: операторы, допустимые для поля.
         value_format: как значение пишется в запросе - в кавычках или без.
+        value_note: пометка к полю в промпте. Нужна особому значению, которое
+            примерами не показать: по примерам городов не догадаться, что
+            объект за чертой города записывается отдельным словом.
+        examples_hint: примеры значений для промпта, написанные руками. Нужны
+            там, где выгрузка из данных вводит в заблуждение: все города `@city`
+            курортные, и модель принимает поле за перечень курортов, хотя поле
+            открытое и город в нём любой.
         is_topic: называет ли поле предмет поиска. Числовой порог без такого
             поля вопросом не выражается: «что стоит от 1100 до 1300» - о чём?
         allows_enumeration: можно ли перечислять варианты поля через «или».
@@ -52,6 +63,8 @@ class FieldSpec:
     derived: str | None
     operators: tuple[str, ...] = EQUALITY_OPERATORS
     value_format: ValueFormat = "quoted"
+    examples_hint: tuple[str, ...] | None = None
+    value_note: str | None = None
     allows_enumeration: bool = False
     is_topic: bool = False
     examples_policy: ExamplesPolicy = "frequent"
@@ -82,6 +95,7 @@ PLACES = EntitySpec(
             kind = "open",
             column = "name",
             derived = None,
+            operators = STRING_OPERATORS,
             examples_policy = "unique_by_category",
         ),
         FieldSpec(
@@ -89,7 +103,10 @@ PLACES = EntitySpec(
             kind = "open",
             column = "city",
             derived = None,
+            operators = STRING_OPERATORS,
             allows_enumeration = True,
+            examples_hint = ("Москва", "Волгоград", "Пятигорск"),
+            value_note = "объект вне населённого пункта - 'вне городов'",
         ),
         FieldSpec(
             name = "@category",
@@ -124,6 +141,7 @@ REVIEWS = EntitySpec(
             kind = "open",
             column = "name",
             derived = None,
+            operators = STRING_OPERATORS,
             examples_policy = "distinct",
         ),
         FieldSpec(
@@ -131,7 +149,10 @@ REVIEWS = EntitySpec(
             kind = "open",
             column = "city",
             derived = None,
+            operators = STRING_OPERATORS,
             allows_enumeration = True,
+            examples_hint = ("Москва", "Волгоград", "Пятигорск"),
+            value_note = "объект вне населённого пункта - 'вне городов'",
         ),
         FieldSpec(
             name = "@object_class",
@@ -155,7 +176,7 @@ REVIEWS = EntitySpec(
             kind = "enum",
             column = "aspects",
             derived = None,
-            operators = CONTAINMENT_OPERATORS,
+            operators = STRING_OPERATORS,
         ),
     ),
 )
@@ -170,6 +191,7 @@ PROXIMITY = EntitySpec(
             kind = "open",
             column = None,
             derived = "имя объекта-якоря: places.name по place_id",
+            operators = STRING_OPERATORS,
             examples_policy = "unique_by_category",
         ),
         FieldSpec(
@@ -209,6 +231,7 @@ FARES = EntitySpec(
             kind = "open",
             column = None,
             derived = "город отправления: routes.route_long_name по trips.trip_id",
+            operators = STRING_OPERATORS,
             allows_enumeration = True,
         ),
         FieldSpec(
@@ -217,6 +240,7 @@ FARES = EntitySpec(
             kind = "open",
             column = None,
             derived = "город прибытия: routes.route_long_name по trips.trip_id",
+            operators = STRING_OPERATORS,
             allows_enumeration = True,
         ),
         FieldSpec(

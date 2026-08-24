@@ -21,8 +21,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from ecql_dataset.ecql.grammar import EcqlError, Query, parse
-from ecql_dataset.ecql.schema import ENTITIES, MULTIVALUE_FIELDS
+from ecql_dataset.ecql.schema import MULTIVALUE_FIELDS
 from ecql_dataset.ecql.validate import check_query
+from ecql_dataset.prompt import build_instruction
 
 # Листы, которые читает сборщик; challenge читается отдельно и целиком уходит в тест.
 SHEET_NAMES = ("places.md", "reviews.md", "proximity.md", "fares.md")
@@ -42,13 +43,6 @@ VALUE_MINIMUM_TOTAL = 5
 VALUE_MINIMUM_TEST = 1
 OPERATOR_MINIMUM_TOTAL = 20
 OPERATOR_MINIMUM_TEST = 3
-
-INSTRUCTION_HEADER = (
-    "Ты переводишь вопрос человека в запрос на ECQL - внутреннем языке запросов компании.\n"
-    "Отвечай одной строкой запроса, без пояснений.\n"
-    "\n"
-    "Схема данных:"
-)
 
 
 @dataclass(frozen = True)
@@ -179,35 +173,6 @@ def split_pairs(*, pairs: list[Pair]) -> dict[str, list[Pair]]:
         splits["train"].extend(ordered[test_size + validation_size:])
 
     return splits
-
-
-def build_instruction(*, vocabulary: dict) -> str:
-    """Собирает инструкцию: роль и схема данных.
-
-    Инструкция одинакова во всех парах и совпадает с той, что подаётся модели на
-    инференсе. Схема собирается из словаря, а не пишется руками, поэтому не
-    расходится с данными.
-
-    Аргументы:
-        vocabulary: словарь значений.
-
-    Возвращает:
-        Текст инструкции.
-    """
-    lines = [INSTRUCTION_HEADER]
-    for entity in ENTITIES:
-        described = vocabulary["entities"][entity.name]["fields"]
-        lines.append("")
-        lines.append(f"[{entity.name}]")
-        for field in entity.fields:
-            field_description = described[field.name]
-            if field_description["kind"] == "enum":
-                values = ", ".join(field_description["values"])
-                lines.append(f"- {field.name} ({values})")
-            else:
-                examples = ", ".join(field_description["examples"][:4])
-                lines.append(f"- {field.name}, примеры: {examples}")
-    return "\n".join(lines)
 
 
 def build_record(*, pair: Pair, instruction: str) -> dict:
@@ -458,7 +423,7 @@ def cli() -> None:
     vocabulary = json.loads(arguments.vocabulary.read_text(encoding = "utf-8"))
     pairs = collect_pairs(directory = arguments.source, vocabulary = vocabulary)
     splits = split_pairs(pairs = pairs)
-    instruction = build_instruction(vocabulary = vocabulary)
+    instruction = build_instruction(vocabulary = vocabulary, with_rules = False)
 
     arguments.output.mkdir(parents = True, exist_ok = True)
     for split, split_pairs_list in splits.items():

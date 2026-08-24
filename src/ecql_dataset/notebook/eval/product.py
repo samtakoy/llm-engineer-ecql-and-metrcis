@@ -12,10 +12,21 @@
 """
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
-from ecql_dataset.ecql.grammar import EcqlError, Query, parse
+from ecql_dataset.ecql.grammar import Condition, EcqlError, Query, parse
 from ecql_dataset.ecql.schema import entity_by_name
+
+# Оператор эталона и его расширение, которым ответ вправе его заменить. Поиск
+# подстроки со значением целиком возвращает и ту строку, что вернуло бы
+# сравнение: `@name CONTAINS 'галерея'` не теряет ничего из `@name IS 'галерея'`.
+# Обратная замена сужает выдачу и ошибкой быть не перестаёт, поэтому пары
+# читаются только в одну сторону.
+WIDER_OPERATORS: dict[str, str] = {
+    "IS": "CONTAINS",
+    "NOT": "NOT CONTAINS",
+}
+
 
 # Слова чужих языков запросов.
 FOREIGN_KEYWORDS = ("SELECT", "FROM", "INSERT", "UPDATE", "DELETE", "JOIN", "GROUP BY")
@@ -109,10 +120,43 @@ def known_fields(*, entity: str) -> set[str] | None:
     return {field.name for field in specification.fields}
 
 
+def align_operators(*, prediction: Query, reference: Query) -> tuple[Condition, ...]:
+    """Приводит расширенный оператор ответа к оператору эталона.
+
+    Замена делается только в сторону расширения и только при том же поле и том
+    же значении: ответ `@name CONTAINS 'галерея'` на эталон `@name IS 'галерея'`
+    засчитывается, обратная замена - нет. Значение сравнивается посимвольно,
+    поэтому `CONTAINS 'галерея'` на эталон `IS 'Нарзанная галерея'` остаётся
+    ошибкой.
+
+    Аргументы:
+        prediction: разобранный ответ модели.
+        reference: разобранный эталон.
+
+    Возвращает:
+        Условия ответа, где расширенный оператор заменён эталонным.
+    """
+    expected = {
+        (condition.field, condition.value): condition.operator
+        for condition in reference.conditions
+    }
+    aligned: list[Condition] = []
+    for condition in prediction.conditions:
+        wanted = expected.get((condition.field, condition.value))
+        widened = WIDER_OPERATORS.get(wanted) if wanted is not None else None
+        if condition.quoted and widened == condition.operator:
+            aligned.append(replace(condition, operator = wanted))
+        else:
+            aligned.append(condition)
+    return tuple(aligned)
+
+
 def compare(*, prediction: Query, reference: Query) -> dict[str, bool]:
     """Сравнивает разобранные запросы по частям.
 
-    Порядок условий не важен: условия сводятся к множествам.
+    Порядок условий не важен: условия сводятся к множествам. Оператор ответа
+    перед сравнением приводится к эталонному, если ответ лишь расширил его -
+    см. `align_operators`.
 
     Аргументы:
         prediction: разобранный ответ модели.
@@ -121,17 +165,19 @@ def compare(*, prediction: Query, reference: Query) -> dict[str, bool]:
     Возвращает:
         Соответствие «часть запроса - совпала ли».
     """
-    def parts_of(query: Query) -> tuple[set, set, set]:
-        fields = {condition.field for condition in query.conditions}
-        operators = {(condition.field, condition.operator) for condition in query.conditions}
+    def parts_of(conditions: tuple[Condition, ...]) -> tuple[set, set, set]:
+        fields = {condition.field for condition in conditions}
+        operators = {(condition.field, condition.operator) for condition in conditions}
         values = {
             (condition.field, condition.operator, condition.value)
-            for condition in query.conditions
+            for condition in conditions
         }
         return fields, operators, values
 
-    predicted_fields, predicted_operators, predicted_values = parts_of(prediction)
-    expected_fields, expected_operators, expected_values = parts_of(reference)
+    predicted_fields, predicted_operators, predicted_values = parts_of(
+        align_operators(prediction = prediction, reference = reference)
+    )
+    expected_fields, expected_operators, expected_values = parts_of(reference.conditions)
     return {
         "entity": prediction.entity == reference.entity,
         "fields": predicted_fields == expected_fields,
