@@ -8,6 +8,7 @@
 import re
 
 import torch
+from tqdm.auto import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 from ecql_dataset.ecql.grammar import EcqlError, START_KEYWORD
@@ -113,6 +114,7 @@ def generate(
     instruction: str,
     batch_size: int,
     max_new_tokens: int = MAX_NEW_TOKENS,
+    progress: bool = True,
 ) -> list[str]:
     """Генерирует ответы на вопросы.
 
@@ -126,12 +128,14 @@ def generate(
         instruction: текст инструкции, общий для всех вопросов.
         batch_size: сколько вопросов подаётся за раз.
         max_new_tokens: потолок длины ответа.
+        progress: показывать ли полосу прогресса по батчам.
 
     Возвращает:
         Строки запросов в порядке вопросов.
     """
     answers: list[str] = []
-    for start in range(0, len(questions), batch_size):
+    starts = range(0, len(questions), batch_size)
+    for start in tqdm(starts, desc = "генерация", unit = "батч", disable = not progress):
         batch = questions[start:start + batch_size]
         prompts = [
             render_prompt(tokenizer = tokenizer, instruction = instruction, question = question)
