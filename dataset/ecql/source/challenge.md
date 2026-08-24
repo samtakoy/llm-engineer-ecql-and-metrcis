@@ -48,7 +48,7 @@
   → FETCH [PROXIMITY] WHERE @neighbour_category IS 'water' && @distance_m BELOW 100
   # challenge · число словами · значение на границе · вопрос вместо команды
 
-- Где ругают вайфай?
+- У кого в отзывах про вайфай оценка ниже трёх?
   → FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @rating BELOW 3
   # challenge · разговорное написание значения
 
@@ -66,10 +66,10 @@
   → FETCH [FARES] WHERE @route_end IS 'Москва' && @fare_class IS 'economy' && @price_rub BELOW 10000
   # challenge · число словами · вопрос вместо команды
 
-- Развлечься бы в полукилометре от Колодца желаний
+- Развлечься бы не дальше пятисот метров от Колодца желаний
   → FETCH [PROXIMITY] WHERE @name IS 'Колодец желаний' && @neighbour_category IS 'activity' && @distance_m BELOW 500
   # challenge · число словами · имя в косвенном падеже
 
-- Есть бытовые услуги в трёх сотнях метров от Арабики?
+- Есть бытовые услуги не дальше трёхсот метров от Арабики?
   → FETCH [PROXIMITY] WHERE @name IS 'Арабика' && @neighbour_category IS 'service' && @distance_m BELOW 300
   # challenge · число словами · имя в косвенном падеже · вопрос вместо команды
