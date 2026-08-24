@@ -47,12 +47,39 @@ INSTRUCTION_HEADER = (
 # Заголовок раздела правил в полном промпте.
 RULES_HEADER = "Правила языка ECQL:"
 
-# Образец запроса целиком. Описание формы словами модель удерживает хуже, чем
-# готовую строку: без образца базовая модель пишет условия без каркаса запроса.
-# Разбирается грамматикой при сборке правил, поэтому устареть молча не может.
-EXAMPLE_QUERY = (
-    "FETCH [PLACES] WHERE @category IS 'food' && @city IS 'Кисловодск'"
-    " && @price_rub BELOW 700 AS LIST"
+# Образцы перевода. Описание формы словами модель удерживает хуже, чем готовую
+# пару «вопрос - ответ»: без образца базовая модель пишет условия без каркаса
+# запроса. Пар несколько и значения в них разные, иначе модель переносит числа и
+# имена из единственного примера прямо в ответ.
+#
+# Пары написаны руками и ни из одной выборки не взяты: промпт не должен зависеть
+# от содержимого датасета. Каждая проверяется грамматикой и схемой при сборке
+# правил, поэтому разойтись с языком молча не может.
+EXAMPLE_PAIRS: tuple[tuple[str, str], ...] = (
+    (
+        "Что пишут про завтраки в гостевых домах?",
+        "FETCH [REVIEWS] WHERE @aspects CONTAINS 'завтрак' && @object_class IS 'guesthouse'",
+    ),
+    (
+        "Ессентуки и Пятигорск, давай списком",
+        "FETCH [PLACES] WHERE @city IS 'Ессентуки' || @city IS 'Пятигорск' AS LIST",
+    ),
+    (
+        "Поезда до Ростова-на-Дону стоимостью от тысячи до трёх, покажи в формате json",
+        "FETCH [FARES] WHERE @transport IS 'train' && @price_rub ABOVE 1000"
+        " && @price_rub BELOW 3000 AS JSON",
+    ),
+)
+
+# Заголовок блока примеров и подписи пары.
+EXAMPLES_HEADER = "Примеры перевода вопроса в запрос:"
+EXAMPLE_QUESTION_LABEL = "Вопрос от пользователя:"
+EXAMPLE_ANSWER_LABEL = "Ответ:"
+
+# Оговорка после примеров: без неё модель переносит из них значения.
+EXAMPLES_NOTE = (
+    "Примеры показывают форму запроса. Значения из них в ответ не переносятся:"
+    " сущность, поля и значения берутся из вопроса пользователя."
 )
 
 # Заголовок раздела запретов в полном промпте.
@@ -82,11 +109,13 @@ CONNECTIVE_MEANINGS: dict[str, str] = {
     "||": "или",
 }
 
-# Слова человека, по которым ставится суффикс вывода; из раздела 1 dz_ECQL.md.
-SUFFIX_MARKERS: dict[str, tuple[str, ...]] = {
-    "LIST": ("списком", "перечисли", "просто назови"),
-    "TABLE": ("таблицей", "сравни", "в столбик"),
-    "JSON": ("в json", "выгрузи", "для программы"),
+# Слово, которым пользователь называет формат вывода. Начальная форма, без
+# падежей: склонять за модель не нужно. Глаголы рядом - «покажи», «дай»,
+# «сведи» - формат не задают и в список не идут.
+SUFFIX_MARKERS: dict[str, str] = {
+    "LIST": "список",
+    "TABLE": "таблица",
+    "JSON": "json",
 }
 
 
@@ -184,7 +213,8 @@ def render_rules() -> str:
     """
     if set(OPERATOR_MEANINGS) != set(OPERATORS):
         raise KeyError("список операторов промпта разошёлся с грамматикой")
-    parse(query = EXAMPLE_QUERY)
+    for _, answer in EXAMPLE_PAIRS:
+        parse(query = answer)
 
     equality = ", ".join(
         f"{operator} {OPERATOR_MEANINGS[operator]}" for operator in EQUALITY_OPERATORS
@@ -200,9 +230,15 @@ def render_rules() -> str:
     )
     formats = ", ".join(f"{OUTPUT_KEYWORD} {name}" for name in OUTPUT_FORMATS)
     markers = "; ".join(
-        f"{', '.join(words)} - {OUTPUT_KEYWORD} {name}"
-        for name, words in SUFFIX_MARKERS.items()
+        f"{word} - {OUTPUT_KEYWORD} {name}"
+        for name, word in SUFFIX_MARKERS.items()
     )
+
+    example_lines: list[str] = []
+    for question, answer in EXAMPLE_PAIRS:
+        example_lines.append(f"{EXAMPLE_QUESTION_LABEL} {question}")
+        example_lines.append(f"{EXAMPLE_ANSWER_LABEL} {answer}")
+        example_lines.append("")
 
     lines = [
         RULES_HEADER,
@@ -213,7 +249,6 @@ def render_rules() -> str:
         f"- дальше слово {WHERE_KEYWORD} и условия;",
         "- в конце может стоять формат вывода, но только если пользователь его ЯВНО"
         f" попросил, пример: {OUTPUT_KEYWORD} LIST; иначе формат вывода опускается;",
-        f"- пример запроса: {EXAMPLE_QUERY}",
         "",
         "Поля и значения:",
         "- поле пишется с префиксом @, пример: @city;",
@@ -232,11 +267,16 @@ def render_rules() -> str:
         "",
         "Формат вывода:",
         f"- {formats};",
-        f"- ставится, только когда человек назвал формат словами: {markers};",
-        "- про формат в вопросе не сказано - не пишется.",
+        f"- ставится, только когда пользователь явно указал требуемый формат: {markers};",
+        "- формат в вопросе не указан - не пишется.",
         "",
         "Формат ответа:",
         "- только итоговый запрос на языке ECQL, в который преобразован вопрос пользователя.",
+        "",
+        EXAMPLES_HEADER,
+        "",
+        *example_lines,
+        EXAMPLES_NOTE,
         "",
         BANS_HEADER,
         "- использовать поля и значения, которых нет в схеме;",

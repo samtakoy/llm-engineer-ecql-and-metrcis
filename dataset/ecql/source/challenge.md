@@ -56,7 +56,7 @@
   → FETCH [REVIEWS] WHERE @aspects CONTAINS 'расположение' && @rating IS 4
   # challenge · оценка названа существительным
 
-- Всё в Железноводске, кроме магазинов, просто назови
+- Всё в Железноводске, кроме магазинов, просто назови списком
   → FETCH [PLACES] WHERE @city IS 'Железноводск' && @category NOT 'shopping' AS LIST
   # challenge · отрицание · суффикс вывода назван словами в конце фразы
 
