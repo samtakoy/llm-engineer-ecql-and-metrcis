@@ -14,17 +14,19 @@ ExamplesPolicy = Literal["frequent", "distinct", "unique_by_category"]
 Operator = Literal["IS", "NOT", "ABOVE", "BELOW", "CONTAINS", "NOT CONTAINS"]
 ValueFormat = Literal["quoted", "bare"]
 
-# Операторы по умолчанию: сравнение на равенство для перечней и строк.
+# Сравнение на равенство. Допустимо у поля любого типа.
 EQUALITY_OPERATORS: tuple[str, ...] = ("IS", "NOT")
 
-# Операторы для числовых полей.
+# Сравнение по порядку. Только у числовых полей.
 ORDER_OPERATORS: tuple[str, ...] = ("ABOVE", "BELOW")
 
-# Операторы вхождения: поиск подстроки. Допустимы у любого строкового поля.
+# Поиск подстроки. Только у строковых полей.
 CONTAINMENT_OPERATORS: tuple[str, ...] = ("CONTAINS", "NOT CONTAINS")
 
-# Операторы строкового поля: сравнение целиком и поиск подстроки. Перечни сюда
-# не входят - искать подстроку в коде значения нечего.
+# Операторы числового поля.
+NUMBER_OPERATORS: tuple[str, ...] = EQUALITY_OPERATORS + ORDER_OPERATORS
+
+# Операторы строкового поля.
 STRING_OPERATORS: tuple[str, ...] = EQUALITY_OPERATORS + CONTAINMENT_OPERATORS
 
 
@@ -38,8 +40,8 @@ class FieldSpec:
             number - число.
         column: колонка исходной таблицы; None у производных полей.
         derived: пояснение для производных полей; None у прямых.
-        operators: операторы, допустимые для поля.
         value_format: как значение пишется в запросе - в кавычках или без.
+            Заодно задаёт тип поля, а тип - допустимые операторы.
         value_note: пометка к полю в промпте. Нужна особому значению, которое
             примерами не показать: по примерам городов не догадаться, что
             объект за чертой города записывается отдельным словом.
@@ -61,13 +63,26 @@ class FieldSpec:
     kind: FieldKind
     column: str | None
     derived: str | None
-    operators: tuple[str, ...] = EQUALITY_OPERATORS
     value_format: ValueFormat = "quoted"
     examples_hint: tuple[str, ...] | None = None
     value_note: str | None = None
     allows_enumeration: bool = False
     is_topic: bool = False
     examples_policy: ExamplesPolicy = "frequent"
+
+    @property
+    def operators(self) -> tuple[str, ...]:
+        """Операторы, допустимые для поля.
+
+        Набор задаётся типом, а не полем: число сравнивается по порядку, строка
+        - по вхождению. Перечислять операторы у каждого поля значит держать одно
+        правило языка в двадцати местах и однажды разойтись с промптом, который
+        печатает те же правила.
+
+        Возвращает:
+            Операторы языка, допустимые для этого поля.
+        """
+        return NUMBER_OPERATORS if self.value_format == "bare" else STRING_OPERATORS
 
 
 @dataclass(frozen = True)
@@ -95,7 +110,6 @@ PLACES = EntitySpec(
             kind = "open",
             column = "name",
             derived = None,
-            operators = STRING_OPERATORS,
             examples_policy = "unique_by_category",
         ),
         FieldSpec(
@@ -103,7 +117,6 @@ PLACES = EntitySpec(
             kind = "open",
             column = "city",
             derived = None,
-            operators = STRING_OPERATORS,
             allows_enumeration = True,
             examples_hint = ("Москва", "Волгоград", "Пятигорск"),
             value_note = "объект вне населённого пункта - 'вне городов'",
@@ -121,7 +134,6 @@ PLACES = EntitySpec(
             kind = "number",
             column = "price_rub",
             derived = None,
-            operators = ORDER_OPERATORS,
             value_format = "bare",
         ),
         FieldSpec(name = "@price_kind", kind = "enum", column = "price_kind", derived = None, is_topic = True),
@@ -141,7 +153,6 @@ REVIEWS = EntitySpec(
             kind = "open",
             column = "name",
             derived = None,
-            operators = STRING_OPERATORS,
             examples_policy = "distinct",
         ),
         FieldSpec(
@@ -149,7 +160,6 @@ REVIEWS = EntitySpec(
             kind = "open",
             column = "city",
             derived = None,
-            operators = STRING_OPERATORS,
             allows_enumeration = True,
             examples_hint = ("Москва", "Волгоград", "Пятигорск"),
             value_note = "объект вне населённого пункта - 'вне городов'",
@@ -167,7 +177,6 @@ REVIEWS = EntitySpec(
             kind = "enum",
             column = "rating",
             derived = None,
-            operators = EQUALITY_OPERATORS + ORDER_OPERATORS,
             value_format = "bare",
         ),
         FieldSpec(
@@ -176,7 +185,6 @@ REVIEWS = EntitySpec(
             kind = "enum",
             column = "aspects",
             derived = None,
-            operators = STRING_OPERATORS,
         ),
     ),
 )
@@ -191,7 +199,6 @@ PROXIMITY = EntitySpec(
             kind = "open",
             column = None,
             derived = "имя объекта-якоря: places.name по place_id",
-            operators = STRING_OPERATORS,
             examples_policy = "unique_by_category",
         ),
         FieldSpec(
@@ -207,7 +214,6 @@ PROXIMITY = EntitySpec(
             kind = "number",
             column = "distance_m",
             derived = None,
-            operators = ORDER_OPERATORS,
             value_format = "bare",
         ),
     ),
@@ -231,7 +237,6 @@ FARES = EntitySpec(
             kind = "open",
             column = None,
             derived = "город отправления: routes.route_long_name по trips.trip_id",
-            operators = STRING_OPERATORS,
             allows_enumeration = True,
         ),
         FieldSpec(
@@ -240,7 +245,6 @@ FARES = EntitySpec(
             kind = "open",
             column = None,
             derived = "город прибытия: routes.route_long_name по trips.trip_id",
-            operators = STRING_OPERATORS,
             allows_enumeration = True,
         ),
         FieldSpec(
@@ -256,7 +260,6 @@ FARES = EntitySpec(
             kind = "number",
             column = "price_rub",
             derived = None,
-            operators = ORDER_OPERATORS,
             value_format = "bare",
         ),
     ),

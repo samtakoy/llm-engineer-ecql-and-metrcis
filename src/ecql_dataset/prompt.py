@@ -18,10 +18,12 @@ from ecql_dataset.ecql.grammar import (
     OUTPUT_KEYWORD,
     START_KEYWORD,
     WHERE_KEYWORD,
+    parse,
 )
 from ecql_dataset.ecql.schema import (
     CONTAINMENT_OPERATORS,
     ENTITIES,
+    EQUALITY_OPERATORS,
     MULTIVALUE_FIELDS,
     ORDER_OPERATORS,
     FieldSpec,
@@ -43,7 +45,15 @@ INSTRUCTION_HEADER = (
 )
 
 # Заголовок раздела правил в полном промпте.
-RULES_HEADER = "Правила языка:"
+RULES_HEADER = "Правила языка ECQL:"
+
+# Образец запроса целиком. Описание формы словами модель удерживает хуже, чем
+# готовую строку: без образца базовая модель пишет условия без каркаса запроса.
+# Разбирается грамматикой при сборке правил, поэтому устареть молча не может.
+EXAMPLE_QUERY = (
+    "FETCH [PLACES] WHERE @category IS 'food' && @city IS 'Кисловодск'"
+    " && @price_rub BELOW 700 AS LIST"
+)
 
 # Заголовок раздела запретов в полном промпте.
 BANS_HEADER = "Запрещено:"
@@ -163,50 +173,76 @@ def render_schema(*, vocabulary: dict) -> str:
 
 
 def render_rules() -> str:
-    """Собирает правила языка словами: форма запроса, операторы, связки, вывод.
+    """Собирает правила языка словами.
+
+    Правила разложены по блокам - форма запроса, поля и значения, операторы,
+    связки, формат вывода, формат ответа, запреты. Один блок отвечает на один
+    вопрос: описание сплошным списком модель держит хуже.
 
     Возвращает:
-        Текст правил вместе с запретами.
+        Текст правил.
     """
     if set(OPERATOR_MEANINGS) != set(OPERATORS):
         raise KeyError("список операторов промпта разошёлся с грамматикой")
-    operators = ", ".join(
-        f"{operator} {meaning}" for operator, meaning in OPERATOR_MEANINGS.items()
+    parse(query = EXAMPLE_QUERY)
+
+    equality = ", ".join(
+        f"{operator} {OPERATOR_MEANINGS[operator]}" for operator in EQUALITY_OPERATORS
+    )
+    order = ", ".join(
+        f"{operator} {OPERATOR_MEANINGS[operator]}" for operator in ORDER_OPERATORS
+    )
+    containment = ", ".join(
+        f"{operator} {OPERATOR_MEANINGS[operator]}" for operator in CONTAINMENT_OPERATORS
     )
     connectives = ", ".join(
-        f"{connective} {CONNECTIVE_MEANINGS[connective]}" for connective in CONNECTIVES
+        f"{connective} это {CONNECTIVE_MEANINGS[connective]}" for connective in CONNECTIVES
     )
     formats = ", ".join(f"{OUTPUT_KEYWORD} {name}" for name in OUTPUT_FORMATS)
+    markers = "; ".join(
+        f"{', '.join(words)} - {OUTPUT_KEYWORD} {name}"
+        for name, words in SUFFIX_MARKERS.items()
+    )
 
-    rules = [
+    lines = [
         RULES_HEADER,
-        f"- запрос пишется одной строкой: {START_KEYWORD} [СУЩНОСТЬ] {WHERE_KEYWORD} условие"
-        f" [связка условие] [{OUTPUT_KEYWORD} ФОРМАТ];",
-        "- условие состоит из поля, оператора и значения: @city IS 'Кисловодск';",
-        "- сущность пишется заглавными в квадратных скобках, поле - с префиксом @;",
-        "- поле берётся из схемы своей сущности, чужие поля не подставляются;",
-        f"- операторы: {operators};",
-        f"- {' и '.join(ORDER_OPERATORS)} пишутся только у числовых полей;",
-        f"- {' и '.join(CONTAINMENT_OPERATORS)} ищут подстроку и пишутся только у строковых полей;",
-        f"- значение числового поля пишется без кавычек, строкового - в одинарных кавычках;",
-        "- поле с допустимыми значениями принимает значение только из своего списка, дословно;",
-        "- значение остальных полей берётся из вопроса и ставится в именительный падеж;",
-        f"- условия соединяются связкой: {connectives};",
-        f"- связка в запросе одна: {' и '.join(CONNECTIVES)} не смешиваются;",
-        f"- суффикс вывода: {formats}; ставится, только когда человек назвал формат словами:",
-    ]
-    for name, markers in SUFFIX_MARKERS.items():
-        rules.append(f"  {', '.join(markers)} - {OUTPUT_KEYWORD} {name};")
-    rules.append("- про формат в вопросе не сказано - суффикс не пишется.")
-
-    bans = [
+        "",
+        "Формат запроса:",
+        f"- запрос начинается словом {START_KEYWORD};",
+        "- дальше сущность заглавными в квадратных скобках, пример: [PLACES];",
+        f"- дальше слово {WHERE_KEYWORD} и условия;",
+        "- в конце может стоять формат вывода, но только если пользователь его ЯВНО"
+        f" попросил, пример: {OUTPUT_KEYWORD} LIST; иначе формат вывода опускается;",
+        f"- пример запроса: {EXAMPLE_QUERY}",
+        "",
+        "Поля и значения:",
+        "- поле пишется с префиксом @, пример: @city;",
+        "- строка пишется в кавычках, пример: 'Кисловодск';",
+        "- число пишется без кавычек, пример: 700;",
+        "",
+        "Операторы:",
+        f"- {equality} - допустимы у полей любого типа;",
+        f"- {order} - только у числовых полей;",
+        f"- {containment} - только у строковых полей;",
+        "",
+        "Логические связки для условий:",
+        f"- {connectives};",
+        "- в одном запросе допустимы связки только одного типа:"
+        f" {' и '.join(CONNECTIVES)} одновременно использовать нельзя;",
+        "",
+        "Формат вывода:",
+        f"- {formats};",
+        f"- ставится, только когда человек назвал формат словами: {markers};",
+        "- про формат в вопросе не сказано - не пишется.",
+        "",
+        "Формат ответа:",
+        "- только итоговый запрос на языке ECQL, в который преобразован вопрос пользователя.",
+        "",
         BANS_HEADER,
-        "- писать SQL или любой другой язык запросов вместо ECQL;",
-        "- придумывать сущности, поля и значения перечислимых полей, которых нет в схеме;",
-        "- добавлять к запросу пояснения, обрамление кода и переносы строк;",
-        "- заменять русское имя объекта или города переводом на латиницу.",
+        "- использовать поля и значения, которых нет в схеме;",
+        "- добавлять пояснения и обрамление кода.",
     ]
-    return "\n".join(rules + [""] + bans)
+    return "\n".join(lines)
 
 
 def build_instruction(*, vocabulary: dict, with_rules: bool) -> str:

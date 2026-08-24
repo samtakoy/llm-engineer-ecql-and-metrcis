@@ -166,12 +166,11 @@ def compare(*, prediction: Query, reference: Query) -> dict[str, bool]:
         Соответствие «часть запроса - совпала ли».
     """
     def parts_of(conditions: tuple[Condition, ...]) -> tuple[set, set, set]:
+        # Оператор входит только в свою часть: попади он ещё и в значения, один
+        # перепутанный оператор ронял бы две строки разбивки вместо одной.
         fields = {condition.field for condition in conditions}
         operators = {(condition.field, condition.operator) for condition in conditions}
-        values = {
-            (condition.field, condition.operator, condition.value)
-            for condition in conditions
-        }
+        values = {(condition.field, condition.value) for condition in conditions}
         return fields, operators, values
 
     predicted_fields, predicted_operators, predicted_values = parts_of(
