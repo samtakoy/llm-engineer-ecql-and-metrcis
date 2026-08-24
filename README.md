@@ -2,8 +2,12 @@
 
 Домашнее задание «DSL Query Generator», курс «LLM-инженер».
 
-Сущности задания переотображены на реальную базу КМВ (курорты Кавминвод): вместо
-вымышленной компании — места, отзывы, соседство объектов и цены проезда.
+По заданию описывались правилам= вымышленного корпоративного языка запросов ECQL, который используется в компании «E-Corp».
+Основные сущности: [EMPLOYEES], [PROJECTS], [INVENTORY], [DEALS] и поля них вроде: @salary, @status, @city
+
+Корпоративная БД про работников - это скучно и не интересно. Сохранил правила языка но предметную область взял: путеводитель по местам и городам КавМинВод.
+
+Вместо вымышленной компании — места, отзывы, соседство объектов и цены проезда.
 
 | Сущность ДЗ | Здесь | Таблица КМВ | Строк |
 |---|---|---|---|
@@ -51,51 +55,66 @@
 - Суффикс вывода (`AS JSON`, `AS TABLE`, `AS LIST`) ставится только тогда, когда
   человек назвал формат словами; иначе не пишется.
 - Вложенность спецификацией ДЗ не определена, поэтому сложность выражена числом
-  условий от одного до четырёх.
+  условий от одного до четырёх (через && или ||).
+- Правила языка не вводят понятия группировки операций (нет скобок), я не добавлял чтобы не усложнять. Считаю что операторы && и || одновременно запрещены.
 
 # Структура
 
 ```
-dataset/ecql/
-  vocabulary.json   значения полей, выгруженные из csv КМВ
-  slots.json        261 слот: сущность, условия, связка, суффикс, готовая строка ECQL
-  places.md         рабочие листы: вопрос на русском + ECQL + строка разметки
-  reviews.md
-  proximity.md
-  fares.md
+dataset/ecql/          датасет: то, что грузится в обучение
+  train.jsonl
+  val.jsonl
+  test.jsonl
+  coverage.md          отчёт покрытия по осям
+
+  source/              кухня: из чего датасет собран
+    vocabulary.json    значения полей из учебного датасета по КМВ; источник для
+                       генератора, валидатора и схемы в промпте
+    slots.json         слоты — заготовки пар: готовый ECQL, под который человек пишет вопрос
+    
+    places.md          датасет в человекочитаемом виде, по файлу на сущность;
+                       вопрос пишет человек, ECQL готовый
+    reviews.md
+    proximity.md
+    fares.md
+    
+    challenge.md       15 трудных примеров, написаны вручную; только для доп проверки обученной модели
+
 src/ecql_dataset/
-  schema.py         сущности, поля, типы, допустимые операторы
-  vocabulary.py     csv КМВ  → vocabulary.json
-  planner.py        vocabulary.json → slots.json по квотам осей
-  sheets.py         slots.json → md-листы; написанные вопросы переносятся
-docs/
-  dz_ECQL_task.md      постановка ДЗ
-  dz_ECQL.md           спецификация языка и схема данных
-  dz_ECQL_dataset.md   состав датасета, пороги покрытия, протокол оценки
-  example/             референсный notebook LoRA с другого домена
+
+  ecql/              проверка языка — едет в ноутбук
+    schema.py        какие поля есть у каждой сущности, какие операторы им разрешены,
+                     как записывается значение
+    grammar.py       разбирает строку ECQL на части: сравнить ответ модели с эталоном
+                     по смыслу, а не по буквам, и поймать ответ, который не ECQL
+    validate.py      проверка запроса по схеме и данным
+    
+  build/             создаёт датасет; после сборки не нужен
+    vocabulary.py
+    planner.py
+    sheets.py
+    builder.py
+
 ```
 
 # Цепочка сборки
 
 ```
-csv КМВ ──vocabulary.py──▶ vocabulary.json ──planner.py──▶ slots.json
-   ──sheets.py──▶ *.md ──человек пишет вопросы──▶ *.md ──сборщик──▶ jsonl
+csv КМВ (вне проекта) ── vocabulary.py ──▶ vocabulary.json ── planner.py ──▶ slots.json
+   ── sheets.py ──▶ *.md ── человек пишет вопросы ──▶ *.md ── builder.py ──▶ jsonl
 ```
 
 ```bash
-python -m ecql_dataset.vocabulary --dataset-root <kmv-dataset>/data/dataset \
-    --output dataset/ecql/vocabulary.json
-python -m ecql_dataset.planner --vocabulary dataset/ecql/vocabulary.json \
-    --output dataset/ecql/slots.json
-python -m ecql_dataset.sheets --slots dataset/ecql/slots.json \
-    --directory dataset/ecql
+python -m ecql_dataset.planner --vocabulary dataset/ecql/source/vocabulary.json \
+    --output dataset/ecql/source/slots.json
+    
+python -m ecql_dataset.sheets --slots dataset/ecql/source/slots.json \
+    --directory dataset/ecql/source
+    
+# сборка jsonl по md файлам:    
+python -m ecql_dataset.builder --source dataset/ecql/source --output dataset/ecql \
+    --vocabulary dataset/ecql/source/vocabulary.json
 ```
-
-Правится руками только вопрос на русском в md-листах. Строка ECQL и разметка
-под ней выводятся из слота; перезапуск генератора вопросы сохраняет.
-
-Состояние: 261 пара, вопросы написаны. Сборщик `md → train/val/test.jsonl` и
-`coverage.md` не написан; `challenge.md` не написан.
 
 В репозитории только вспомогательный код сборки датасета. Обучение, метрики и
 выводы — в notebook.

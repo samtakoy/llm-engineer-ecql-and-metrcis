@@ -9,8 +9,8 @@
 
 Запуск:
     python -m ecql_dataset.sheets \\
-        --slots dataset/ecql/slots.json \\
-        --directory dataset/ecql
+        --slots dataset/ecql/source/slots.json \\
+        --directory dataset/ecql/source
 """
 
 import argparse

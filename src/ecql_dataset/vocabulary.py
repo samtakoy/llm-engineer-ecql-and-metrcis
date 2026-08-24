@@ -7,7 +7,7 @@
 Запуск:
     python -m ecql_dataset.vocabulary \\
         --dataset-root /path/to/final_project3/packages/kmv-dataset/data/dataset \\
-        --output dataset/ecql/vocabulary.json
+        --output dataset/ecql/source/vocabulary.json
 """
 
 import argparse

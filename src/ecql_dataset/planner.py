@@ -8,8 +8,8 @@
 
 Запуск:
     python -m ecql_dataset.planner \\
-        --vocabulary dataset/ecql/vocabulary.json \\
-        --output dataset/ecql/slots.json
+        --vocabulary dataset/ecql/source/vocabulary.json \\
+        --output dataset/ecql/source/slots.json
 """
 
 import argparse
