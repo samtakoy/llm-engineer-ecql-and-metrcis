@@ -8,7 +8,7 @@
 по строке ECQL.
 
 Запуск:
-    python -m ecql_dataset.sheets \\
+    python -m ecql_dataset.build.sheets \\
         --slots dataset/ecql/source/slots.json \\
         --directory dataset/ecql/source
 """
@@ -19,7 +19,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from ecql_dataset.schema import ENTITIES, entity_by_name
+from ecql_dataset.ecql.schema import ENTITIES, entity_by_name
 
 # Метка вопроса, который ещё не написан.
 QUESTION_PLACEHOLDER = "TODO"

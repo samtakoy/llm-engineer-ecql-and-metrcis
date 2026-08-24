@@ -7,7 +7,7 @@
 человеком поверх слота.
 
 Запуск:
-    python -m ecql_dataset.planner \\
+    python -m ecql_dataset.build.planner \\
         --vocabulary dataset/ecql/source/vocabulary.json \\
         --output dataset/ecql/source/slots.json
 """
@@ -18,7 +18,7 @@ import random
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-from ecql_dataset.schema import ENTITIES, EntitySpec, FieldSpec, entity_by_name
+from ecql_dataset.ecql.schema import ENTITIES, EntitySpec, FieldSpec, entity_by_name
 
 # Сколько слотов планируется всего.
 TOTAL_SLOTS = 260

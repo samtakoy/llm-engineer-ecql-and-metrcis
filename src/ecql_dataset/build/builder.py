@@ -8,7 +8,7 @@
 остальными: сборщик читает лист, а не slots.json.
 
 Запуск:
-    python -m ecql_dataset.builder \\
+    python -m ecql_dataset.build.builder \\
         --source dataset/ecql/source \\
         --output dataset/ecql \\
         --vocabulary dataset/ecql/source/vocabulary.json
@@ -20,8 +20,9 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from ecql_dataset.grammar import EcqlError, Query, parse
-from ecql_dataset.schema import ENTITIES, MULTIVALUE_FIELDS, entity_by_name
+from ecql_dataset.ecql.grammar import EcqlError, Query, parse
+from ecql_dataset.ecql.schema import ENTITIES, MULTIVALUE_FIELDS
+from ecql_dataset.ecql.validate import check_query
 
 # Листы, которые читает сборщик; challenge читается отдельно и целиком уходит в тест.
 SHEET_NAMES = ("places.md", "reviews.md", "proximity.md", "fares.md")
@@ -105,49 +106,6 @@ def read_sheet(*, path: Path, challenge: bool) -> list[tuple[str, str]]:
         elif not stripped:
             pending = None
     return pairs
-
-
-def check_query(*, query: Query, vocabulary: dict) -> None:
-    """Проверяет разобранный запрос по схеме и данным.
-
-    Грамматику проверяет разбор; здесь проверяется то, чего грамматика не знает:
-    существует ли сущность, принадлежит ли ей поле, допустим ли оператор и есть
-    ли значение перечня в датасете.
-
-    Аргументы:
-        query: разобранный запрос.
-        vocabulary: словарь значений.
-    """
-    if query.entity not in vocabulary["entities"]:
-        raise EcqlError(f"неизвестная сущность: [{query.entity}]")
-
-    entity = entity_by_name(name = query.entity)
-    specifications = {field.name: field for field in entity.fields}
-    described = vocabulary["entities"][query.entity]["fields"]
-
-    for condition in query.conditions:
-        specification = specifications.get(condition.field)
-        if specification is None:
-            raise EcqlError(f"поле {condition.field} не принадлежит [{query.entity}]")
-        if condition.operator not in specification.operators:
-            raise EcqlError(
-                f"оператор {condition.operator} недопустим для {condition.field}"
-            )
-        expected_quoted = specification.value_format == "quoted"
-        if condition.quoted != expected_quoted:
-            shape = "в кавычках" if expected_quoted else "без кавычек"
-            raise EcqlError(f"значение {condition.field} записывается {shape}")
-
-        field = described.get(condition.field, {})
-        if field.get("kind") != "enum":
-            continue
-        values = field["values"]
-        if condition.field in MULTIVALUE_FIELDS:
-            # Поле хранит перечисление через запятую, фильтр идёт по подстроке.
-            if not any(condition.value in value for value in values):
-                raise EcqlError(f"значение {condition.value!r} не встречается в {condition.field}")
-        elif condition.value not in values:
-            raise EcqlError(f"значение {condition.value!r} не встречается в {condition.field}")
 
 
 def collect_pairs(*, directory: Path, vocabulary: dict) -> list[Pair]:

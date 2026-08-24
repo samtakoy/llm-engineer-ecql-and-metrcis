@@ -95,6 +95,10 @@ src/ecql_dataset/
     sheets.py
     builder.py
 
+  notebook/          код ноутбука
+    eval/
+      metrics.py     метрики по ответам модели плюс самопроверка эвалюатора
+
 ```
 
 # Цепочка сборки
@@ -105,14 +109,14 @@ csv КМВ (вне проекта) ── vocabulary.py ──▶ vocabulary.jso
 ```
 
 ```bash
-python -m ecql_dataset.planner --vocabulary dataset/ecql/source/vocabulary.json \
+python -m ecql_dataset.build.planner --vocabulary dataset/ecql/source/vocabulary.json \
     --output dataset/ecql/source/slots.json
     
-python -m ecql_dataset.sheets --slots dataset/ecql/source/slots.json \
+python -m ecql_dataset.build.sheets --slots dataset/ecql/source/slots.json \
     --directory dataset/ecql/source
     
 # сборка jsonl по md файлам:    
-python -m ecql_dataset.builder --source dataset/ecql/source --output dataset/ecql \
+python -m ecql_dataset.build.builder --source dataset/ecql/source --output dataset/ecql \
     --vocabulary dataset/ecql/source/vocabulary.json
 ```
 

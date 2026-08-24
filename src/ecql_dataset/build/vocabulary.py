@@ -5,7 +5,7 @@
 не зависит от того, где лежит датасет КМВ.
 
 Запуск:
-    python -m ecql_dataset.vocabulary \\
+    python -m ecql_dataset.build.vocabulary \\
         --dataset-root /path/to/final_project3/packages/kmv-dataset/data/dataset \\
         --output dataset/ecql/source/vocabulary.json
 """
@@ -19,7 +19,7 @@ import re
 from collections import Counter
 from pathlib import Path
 
-from ecql_dataset.schema import (
+from ecql_dataset.ecql.schema import (
     ENTITIES,
     MULTIVALUE_FIELDS,
     ROUTE_TYPE_TO_TRANSPORT,
