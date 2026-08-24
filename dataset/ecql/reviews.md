@@ -10,7 +10,7 @@
   # добавлено вручную · одно условие · без связки · без суффикса · частичное совпадение · поля @aspects · операторы CONTAINS
 
 - Что пишут про хостелы?
-  → FETCH [REVIEWS] WHERE @object_class IS 'хостел'
+  → FETCH [REVIEWS] WHERE @object_class IS 'hostel'
   # слот 5 · одно условие · без связки · без суффикса · предмет назван · поля @object_class · операторы IS
 
 - Где жалуются на шум?
@@ -30,7 +30,7 @@
   # слот 60 · одно условие · без связки · без суффикса · предмет назван · поля @aspects · операторы CONTAINS
 
 - Отзывы о санаториях
-  → FETCH [REVIEWS] WHERE @object_class IS 'санаторий'
+  → FETCH [REVIEWS] WHERE @object_class IS 'sanatorium'
   # слот 62 · одно условие · без связки · без суффикса · предмет назван · поля @object_class · операторы IS
 
 - Что пишут о персонале? Списком
@@ -100,35 +100,35 @@
   # слот 34 · 2 условия · && · AS TABLE · предмет назван · поля @aspects @rating · операторы CONTAINS IS
 
 - В хостелах пишут про бассейн и спа?
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'бассейн и спа' && @object_class IS 'хостел'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'бассейн и спа' && @object_class IS 'hostel'
   # слот 65 · 2 условия · && · без суффикса · предмет назван · поля @aspects @object_class · операторы CONTAINS IS
 
 - Санатории или отели
-  → FETCH [REVIEWS] WHERE @object_class IS 'санаторий' || @object_class IS 'отель'
+  → FETCH [REVIEWS] WHERE @object_class IS 'sanatorium' || @object_class IS 'hotel'
   # слот 77 · 2 условия · || · без суффикса · предмет назван · поля @object_class · операторы IS
 
 - Отели, где есть бассейн и спа
-  → FETCH [REVIEWS] WHERE @object_class IS 'отель' && @aspects CONTAINS 'бассейн и спа'
+  → FETCH [REVIEWS] WHERE @object_class IS 'hotel' && @aspects CONTAINS 'бассейн и спа'
   # слот 85 · 2 условия · && · без суффикса · предмет назван · поля @object_class @aspects · операторы IS CONTAINS
 
 - Отзывы о хостелах на три
-  → FETCH [REVIEWS] WHERE @object_class IS 'хостел' && @rating IS 3
+  → FETCH [REVIEWS] WHERE @object_class IS 'hostel' && @rating IS 3
   # слот 98 · 2 условия · && · без суффикса · предмет назван · поля @object_class @rating · операторы IS
 
 - Хостелы и отели, списочком
-  → FETCH [REVIEWS] WHERE @object_class IS 'хостел' || @object_class IS 'отель' AS LIST
+  → FETCH [REVIEWS] WHERE @object_class IS 'hostel' || @object_class IS 'hotel' AS LIST
   # слот 109 · 2 условия · || · AS LIST · предмет назван · поля @object_class · операторы IS
 
 - Санатории с парковкой
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'парковка' && @object_class IS 'санаторий'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'парковка' && @object_class IS 'sanatorium'
   # слот 113 · 2 условия · && · без суффикса · предмет назван · поля @aspects @object_class · операторы CONTAINS IS
 
 - В санаториях есть wi-fi?
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'санаторий'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'sanatorium'
   # слот 121 · 2 условия · && · без суффикса · предмет назван · поля @aspects @object_class · операторы CONTAINS IS
 
 - Хостелы: что там с расположением?
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'расположение' && @object_class IS 'хостел'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'расположение' && @object_class IS 'hostel'
   # слот 125 · 2 условия · && · без суффикса · предмет назван · поля @aspects @object_class · операторы CONTAINS IS
 
 - Кому поставили один из-за расположения?
@@ -140,7 +140,7 @@
   # слот 187 · 2 условия · && · без суффикса · предмет назван · поля @aspects @rating · операторы CONTAINS IS
 
 - Пятёрочные отзывы о санаториях
-  → FETCH [REVIEWS] WHERE @rating IS 5 && @object_class IS 'санаторий'
+  → FETCH [REVIEWS] WHERE @rating IS 5 && @object_class IS 'sanatorium'
   # слот 194 · 2 условия · && · без суффикса · предмет назван · поля @rating @object_class · операторы IS
 
 - Отзывы о посуточной квартире в Железноводске
@@ -152,7 +152,7 @@
   # слот 217 · 2 условия · && · AS LIST · предмет назван · поля @city @aspects · операторы IS NOT CONTAINS
 
 - Гостевые дома или отели
-  → FETCH [REVIEWS] WHERE @object_class IS 'гостевой дом' || @object_class IS 'отель'
+  → FETCH [REVIEWS] WHERE @object_class IS 'guesthouse' || @object_class IS 'hotel'
   # слот 220 · 2 условия · || · без суффикса · предмет назван · поля @object_class · операторы IS
 
 - «Оазис» — что там с чистотой?
@@ -160,17 +160,17 @@
   # слот 228 · 2 условия · && · без суффикса · предмет назван · поля @name @aspects · операторы IS CONTAINS
 
 - Отели и хостелы — просто назови списком
-  → FETCH [REVIEWS] WHERE @object_class IS 'отель' || @object_class IS 'хостел' AS LIST
+  → FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'hostel' AS LIST
   # слот 250 · 2 условия · || · AS LIST · предмет назван · поля @object_class · операторы IS
 
 - Отели или гостевые дома
-  → FETCH [REVIEWS] WHERE @object_class IS 'отель' || @object_class IS 'гостевой дом'
+  → FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'guesthouse'
   # слот 252 · 2 условия · || · без суффикса · предмет назван · поля @object_class · операторы IS
 
 ## Три условия
 
 - Отели, санатории или гостевые дома
-  → FETCH [REVIEWS] WHERE @object_class IS 'отель' || @object_class IS 'санаторий' || @object_class IS 'гостевой дом'
+  → FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'sanatorium' || @object_class IS 'guesthouse'
   # слот 31 · 3 условия · || · без суффикса · предмет назван · поля @object_class · операторы IS
 
 - Оценка три, речь о завтраке, шум не упоминается
@@ -178,15 +178,15 @@
   # слот 33 · 3 условия · && · без суффикса · предмет назван · поля @aspects @rating · операторы CONTAINS IS NOT CONTAINS
 
 - Отели: про персонал пишут, про номер нет
-  → FETCH [REVIEWS] WHERE @object_class IS 'отель' && @aspects CONTAINS 'персонал' && @aspects NOT CONTAINS 'номер'
+  → FETCH [REVIEWS] WHERE @object_class IS 'hotel' && @aspects CONTAINS 'персонал' && @aspects NOT CONTAINS 'номер'
   # слот 91 · 3 условия · && · без суффикса · предмет назван · поля @object_class @aspects · операторы IS CONTAINS NOT CONTAINS
 
 - Отзывы об отелях на два, чистота не упомянута
-  → FETCH [REVIEWS] WHERE @rating IS 2 && @object_class IS 'отель' && @aspects NOT CONTAINS 'чистота'
+  → FETCH [REVIEWS] WHERE @rating IS 2 && @object_class IS 'hotel' && @aspects NOT CONTAINS 'чистота'
   # слот 93 · 3 условия · && · без суффикса · предмет назван · поля @rating @object_class @aspects · операторы IS NOT CONTAINS
 
 - Гостевые дома с wi-fi, цену не упоминают — таблицей
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'гостевой дом' && @aspects NOT CONTAINS 'цена' AS TABLE
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'guesthouse' && @aspects NOT CONTAINS 'цена' AS TABLE
   # слот 105 · 3 условия · && · AS TABLE · предмет назван · поля @aspects @object_class · операторы CONTAINS IS NOT CONTAINS
 
 - Оценка два, речь о парковке, а шума нет
@@ -206,7 +206,7 @@
   # слот 157 · 3 условия · && · AS TABLE · предмет назван · поля @aspects @rating @name · операторы CONTAINS IS
 
 - Отели Ессентуков, где пишут про номер — табличкой
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'отель' && @city IS 'Ессентуки' AS TABLE
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'hotel' && @city IS 'Ессентуки' AS TABLE
   # слот 172 · 3 условия · && · AS TABLE · предмет назван · поля @aspects @object_class @city · операторы CONTAINS IS
 
 - Кто поставил один в Минводах из-за расположения?
@@ -232,27 +232,27 @@
 ## Четыре условия
 
 - Оценка два за номер, про завтрак ни слова, санатории не нужны
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @rating IS 2 && @aspects NOT CONTAINS 'завтрак' && @object_class NOT 'санаторий'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @rating IS 2 && @aspects NOT CONTAINS 'завтрак' && @object_class NOT 'sanatorium'
   # слот 10 · 4 условия · && · без суффикса · предмет назван · поля @aspects @rating @object_class · операторы CONTAINS IS NOT CONTAINS NOT
 
 - Гостевые дома на пять, шум упомянут, парковки нет — списком
-  → FETCH [REVIEWS] WHERE @object_class IS 'гостевой дом' && @rating IS 5 && @aspects NOT CONTAINS 'парковка' && @aspects CONTAINS 'шум' AS LIST
+  → FETCH [REVIEWS] WHERE @object_class IS 'guesthouse' && @rating IS 5 && @aspects NOT CONTAINS 'парковка' && @aspects CONTAINS 'шум' AS LIST
   # слот 16 · 4 условия · && · AS LIST · предмет назван · поля @object_class @rating @aspects · операторы IS NOT CONTAINS CONTAINS
 
 - Оценка три про wi-fi, без спа и не в гостевых домах
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @rating IS 3 && @aspects NOT CONTAINS 'бассейн и спа' && @object_class NOT 'гостевой дом'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @rating IS 3 && @aspects NOT CONTAINS 'бассейн и спа' && @object_class NOT 'guesthouse'
   # слот 38 · 4 условия · && · без суффикса · предмет назван · поля @aspects @rating @object_class · операторы CONTAINS IS NOT CONTAINS NOT
 
 - Отзывы об отелях: пишут о персонале, цену не трогают, оценка не один
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'персонал' && @object_class IS 'отель' && @aspects NOT CONTAINS 'цена' && @rating NOT 1
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'персонал' && @object_class IS 'hotel' && @aspects NOT CONTAINS 'цена' && @rating NOT 1
   # слот 48 · 4 условия · && · без суффикса · предмет назван · поля @aspects @object_class @rating · операторы CONTAINS IS NOT CONTAINS NOT
 
 - Отзывы о гостевых домах: речь о цене, оценка не четыре, расположение не обсуждают
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'гостевой дом' && @rating NOT 4 && @aspects NOT CONTAINS 'расположение'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'guesthouse' && @rating NOT 4 && @aspects NOT CONTAINS 'расположение'
   # слот 100 · 4 условия · && · без суффикса · предмет назван · поля @aspects @object_class @rating · операторы CONTAINS IS NOT NOT CONTAINS
 
 - Отзывы о гостевых домах Кисловодска: о цене, но оценка не один
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'гостевой дом' && @rating NOT 1 && @city IS 'Кисловодск'
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'guesthouse' && @rating NOT 1 && @city IS 'Кисловодск'
   # слот 107 · 4 условия · && · без суффикса · предмет назван · поля @aspects @object_class @rating @city · операторы CONTAINS IS NOT
 
 - Кисловодск, оценка пять за парковку, wi-fi не упоминают
@@ -260,7 +260,7 @@
   # слот 160 · 4 условия · && · без суффикса · предмет назван · поля @aspects @rating @city · операторы CONTAINS IS NOT CONTAINS
 
 - Номера в санатории-профилактории РЖД — нужен список отзывов
-  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'санаторий' && @name IS 'Санаторий-профилакторий РЖД' && @aspects NOT CONTAINS 'расположение' AS LIST
+  → FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'sanatorium' && @name IS 'Санаторий-профилакторий РЖД' && @aspects NOT CONTAINS 'расположение' AS LIST
   # слот 175 · 4 условия · && · AS LIST · предмет назван · поля @aspects @object_class @name · операторы CONTAINS IS NOT CONTAINS
 
 - Что пишут про персонал «Евразии» в Пятигорске в отзывах на четыре?
@@ -272,5 +272,5 @@
   # слот 232 · 4 условия · && · без суффикса · предмет назван · поля @name @city @aspects @rating · операторы IS NOT CONTAINS NOT
 
 - «Курортные истории» в Ессентуках: не хостел, расположение не упомянуто
-  → FETCH [REVIEWS] WHERE @name IS 'Курортные истории' && @city IS 'Ессентуки' && @aspects NOT CONTAINS 'расположение' && @object_class NOT 'хостел'
+  → FETCH [REVIEWS] WHERE @name IS 'Курортные истории' && @city IS 'Ессентуки' && @aspects NOT CONTAINS 'расположение' && @object_class NOT 'hostel'
   # слот 246 · 4 условия · && · без суффикса · предмет назван · поля @name @city @aspects @object_class · операторы IS NOT CONTAINS NOT

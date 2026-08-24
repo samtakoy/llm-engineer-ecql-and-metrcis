@@ -25,6 +25,7 @@ from ecql_dataset.schema import (
     ROUTE_TYPE_TO_TRANSPORT,
     EntitySpec,
     FieldSpec,
+    to_code,
 )
 
 # Сколько примеров сохранять для полей с открытым перечнем значений.
@@ -203,7 +204,7 @@ def collect_field_values(*, field: FieldSpec, rows: list[dict[str, str]]) -> Cou
                 if part:
                     counter[part] += 1
         else:
-            counter[raw_value] += 1
+            counter[to_code(field = field.name, value = raw_value)] += 1
     return counter
 
 
@@ -386,7 +387,7 @@ def project_row(*, entity: EntitySpec, row: dict[str, str]) -> dict:
             if parts:
                 projected[field.name] = parts
         else:
-            projected[field.name] = raw_value
+            projected[field.name] = to_code(field = field.name, value = raw_value)
     return projected
 
 

@@ -19,15 +19,15 @@
 - `@city` — Кисловодск, Пятигорск, Ессентуки, Минеральные Воды, Железноводск, Иноземцево, Лермонтов, вне городов
 - `@category` — culture, food, shopping, lodging, nature, service, water, activity, transport
 - `@price_rub` — 200, 300, 500, 1300
-- `@price_kind` — средний чек, цена за ночь
-- `@object_kind` — памятник, ансамбль, достопримечательное место
-- `@heritage_status` — федеральный, региональный, местный
-- `@wheelchair` — да, нет, частично
+- `@price_kind` — average_check, per_night
+- `@object_kind` — monument, ensemble, heritage_site
+- `@heritage_status` — federal, regional, local
+- `@wheelchair` — yes, no, limited
 
 `[REVIEWS]`
 - `@name` — Жемчужина, Hotel Verona, Espero, Особняк
 - `@city` — Кисловодск, Пятигорск, Ессентуки, Железноводск
-- `@object_class` — отель, гостевой дом, санаторий, хостел
+- `@object_class` — hotel, guesthouse, sanatorium, hostel
 - `@rating` — 1, 2, 3, 4, 5
 - `@aspects` — номер, расположение, завтрак, персонал, чистота, бассейн и спа, цена, шум, wi-fi, парковка; от одного до четырёх значений через запятую, фильтр через `CONTAINS`
 
@@ -37,10 +37,10 @@
 - `@distance_m` — 86, 104, 500, 1500
 
 `[FARES]`
-- `@transport` — самолёт, автобус, поезд, трамвай
+- `@transport` — plane, bus, train, tram
 - `@route_start` — Минеральные Воды, Кисловодск, Пятигорск, Москва
 - `@route_end` — Москва, Санкт-Петербург, Сочи, Кисловодск
-- `@fare_class` — эконом, бизнес, плацкарт, купе
+- `@fare_class` — economy, business, platskart, kupe
 - `@price_rub` — 30, 35, 8090, 23110
 
 Полная спецификация языка — [docs/dz_ECQL.md](docs/dz_ECQL.md).

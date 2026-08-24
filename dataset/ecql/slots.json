@@ -11,7 +11,7 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "памятник"
+        "value": "monument"
       }
     ],
     "connective": "&&",
@@ -21,12 +21,12 @@
       "@name": "Нарзанная галерея",
       "@city": "Кисловодск",
       "@category": "water",
-      "@object_kind": "памятник",
-      "@heritage_status": "федеральный",
-      "@wheelchair": "да",
+      "@object_kind": "monument",
+      "@heritage_status": "federal",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'water' && @object_kind IS 'памятник'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'water' && @object_kind IS 'monument'"
   },
   {
     "index": 2,
@@ -35,7 +35,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "нет"
+        "value": "no"
       },
       {
         "field": "@category",
@@ -50,10 +50,10 @@
       "@name": "Bypass the fords",
       "@city": "Кисловодск",
       "@category": "activity",
-      "@wheelchair": "нет",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @wheelchair IS 'нет' && @category IS 'activity'"
+    "ecql": "FETCH [PLACES] WHERE @wheelchair IS 'no' && @category IS 'activity'"
   },
   {
     "index": 3,
@@ -72,7 +72,7 @@
       {
         "field": "@price_kind",
         "operator": "NOT",
-        "value": "цена за ночь"
+        "value": "per_night"
       }
     ],
     "connective": "&&",
@@ -83,11 +83,11 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 1200 && @price_kind NOT 'цена за ночь'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 1200 && @price_kind NOT 'per_night'"
   },
   {
     "index": 4,
@@ -96,12 +96,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "достопримечательное место"
+        "value": "heritage_site"
       },
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "региональный"
+        "value": "regional"
       }
     ],
     "connective": "&&",
@@ -111,11 +111,11 @@
       "@name": "Исторический центр города Пятигорска",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "достопримечательное место",
-      "@heritage_status": "региональный",
+      "@object_kind": "heritage_site",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' && @heritage_status IS 'региональный'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site' && @heritage_status IS 'regional'"
   },
   {
     "index": 5,
@@ -124,7 +124,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "хостел"
+        "value": "hostel"
       }
     ],
     "connective": null,
@@ -133,14 +133,14 @@
     "source_row": {
       "@name": "Дали",
       "@city": "Кисловодск",
-      "@object_class": "хостел",
+      "@object_class": "hostel",
       "@rating": "3",
       "@aspects": [
         "персонал"
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'хостел'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hostel'"
   },
   {
     "index": 6,
@@ -163,7 +163,7 @@
     "source_row": {
       "@name": "Город солнца",
       "@city": "Пятигорск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -182,12 +182,12 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "купе"
+        "value": "kupe"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "поезд"
+        "value": "train"
       },
       {
         "field": "@price_rub",
@@ -204,13 +204,13 @@
     "suffix": null,
     "has_range": true,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "купе",
+      "@fare_class": "kupe",
       "@price_rub": "10740"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'купе' && @transport IS 'поезд' && @price_rub ABOVE 10000 && @price_rub BELOW 20000"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'kupe' && @transport IS 'train' && @price_rub ABOVE 10000 && @price_rub BELOW 20000"
   },
   {
     "index": 8,
@@ -229,7 +229,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       }
     ],
     "connective": "&&",
@@ -240,11 +240,11 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "нет",
+      "@price_kind": "average_check",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'средний чек' AS TABLE"
+    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'average_check' AS TABLE"
   },
   {
     "index": 9,
@@ -253,20 +253,20 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "бизнес"
+        "value": "business"
       }
     ],
     "connective": null,
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "23430"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'бизнес'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'business'"
   },
   {
     "index": 10,
@@ -290,7 +290,7 @@
       {
         "field": "@object_class",
         "operator": "NOT",
-        "value": "санаторий"
+        "value": "sanatorium"
       }
     ],
     "connective": "&&",
@@ -299,7 +299,7 @@
     "source_row": {
       "@name": "Эос",
       "@city": "Железноводск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -307,7 +307,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @rating IS 2 && @aspects NOT CONTAINS 'завтрак' && @object_class NOT 'санаторий'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @rating IS 2 && @aspects NOT CONTAINS 'завтрак' && @object_class NOT 'sanatorium'"
   },
   {
     "index": 11,
@@ -326,7 +326,7 @@
       {
         "field": "@wheelchair",
         "operator": "NOT",
-        "value": "да"
+        "value": "yes"
       },
       {
         "field": "@category",
@@ -342,11 +342,11 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "1300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "нет",
+      "@price_kind": "average_check",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 1200 && @price_rub BELOW 2200 && @wheelchair NOT 'да' && @category NOT 'lodging'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 1200 && @price_rub BELOW 2200 && @wheelchair NOT 'yes' && @category NOT 'lodging'"
   },
   {
     "index": 12,
@@ -391,7 +391,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "нет"
+        "value": "no"
       },
       {
         "field": "@category",
@@ -407,11 +407,11 @@
       "@city": "Кисловодск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "нет",
+      "@price_kind": "average_check",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @wheelchair IS 'нет' && @category IS 'food'"
+    "ecql": "FETCH [PLACES] WHERE @wheelchair IS 'no' && @category IS 'food'"
   },
   {
     "index": 14,
@@ -420,25 +420,25 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "плацкарт"
+        "value": "platskart"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "поезд"
+        "value": "train"
       }
     ],
     "connective": "&&",
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "плацкарт",
+      "@fare_class": "platskart",
       "@price_rub": "7960"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'плацкарт' && @transport IS 'поезд'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'platskart' && @transport IS 'train'"
   },
   {
     "index": 15,
@@ -447,7 +447,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "автобус"
+        "value": "bus"
       },
       {
         "field": "@price_rub",
@@ -459,12 +459,12 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Кисловодск",
       "@route_end": "Кисловодск",
       "@price_rub": "35"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'автобус' && @price_rub ABOVE 30"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'bus' && @price_rub ABOVE 30"
   },
   {
     "index": 16,
@@ -473,7 +473,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       },
       {
         "field": "@rating",
@@ -497,7 +497,7 @@
     "source_row": {
       "@name": "The Utopia",
       "@city": "Пятигорск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "5",
       "@aspects": [
         "завтрак",
@@ -505,7 +505,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'гостевой дом' && @rating IS 5 && @aspects NOT CONTAINS 'парковка' && @aspects CONTAINS 'шум' AS LIST"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'guesthouse' && @rating IS 5 && @aspects NOT CONTAINS 'парковка' && @aspects CONTAINS 'шум' AS LIST"
   },
   {
     "index": 17,
@@ -535,8 +535,8 @@
       "@city": "Пятигорск",
       "@category": "lodging",
       "@price_rub": "6400",
-      "@price_kind": "цена за ночь",
-      "@wheelchair": "да",
+      "@price_kind": "per_night",
+      "@wheelchair": "yes",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 6000 && @price_rub BELOW 16000 && @category IS 'lodging'"
@@ -562,7 +562,7 @@
     "source_row": {
       "@name": "Кэмэл Дом",
       "@city": "Лермонтов",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "2",
       "@aspects": [
         "завтрак"
@@ -665,7 +665,7 @@
     "source_row": {
       "@name": "Гранд-Отель",
       "@city": "Кисловодск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -692,7 +692,7 @@
     "source_row": {
       "@name": "Санаторий-профилакторий РЖД",
       "@city": "Минеральные Воды",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -719,7 +719,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       }
     ],
     "connective": "&&",
@@ -730,11 +730,11 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'средний чек'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'average_check'"
   },
   {
     "index": 25,
@@ -779,7 +779,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "да"
+        "value": "yes"
       }
     ],
     "connective": "&&",
@@ -790,11 +790,11 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "1000",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 900 && @price_rub BELOW 1200 && @wheelchair IS 'да' AS TABLE"
+    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 900 && @price_rub BELOW 1200 && @wheelchair IS 'yes' AS TABLE"
   },
   {
     "index": 27,
@@ -812,7 +812,7 @@
     "source_row": {
       "@name": "Монарх",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -844,7 +844,7 @@
     "source_row": {
       "@name": "Эос",
       "@city": "Железноводск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -882,12 +882,12 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       },
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "частично"
+        "value": "limited"
       }
     ],
     "connective": "&&",
@@ -898,11 +898,11 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "1200",
-      "@price_kind": "средний чек",
-      "@wheelchair": "частично",
+      "@price_kind": "average_check",
+      "@wheelchair": "limited",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'средний чек' && @wheelchair IS 'частично'"
+    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'average_check' && @wheelchair IS 'limited'"
   },
   {
     "index": 31,
@@ -911,17 +911,17 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "санаторий"
+        "value": "sanatorium"
       },
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       }
     ],
     "connective": "||",
@@ -930,7 +930,7 @@
     "source_row": {
       "@name": "Пассаж",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "3",
       "@aspects": [
         "номер",
@@ -940,7 +940,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'отель' || @object_class IS 'санаторий' || @object_class IS 'гостевой дом'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'sanatorium' || @object_class IS 'guesthouse'"
   },
   {
     "index": 32,
@@ -949,7 +949,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "трамвай"
+        "value": "tram"
       },
       {
         "field": "@price_rub",
@@ -966,12 +966,12 @@
     "suffix": null,
     "has_range": true,
     "source_row": {
-      "@transport": "трамвай",
+      "@transport": "tram",
       "@route_start": "Пятигорск",
       "@route_end": "Пятигорск",
       "@price_rub": "30"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'трамвай' && @price_rub ABOVE 20 && @price_rub BELOW 40"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'tram' && @price_rub ABOVE 20 && @price_rub BELOW 40"
   },
   {
     "index": 33,
@@ -999,7 +999,7 @@
     "source_row": {
       "@name": "Chill House",
       "@city": "Пятигорск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "3",
       "@aspects": [
         "расположение",
@@ -1030,7 +1030,7 @@
     "source_row": {
       "@name": "Русь",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "3",
       "@aspects": [
         "номер",
@@ -1049,7 +1049,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "цена за ночь"
+        "value": "per_night"
       },
       {
         "field": "@price_rub",
@@ -1070,10 +1070,10 @@
       "@city": "Кисловодск",
       "@category": "lodging",
       "@price_rub": "8700",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'цена за ночь' && @price_rub ABOVE 8000 && @price_rub BELOW 13000"
+    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'per_night' && @price_rub ABOVE 8000 && @price_rub BELOW 13000"
   },
   {
     "index": 36,
@@ -1087,7 +1087,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "нет"
+        "value": "no"
       }
     ],
     "connective": "&&",
@@ -1098,11 +1098,11 @@
       "@city": "Ессентуки",
       "@category": "lodging",
       "@price_rub": "7200",
-      "@price_kind": "цена за ночь",
-      "@wheelchair": "нет",
+      "@price_kind": "per_night",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'lodging' && @wheelchair IS 'нет'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'lodging' && @wheelchair IS 'no'"
   },
   {
     "index": 37,
@@ -1111,12 +1111,12 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "эконом"
+        "value": "economy"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       },
       {
         "field": "@price_rub",
@@ -1133,13 +1133,13 @@
     "suffix": null,
     "has_range": true,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Санкт-Петербург",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "7640"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'эконом' && @transport IS 'самолёт' && @price_rub ABOVE 7000 && @price_rub BELOW 10000"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'economy' && @transport IS 'plane' && @price_rub ABOVE 7000 && @price_rub BELOW 10000"
   },
   {
     "index": 38,
@@ -1163,7 +1163,7 @@
       {
         "field": "@object_class",
         "operator": "NOT",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       }
     ],
     "connective": "&&",
@@ -1172,7 +1172,7 @@
     "source_row": {
       "@name": "Синегорье",
       "@city": "Кисловодск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "3",
       "@aspects": [
         "номер",
@@ -1182,7 +1182,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @rating IS 3 && @aspects NOT CONTAINS 'бассейн и спа' && @object_class NOT 'гостевой дом'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @rating IS 3 && @aspects NOT CONTAINS 'бассейн и спа' && @object_class NOT 'guesthouse'"
   },
   {
     "index": 39,
@@ -1243,7 +1243,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "автобус"
+        "value": "bus"
       },
       {
         "field": "@price_rub",
@@ -1265,12 +1265,12 @@
     "suffix": null,
     "has_range": true,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Кисловодск",
       "@route_end": "Кисловодск",
       "@price_rub": "35"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'автобус' && @price_rub ABOVE 30 && @price_rub BELOW 50 && @route_start IS 'Кисловодск'"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'bus' && @price_rub ABOVE 30 && @price_rub BELOW 50 && @route_start IS 'Кисловодск'"
   },
   {
     "index": 42,
@@ -1327,10 +1327,10 @@
     "suffix": "AS JSON",
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Санкт-Петербург",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "11480"
     },
     "ecql": "FETCH [FARES] WHERE @route_end IS 'Санкт-Петербург' || @route_end IS 'Москва' || @route_end IS 'Сочи' AS JSON"
@@ -1351,7 +1351,7 @@
     "source_row": {
       "@name": "Санаторий-профилакторий РЖД",
       "@city": "Минеральные Воды",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -1399,12 +1399,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "памятник"
+        "value": "monument"
       },
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "да"
+        "value": "yes"
       }
     ],
     "connective": "&&",
@@ -1414,12 +1414,12 @@
       "@name": "Лермонтовская галерея",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "региональный",
-      "@wheelchair": "да",
+      "@object_kind": "monument",
+      "@heritage_status": "regional",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'памятник' && @wheelchair IS 'да'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'monument' && @wheelchair IS 'yes'"
   },
   {
     "index": 47,
@@ -1428,7 +1428,7 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "памятник"
+        "value": "monument"
       }
     ],
     "connective": null,
@@ -1438,11 +1438,11 @@
       "@name": "Вход в парк с Привокзальной площади",
       "@city": "Ессентуки",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "региональный",
+      "@object_kind": "monument",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'памятник'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'monument'"
   },
   {
     "index": 48,
@@ -1456,7 +1456,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@aspects",
@@ -1475,7 +1475,7 @@
     "source_row": {
       "@name": "Евразия",
       "@city": "Пятигорск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "расположение",
@@ -1484,7 +1484,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'персонал' && @object_class IS 'отель' && @aspects NOT CONTAINS 'цена' && @rating NOT 1"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'персонал' && @object_class IS 'hotel' && @aspects NOT CONTAINS 'цена' && @rating NOT 1"
   },
   {
     "index": 49,
@@ -1566,8 +1566,8 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 1200 && @name IS 'ГироДот' AS TABLE"
@@ -1615,7 +1615,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       },
       {
         "field": "@price_rub",
@@ -1632,13 +1632,13 @@
     "suffix": "AS JSON",
     "has_range": true,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "23430"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'самолёт' && @price_rub ABOVE 23000 && @price_rub BELOW 25000 AS JSON"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'plane' && @price_rub ABOVE 23000 && @price_rub BELOW 25000 AS JSON"
   },
   {
     "index": 54,
@@ -1647,7 +1647,7 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "купе"
+        "value": "kupe"
       },
       {
         "field": "@price_rub",
@@ -1664,13 +1664,13 @@
     "suffix": null,
     "has_range": true,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "купе",
+      "@fare_class": "kupe",
       "@price_rub": "10740"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'купе' && @price_rub ABOVE 10000 && @price_rub BELOW 12000"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'kupe' && @price_rub ABOVE 10000 && @price_rub BELOW 12000"
   },
   {
     "index": 55,
@@ -1700,7 +1700,7 @@
       "@city": "Кисловодск",
       "@category": "lodging",
       "@price_rub": "8700",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'lodging' && @price_rub ABOVE 8000 && @price_rub BELOW 10000"
@@ -1738,7 +1738,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "да"
+        "value": "yes"
       }
     ],
     "connective": "&&",
@@ -1748,10 +1748,10 @@
       "@name": "Лента",
       "@city": "Иноземцево",
       "@category": "shopping",
-      "@wheelchair": "да",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'shopping' && @wheelchair IS 'да'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'shopping' && @wheelchair IS 'yes'"
   },
   {
     "index": 58,
@@ -1760,19 +1760,19 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "автобус"
+        "value": "bus"
       }
     ],
     "connective": null,
     "suffix": "AS JSON",
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Кисловодск",
       "@route_end": "Кисловодск",
       "@price_rub": "35"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'автобус' AS JSON"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'bus' AS JSON"
   },
   {
     "index": 59,
@@ -1781,25 +1781,25 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "эконом"
+        "value": "economy"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       }
     ],
     "connective": "&&",
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "8820"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'эконом' && @transport IS 'самолёт'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'economy' && @transport IS 'plane'"
   },
   {
     "index": 60,
@@ -1817,7 +1817,7 @@
     "source_row": {
       "@name": "Термальный",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -1856,8 +1856,8 @@
       "@city": "Кисловодск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "нет",
+      "@price_kind": "average_check",
+      "@wheelchair": "no",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 500 && @category IS 'food'"
@@ -1869,7 +1869,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "санаторий"
+        "value": "sanatorium"
       }
     ],
     "connective": null,
@@ -1878,7 +1878,7 @@
     "source_row": {
       "@name": "Санаторий-профилакторий РЖД",
       "@city": "Минеральные Воды",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -1886,7 +1886,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'санаторий'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'sanatorium'"
   },
   {
     "index": 63,
@@ -1895,12 +1895,12 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "цена за ночь"
+        "value": "per_night"
       },
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "нет"
+        "value": "no"
       }
     ],
     "connective": "&&",
@@ -1911,11 +1911,11 @@
       "@city": "Ессентуки",
       "@category": "lodging",
       "@price_rub": "7200",
-      "@price_kind": "цена за ночь",
-      "@wheelchair": "нет",
+      "@price_kind": "per_night",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'цена за ночь' && @wheelchair IS 'нет'"
+    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'per_night' && @wheelchair IS 'no'"
   },
   {
     "index": 64,
@@ -1924,12 +1924,12 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "купе"
+        "value": "kupe"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "поезд"
+        "value": "train"
       },
       {
         "field": "@route_start",
@@ -1941,13 +1941,13 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "купе",
+      "@fare_class": "kupe",
       "@price_rub": "10740"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'купе' && @transport IS 'поезд' && @route_start IS 'Москва'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'kupe' && @transport IS 'train' && @route_start IS 'Москва'"
   },
   {
     "index": 65,
@@ -1961,7 +1961,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "хостел"
+        "value": "hostel"
       }
     ],
     "connective": "&&",
@@ -1970,7 +1970,7 @@
     "source_row": {
       "@name": "Хостел ГородЪ",
       "@city": "Пятигорск",
-      "@object_class": "хостел",
+      "@object_class": "hostel",
       "@rating": "4",
       "@aspects": [
         "расположение",
@@ -1979,7 +1979,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'бассейн и спа' && @object_class IS 'хостел'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'бассейн и спа' && @object_class IS 'hostel'"
   },
   {
     "index": 66,
@@ -2008,8 +2008,8 @@
       "@name": "Дача И.Д.Иноземцева \"Лесной уголок\"",
       "@city": "Железноводск",
       "@category": "culture",
-      "@object_kind": "ансамбль",
-      "@heritage_status": "региональный",
+      "@object_kind": "ensemble",
+      "@heritage_status": "regional",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'culture' || @category IS 'service' || @category IS 'water'"
@@ -2021,25 +2021,25 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "бизнес"
+        "value": "business"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       }
     ],
     "connective": "&&",
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "24390"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'бизнес' && @transport IS 'самолёт'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'business' && @transport IS 'plane'"
   },
   {
     "index": 68,
@@ -2078,7 +2078,7 @@
     "source_row": {
       "@name": "Евразия",
       "@city": "Пятигорск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "расположение",
@@ -2096,12 +2096,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "памятник"
+        "value": "monument"
       },
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "региональный"
+        "value": "regional"
       }
     ],
     "connective": "&&",
@@ -2111,11 +2111,11 @@
       "@name": "Вход в парк с Привокзальной площади",
       "@city": "Ессентуки",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "региональный",
+      "@object_kind": "monument",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'памятник' && @heritage_status IS 'региональный'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'monument' && @heritage_status IS 'regional'"
   },
   {
     "index": 71,
@@ -2124,7 +2124,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "трамвай"
+        "value": "tram"
       },
       {
         "field": "@route_start",
@@ -2141,12 +2141,12 @@
     "suffix": "AS TABLE",
     "has_range": false,
     "source_row": {
-      "@transport": "трамвай",
+      "@transport": "tram",
       "@route_start": "Пятигорск",
       "@route_end": "Пятигорск",
       "@price_rub": "30"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'трамвай' && @route_start IS 'Пятигорск' && @route_end IS 'Пятигорск' AS TABLE"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'tram' && @route_start IS 'Пятигорск' && @route_end IS 'Пятигорск' AS TABLE"
   },
   {
     "index": 72,
@@ -2181,7 +2181,7 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "ансамбль"
+        "value": "ensemble"
       }
     ],
     "connective": null,
@@ -2191,11 +2191,11 @@
       "@name": "Усадьба Померанцева",
       "@city": "Кисловодск",
       "@category": "culture",
-      "@object_kind": "ансамбль",
-      "@heritage_status": "региональный",
+      "@object_kind": "ensemble",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ансамбль'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ensemble'"
   },
   {
     "index": 74,
@@ -2204,12 +2204,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "ансамбль"
+        "value": "ensemble"
       },
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "федеральный"
+        "value": "federal"
       }
     ],
     "connective": "&&",
@@ -2219,11 +2219,11 @@
       "@name": "Санаторий им. Орджоникидзе",
       "@city": "Кисловодск",
       "@category": "culture",
-      "@object_kind": "ансамбль",
-      "@heritage_status": "федеральный",
+      "@object_kind": "ensemble",
+      "@heritage_status": "federal",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ансамбль' && @heritage_status IS 'федеральный'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ensemble' && @heritage_status IS 'federal'"
   },
   {
     "index": 75,
@@ -2237,7 +2237,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       },
       {
         "field": "@city",
@@ -2253,10 +2253,10 @@
       "@city": "вне городов",
       "@category": "food",
       "@price_rub": "400",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'средний чек' && @city IS 'вне городов'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'average_check' && @city IS 'вне городов'"
   },
   {
     "index": 76,
@@ -2270,7 +2270,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       },
       {
         "field": "@name",
@@ -2291,10 +2291,10 @@
       "@city": "вне городов",
       "@category": "food",
       "@price_rub": "400",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'средний чек' && @name IS 'Смак' && @city IS 'вне городов'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'average_check' && @name IS 'Смак' && @city IS 'вне городов'"
   },
   {
     "index": 77,
@@ -2303,12 +2303,12 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "санаторий"
+        "value": "sanatorium"
       },
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       }
     ],
     "connective": "||",
@@ -2317,7 +2317,7 @@
     "source_row": {
       "@name": "Санаторий-профилакторий РЖД",
       "@city": "Минеральные Воды",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "3",
       "@aspects": [
         "номер",
@@ -2327,7 +2327,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'санаторий' || @object_class IS 'отель'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'sanatorium' || @object_class IS 'hotel'"
   },
   {
     "index": 78,
@@ -2336,12 +2336,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "достопримечательное место"
+        "value": "heritage_site"
       },
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "региональный"
+        "value": "regional"
       },
       {
         "field": "@category",
@@ -2356,11 +2356,11 @@
       "@name": "Исторический центр города Пятигорска",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "достопримечательное место",
-      "@heritage_status": "региональный",
+      "@object_kind": "heritage_site",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' && @heritage_status IS 'региональный' && @category NOT 'service'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site' && @heritage_status IS 'regional' && @category NOT 'service'"
   },
   {
     "index": 79,
@@ -2395,20 +2395,20 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "эконом"
+        "value": "economy"
       }
     ],
     "connective": null,
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Санкт-Петербург",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "7640"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'эконом'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'economy'"
   },
   {
     "index": 81,
@@ -2428,7 +2428,7 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "1700",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'food'"
@@ -2445,12 +2445,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "достопримечательное место"
+        "value": "heritage_site"
       },
       {
         "field": "@heritage_status",
         "operator": "NOT",
-        "value": "федеральный"
+        "value": "federal"
       },
       {
         "field": "@name",
@@ -2465,11 +2465,11 @@
       "@name": "Исторический центр города Пятигорска",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "достопримечательное место",
-      "@heritage_status": "региональный",
+      "@object_kind": "heritage_site",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @object_kind IS 'достопримечательное место' && @heritage_status NOT 'федеральный' && @name IS 'Исторический центр города Пятигорска'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @object_kind IS 'heritage_site' && @heritage_status NOT 'federal' && @name IS 'Исторический центр города Пятигорска'"
   },
   {
     "index": 83,
@@ -2529,9 +2529,9 @@
       "@name": "Лермонтовская галерея",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "региональный",
-      "@wheelchair": "да",
+      "@object_kind": "monument",
+      "@heritage_status": "regional",
+      "@wheelchair": "yes",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'culture' || @category IS 'shopping' || @category IS 'nature'"
@@ -2543,7 +2543,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@aspects",
@@ -2557,7 +2557,7 @@
     "source_row": {
       "@name": "Гранд-Отель",
       "@city": "Кисловодск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -2566,7 +2566,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'отель' && @aspects CONTAINS 'бассейн и спа'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' && @aspects CONTAINS 'бассейн и спа'"
   },
   {
     "index": 86,
@@ -2580,7 +2580,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "частично"
+        "value": "limited"
       },
       {
         "field": "@city",
@@ -2595,10 +2595,10 @@
       "@name": "Питьевой Бювет \"Западный\"",
       "@city": "Железноводск",
       "@category": "water",
-      "@wheelchair": "частично",
+      "@wheelchair": "limited",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'water' && @wheelchair IS 'частично' && @city IS 'Железноводск'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'water' && @wheelchair IS 'limited' && @city IS 'Железноводск'"
   },
   {
     "index": 87,
@@ -2616,7 +2616,7 @@
     "source_row": {
       "@name": "Эос",
       "@city": "Железноводск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -2643,7 +2643,7 @@
     "source_row": {
       "@name": "Пансионат \"Фаворит\"",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "1",
       "@aspects": [
         "расположение",
@@ -2667,7 +2667,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "нет"
+        "value": "no"
       }
     ],
     "connective": "&&",
@@ -2677,10 +2677,10 @@
       "@name": "Медвежата",
       "@city": "Кисловодск",
       "@category": "culture",
-      "@wheelchair": "нет",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'нет'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'no'"
   },
   {
     "index": 90,
@@ -2698,7 +2698,7 @@
     "source_row": {
       "@name": "Chill House",
       "@city": "Пятигорск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "3",
       "@aspects": [
         "расположение",
@@ -2715,7 +2715,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@aspects",
@@ -2734,7 +2734,7 @@
     "source_row": {
       "@name": "Евразия",
       "@city": "Пятигорск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "расположение",
@@ -2743,7 +2743,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'отель' && @aspects CONTAINS 'персонал' && @aspects NOT CONTAINS 'номер'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' && @aspects CONTAINS 'персонал' && @aspects NOT CONTAINS 'номер'"
   },
   {
     "index": 92,
@@ -2752,7 +2752,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "цена за ночь"
+        "value": "per_night"
       },
       {
         "field": "@category",
@@ -2768,10 +2768,10 @@
       "@city": "Кисловодск",
       "@category": "lodging",
       "@price_rub": "8700",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'цена за ночь' && @category IS 'lodging'"
+    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'per_night' && @category IS 'lodging'"
   },
   {
     "index": 93,
@@ -2785,7 +2785,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@aspects",
@@ -2799,7 +2799,7 @@
     "source_row": {
       "@name": "Эос",
       "@city": "Железноводск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -2807,7 +2807,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @rating IS 2 && @object_class IS 'отель' && @aspects NOT CONTAINS 'чистота'"
+    "ecql": "FETCH [REVIEWS] WHERE @rating IS 2 && @object_class IS 'hotel' && @aspects NOT CONTAINS 'чистота'"
   },
   {
     "index": 94,
@@ -2816,20 +2816,20 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "плацкарт"
+        "value": "platskart"
       }
     ],
     "connective": null,
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Нальчик",
-      "@fare_class": "плацкарт",
+      "@fare_class": "platskart",
       "@price_rub": "9050"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'плацкарт'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'platskart'"
   },
   {
     "index": 95,
@@ -2838,12 +2838,12 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "бизнес"
+        "value": "business"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       },
       {
         "field": "@route_start",
@@ -2860,13 +2860,13 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "23430"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'бизнес' && @transport IS 'самолёт' && @route_start IS 'Минеральные Воды' && @route_end IS 'Москва'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'business' && @transport IS 'plane' && @route_start IS 'Минеральные Воды' && @route_end IS 'Москва'"
   },
   {
     "index": 96,
@@ -2911,8 +2911,8 @@
       "@name": "Усадьба предпринимателя А.И.Калинина",
       "@city": "Ессентуки",
       "@category": "culture",
-      "@object_kind": "ансамбль",
-      "@heritage_status": "региональный",
+      "@object_kind": "ensemble",
+      "@heritage_status": "regional",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @city IS 'Ессентуки' || @city IS 'Кисловодск'"
@@ -2924,7 +2924,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "хостел"
+        "value": "hostel"
       },
       {
         "field": "@rating",
@@ -2938,14 +2938,14 @@
     "source_row": {
       "@name": "Дали",
       "@city": "Кисловодск",
-      "@object_class": "хостел",
+      "@object_class": "hostel",
       "@rating": "3",
       "@aspects": [
         "персонал"
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'хостел' && @rating IS 3"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hostel' && @rating IS 3"
   },
   {
     "index": 99,
@@ -2959,7 +2959,7 @@
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "региональный"
+        "value": "regional"
       }
     ],
     "connective": "&&",
@@ -2969,11 +2969,11 @@
       "@name": "Вход в парк с Привокзальной площади",
       "@city": "Ессентуки",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "региональный",
+      "@object_kind": "monument",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @heritage_status IS 'региональный' AS JSON"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @heritage_status IS 'regional' AS JSON"
   },
   {
     "index": 100,
@@ -2987,7 +2987,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       },
       {
         "field": "@rating",
@@ -3006,7 +3006,7 @@
     "source_row": {
       "@name": "Квартира - студия  посуточно на Окопной",
       "@city": "Кисловодск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -3015,7 +3015,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'гостевой дом' && @rating NOT 4 && @aspects NOT CONTAINS 'расположение'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'guesthouse' && @rating NOT 4 && @aspects NOT CONTAINS 'расположение'"
   },
   {
     "index": 101,
@@ -3024,12 +3024,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "достопримечательное место"
+        "value": "heritage_site"
       },
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "региональный"
+        "value": "regional"
       },
       {
         "field": "@name",
@@ -3049,11 +3049,11 @@
       "@name": "Исторический центр города Пятигорска",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "достопримечательное место",
-      "@heritage_status": "региональный",
+      "@object_kind": "heritage_site",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' && @heritage_status IS 'региональный' && @name IS 'Исторический центр города Пятигорска' && @category NOT 'nature' AS JSON"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site' && @heritage_status IS 'regional' && @name IS 'Исторический центр города Пятигорска' && @category NOT 'nature' AS JSON"
   },
   {
     "index": 102,
@@ -3067,7 +3067,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "частично"
+        "value": "limited"
       },
       {
         "field": "@name",
@@ -3077,7 +3077,7 @@
       {
         "field": "@price_kind",
         "operator": "NOT",
-        "value": "цена за ночь"
+        "value": "per_night"
       }
     ],
     "connective": "&&",
@@ -3088,11 +3088,11 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "1200",
-      "@price_kind": "средний чек",
-      "@wheelchair": "частично",
+      "@price_kind": "average_check",
+      "@wheelchair": "limited",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'food' && @wheelchair IS 'частично' && @name IS 'Шалаши' && @price_kind NOT 'цена за ночь'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'food' && @wheelchair IS 'limited' && @name IS 'Шалаши' && @price_kind NOT 'per_night'"
   },
   {
     "index": 103,
@@ -3106,7 +3106,7 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "да"
+        "value": "yes"
       }
     ],
     "connective": "&&",
@@ -3116,10 +3116,10 @@
       "@name": "Цветочный календарь",
       "@city": "Кисловодск",
       "@category": "culture",
-      "@wheelchair": "да",
+      "@wheelchair": "yes",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'да'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'yes'"
   },
   {
     "index": 104,
@@ -3128,7 +3128,7 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "купе"
+        "value": "kupe"
       },
       {
         "field": "@route_start",
@@ -3138,20 +3138,20 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "поезд"
+        "value": "train"
       }
     ],
     "connective": "&&",
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "купе",
+      "@fare_class": "kupe",
       "@price_rub": "10740"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'купе' && @route_start IS 'Москва' && @transport IS 'поезд'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'kupe' && @route_start IS 'Москва' && @transport IS 'train'"
   },
   {
     "index": 105,
@@ -3165,7 +3165,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       },
       {
         "field": "@aspects",
@@ -3179,7 +3179,7 @@
     "source_row": {
       "@name": "Ostrovok",
       "@city": "Минеральные Воды",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "1",
       "@aspects": [
         "номер",
@@ -3189,7 +3189,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'гостевой дом' && @aspects NOT CONTAINS 'цена' AS TABLE"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'guesthouse' && @aspects NOT CONTAINS 'цена' AS TABLE"
   },
   {
     "index": 106,
@@ -3198,12 +3198,12 @@
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "местный"
+        "value": "local"
       },
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "памятник"
+        "value": "monument"
       }
     ],
     "connective": "&&",
@@ -3213,11 +3213,11 @@
       "@name": "Особняк Тиц",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "местный",
+      "@object_kind": "monument",
+      "@heritage_status": "local",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'местный' && @object_kind IS 'памятник'"
+    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @object_kind IS 'monument'"
   },
   {
     "index": 107,
@@ -3231,7 +3231,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       },
       {
         "field": "@rating",
@@ -3250,7 +3250,7 @@
     "source_row": {
       "@name": "Квартира - студия  посуточно на Окопной",
       "@city": "Кисловодск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -3259,7 +3259,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'гостевой дом' && @rating NOT 1 && @city IS 'Кисловодск'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена' && @object_class IS 'guesthouse' && @rating NOT 1 && @city IS 'Кисловодск'"
   },
   {
     "index": 108,
@@ -3299,12 +3299,12 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "хостел"
+        "value": "hostel"
       },
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       }
     ],
     "connective": "||",
@@ -3313,7 +3313,7 @@
     "source_row": {
       "@name": "Хостел Русь",
       "@city": "Пятигорск",
-      "@object_class": "хостел",
+      "@object_class": "hostel",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -3322,7 +3322,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'хостел' || @object_class IS 'отель' AS LIST"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hostel' || @object_class IS 'hotel' AS LIST"
   },
   {
     "index": 110,
@@ -3352,12 +3352,12 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "плацкарт"
+        "value": "platskart"
       },
       {
         "field": "@transport",
         "operator": "NOT",
-        "value": "автобус"
+        "value": "bus"
       },
       {
         "field": "@route_start",
@@ -3369,13 +3369,13 @@
     "suffix": "AS TABLE",
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "плацкарт",
+      "@fare_class": "platskart",
       "@price_rub": "7960"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'плацкарт' && @transport NOT 'автобус' && @route_start IS 'Москва' AS TABLE"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'platskart' && @transport NOT 'bus' && @route_start IS 'Москва' AS TABLE"
   },
   {
     "index": 112,
@@ -3420,7 +3420,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "санаторий"
+        "value": "sanatorium"
       }
     ],
     "connective": "&&",
@@ -3429,7 +3429,7 @@
     "source_row": {
       "@name": "Санаторий \"Солнечный\"",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "2",
       "@aspects": [
         "чистота",
@@ -3438,7 +3438,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'парковка' && @object_class IS 'санаторий'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'парковка' && @object_class IS 'sanatorium'"
   },
   {
     "index": 114,
@@ -3508,7 +3508,7 @@
     "source_row": {
       "@name": "Пансионат \"Фаворит\"",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "1",
       "@aspects": [
         "расположение",
@@ -3527,7 +3527,7 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "ансамбль"
+        "value": "ensemble"
       },
       {
         "field": "@category",
@@ -3537,7 +3537,7 @@
       {
         "field": "@heritage_status",
         "operator": "NOT",
-        "value": "местный"
+        "value": "local"
       }
     ],
     "connective": "&&",
@@ -3547,11 +3547,11 @@
       "@name": "Усадьба Померанцева",
       "@city": "Кисловодск",
       "@category": "culture",
-      "@object_kind": "ансамбль",
-      "@heritage_status": "региональный",
+      "@object_kind": "ensemble",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ансамбль' && @category IS 'culture' && @heritage_status NOT 'местный' AS TABLE"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ensemble' && @category IS 'culture' && @heritage_status NOT 'local' AS TABLE"
   },
   {
     "index": 118,
@@ -3591,7 +3591,7 @@
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "федеральный"
+        "value": "federal"
       }
     ],
     "connective": "&&",
@@ -3601,12 +3601,12 @@
       "@name": "Нарзанная галерея",
       "@city": "Кисловодск",
       "@category": "water",
-      "@object_kind": "памятник",
-      "@heritage_status": "федеральный",
-      "@wheelchair": "да",
+      "@object_kind": "monument",
+      "@heritage_status": "federal",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @category IS 'water' && @heritage_status IS 'федеральный'"
+    "ecql": "FETCH [PLACES] WHERE @category IS 'water' && @heritage_status IS 'federal'"
   },
   {
     "index": 120,
@@ -3615,7 +3615,7 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "достопримечательное место"
+        "value": "heritage_site"
       }
     ],
     "connective": null,
@@ -3625,11 +3625,11 @@
       "@name": "Исторический центр города Пятигорска",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "достопримечательное место",
-      "@heritage_status": "региональный",
+      "@object_kind": "heritage_site",
+      "@heritage_status": "regional",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' AS JSON"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site' AS JSON"
   },
   {
     "index": 121,
@@ -3643,7 +3643,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "санаторий"
+        "value": "sanatorium"
       }
     ],
     "connective": "&&",
@@ -3652,7 +3652,7 @@
     "source_row": {
       "@name": "Пансионат \"Фаворит\"",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "1",
       "@aspects": [
         "расположение",
@@ -3662,7 +3662,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'санаторий'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @object_class IS 'sanatorium'"
   },
   {
     "index": 122,
@@ -3671,7 +3671,7 @@
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "местный"
+        "value": "local"
       },
       {
         "field": "@category",
@@ -3686,11 +3686,11 @@
       "@name": "Особняк Тиц",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "местный",
+      "@object_kind": "monument",
+      "@heritage_status": "local",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'местный' && @category IS 'culture'"
+    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @category IS 'culture'"
   },
   {
     "index": 123,
@@ -3718,7 +3718,7 @@
     "source_row": {
       "@name": "Санаторий \"Солнечный\"",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "2",
       "@aspects": [
         "чистота",
@@ -3772,7 +3772,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "хостел"
+        "value": "hostel"
       }
     ],
     "connective": "&&",
@@ -3781,7 +3781,7 @@
     "source_row": {
       "@name": "Хостел Русь",
       "@city": "Пятигорск",
-      "@object_class": "хостел",
+      "@object_class": "hostel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -3789,7 +3789,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'расположение' && @object_class IS 'хостел'"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'расположение' && @object_class IS 'hostel'"
   },
   {
     "index": 126,
@@ -3838,7 +3838,7 @@
     "source_row": {
       "@name": "Пансионат \"Фаворит\"",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -3877,8 +3877,8 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "1000",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @city IS 'Пятигорск' || @city IS 'вне городов' || @city IS 'Железноводск'"
@@ -3904,7 +3904,7 @@
     "source_row": {
       "@name": "Пансионат \"Фаворит\"",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "1",
       "@aspects": [
         "расположение",
@@ -3963,7 +3963,7 @@
     "source_row": {
       "@name": "Европа",
       "@city": "Минеральные Воды",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "1",
       "@aspects": [
         "расположение"
@@ -3979,7 +3979,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "автобус"
+        "value": "bus"
       },
       {
         "field": "@route_end",
@@ -3991,12 +3991,12 @@
     "suffix": "AS TABLE",
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Кисловодск",
       "@route_end": "Кисловодск",
       "@price_rub": "35"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'автобус' && @route_end IS 'Кисловодск' AS TABLE"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'bus' && @route_end IS 'Кисловодск' AS TABLE"
   },
   {
     "index": 133,
@@ -4031,12 +4031,12 @@
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "ансамбль"
+        "value": "ensemble"
       },
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "федеральный"
+        "value": "federal"
       },
       {
         "field": "@category",
@@ -4056,11 +4056,11 @@
       "@name": "Подворье Карповых, где Лермонтов Михаил Юрьевич провел последнюю ночь перед дуэлью",
       "@city": "Железноводск",
       "@category": "culture",
-      "@object_kind": "ансамбль",
-      "@heritage_status": "федеральный",
+      "@object_kind": "ensemble",
+      "@heritage_status": "federal",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ансамбль' && @heritage_status IS 'федеральный' && @category NOT 'transport' && @city IS 'Железноводск'"
+    "ecql": "FETCH [PLACES] WHERE @object_kind IS 'ensemble' && @heritage_status IS 'federal' && @category NOT 'transport' && @city IS 'Железноводск'"
   },
   {
     "index": 135,
@@ -4109,7 +4109,7 @@
     "source_row": {
       "@name": "Термальный",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "персонал",
@@ -4148,8 +4148,8 @@
       "@city": "Минеральные Воды",
       "@category": "food",
       "@price_rub": "1400",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @city IS 'Минеральные Воды' || @city IS 'Кисловодск' || @city IS 'Пятигорск'"
@@ -4229,19 +4229,19 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "трамвай"
+        "value": "tram"
       }
     ],
     "connective": null,
     "suffix": "AS TABLE",
     "has_range": false,
     "source_row": {
-      "@transport": "трамвай",
+      "@transport": "tram",
       "@route_start": "Пятигорск",
       "@route_end": "Пятигорск",
       "@price_rub": "30"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'трамвай' AS TABLE"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'tram' AS TABLE"
   },
   {
     "index": 142,
@@ -4260,8 +4260,8 @@
       "@name": "Особняк Тиц",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "местный",
+      "@object_kind": "monument",
+      "@heritage_status": "local",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'culture'"
@@ -4308,7 +4308,7 @@
     "source_row": {
       "@name": "Европа",
       "@city": "Минеральные Воды",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "1",
       "@aspects": [
         "расположение"
@@ -4324,7 +4324,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "трамвай"
+        "value": "tram"
       },
       {
         "field": "@route_start",
@@ -4336,12 +4336,12 @@
     "suffix": "AS LIST",
     "has_range": false,
     "source_row": {
-      "@transport": "трамвай",
+      "@transport": "tram",
       "@route_start": "Пятигорск",
       "@route_end": "Пятигорск",
       "@price_rub": "30"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'трамвай' && @route_start IS 'Пятигорск' AS LIST"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'tram' && @route_start IS 'Пятигорск' AS LIST"
   },
   {
     "index": 146,
@@ -4350,12 +4350,12 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "эконом"
+        "value": "economy"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       },
       {
         "field": "@route_end",
@@ -4367,13 +4367,13 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Санкт-Петербург",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "7640"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'эконом' && @transport IS 'самолёт' && @route_end IS 'Санкт-Петербург'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'economy' && @transport IS 'plane' && @route_end IS 'Санкт-Петербург'"
   },
   {
     "index": 147,
@@ -4382,7 +4382,7 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "плацкарт"
+        "value": "platskart"
       },
       {
         "field": "@price_rub",
@@ -4399,13 +4399,13 @@
     "suffix": "AS TABLE",
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "плацкарт",
+      "@fare_class": "platskart",
       "@price_rub": "7960"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'плацкарт' && @price_rub BELOW 8000 && @route_end IS 'Пятигорск' AS TABLE"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'platskart' && @price_rub BELOW 8000 && @route_end IS 'Пятигорск' AS TABLE"
   },
   {
     "index": 148,
@@ -4414,12 +4414,12 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "бизнес"
+        "value": "business"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       },
       {
         "field": "@route_start",
@@ -4436,13 +4436,13 @@
     "suffix": "AS LIST",
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "23430"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'бизнес' && @transport IS 'самолёт' && @route_start IS 'Минеральные Воды' && @price_rub BELOW 24000 AS LIST"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'business' && @transport IS 'plane' && @route_start IS 'Минеральные Воды' && @price_rub BELOW 24000 AS LIST"
   },
   {
     "index": 149,
@@ -4451,7 +4451,7 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "трамвай"
+        "value": "tram"
       },
       {
         "field": "@route_start",
@@ -4473,12 +4473,12 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "трамвай",
+      "@transport": "tram",
       "@route_start": "Пятигорск",
       "@route_end": "Пятигорск",
       "@price_rub": "30"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'трамвай' && @route_start IS 'Пятигорск' && @price_rub ABOVE 20 && @route_end IS 'Пятигорск'"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'tram' && @route_start IS 'Пятигорск' && @price_rub ABOVE 20 && @route_end IS 'Пятигорск'"
   },
   {
     "index": 150,
@@ -4513,7 +4513,7 @@
       "@city": "Минеральные Воды",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'food' || @category IS 'culture' || @category IS 'activity' || @category IS 'shopping'"
@@ -4525,7 +4525,7 @@
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "местный"
+        "value": "local"
       },
       {
         "field": "@name",
@@ -4540,11 +4540,11 @@
       "@name": "Особняк Тиц",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "местный",
+      "@object_kind": "monument",
+      "@heritage_status": "local",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'местный' && @name IS 'Особняк Тиц' AS JSON"
+    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @name IS 'Особняк Тиц' AS JSON"
   },
   {
     "index": 152,
@@ -4553,7 +4553,7 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "эконом"
+        "value": "economy"
       },
       {
         "field": "@route_start",
@@ -4565,13 +4565,13 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Санкт-Петербург",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "7640"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'эконом' && @route_start IS 'Минеральные Воды'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'economy' && @route_start IS 'Минеральные Воды'"
   },
   {
     "index": 153,
@@ -4648,7 +4648,7 @@
       "@city": "Ессентуки",
       "@category": "lodging",
       "@price_rub": "4700",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'lodging'"
@@ -4705,7 +4705,7 @@
     "source_row": {
       "@name": "Кэмэл Дом",
       "@city": "Лермонтов",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "5",
       "@aspects": [
         "расположение",
@@ -4732,7 +4732,7 @@
     "source_row": {
       "@name": "Chill House",
       "@city": "Пятигорск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "3",
       "@aspects": [
         "расположение",
@@ -4799,7 +4799,7 @@
     "source_row": {
       "@name": "Астория",
       "@city": "Кисловодск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -4817,7 +4817,7 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "бизнес"
+        "value": "business"
       },
       {
         "field": "@route_end",
@@ -4834,13 +4834,13 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "23430"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'бизнес' && @route_end IS 'Москва' && @price_rub BELOW 24000"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'business' && @route_end IS 'Москва' && @price_rub BELOW 24000"
   },
   {
     "index": 162,
@@ -4849,12 +4849,12 @@
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "федеральный"
+        "value": "federal"
       },
       {
         "field": "@object_kind",
         "operator": "IS",
-        "value": "ансамбль"
+        "value": "ensemble"
       }
     ],
     "connective": "&&",
@@ -4864,11 +4864,11 @@
       "@name": "Подворье Карповых, где Лермонтов Михаил Юрьевич провел последнюю ночь перед дуэлью",
       "@city": "Железноводск",
       "@category": "culture",
-      "@object_kind": "ансамбль",
-      "@heritage_status": "федеральный",
+      "@object_kind": "ensemble",
+      "@heritage_status": "federal",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'федеральный' && @object_kind IS 'ансамбль'"
+    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'federal' && @object_kind IS 'ensemble'"
   },
   {
     "index": 163,
@@ -4877,7 +4877,7 @@
       {
         "field": "@heritage_status",
         "operator": "IS",
-        "value": "местный"
+        "value": "local"
       },
       {
         "field": "@name",
@@ -4887,7 +4887,7 @@
       {
         "field": "@object_kind",
         "operator": "NOT",
-        "value": "ансамбль"
+        "value": "ensemble"
       }
     ],
     "connective": "&&",
@@ -4897,11 +4897,11 @@
       "@name": "Особняк Тиц",
       "@city": "Пятигорск",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "местный",
+      "@object_kind": "monument",
+      "@heritage_status": "local",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'местный' && @name IS 'Особняк Тиц' && @object_kind NOT 'ансамбль'"
+    "ecql": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @name IS 'Особняк Тиц' && @object_kind NOT 'ensemble'"
   },
   {
     "index": 164,
@@ -5107,7 +5107,7 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "бизнес"
+        "value": "business"
       },
       {
         "field": "@price_rub",
@@ -5119,13 +5119,13 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "23430"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'бизнес' && @price_rub ABOVE 23000"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'business' && @price_rub ABOVE 23000"
   },
   {
     "index": 172,
@@ -5139,7 +5139,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@city",
@@ -5153,7 +5153,7 @@
     "source_row": {
       "@name": "Монарх",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -5162,7 +5162,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'отель' && @city IS 'Ессентуки' AS TABLE"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'hotel' && @city IS 'Ессентуки' AS TABLE"
   },
   {
     "index": 173,
@@ -5171,12 +5171,12 @@
       {
         "field": "@wheelchair",
         "operator": "IS",
-        "value": "частично"
+        "value": "limited"
       },
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       },
       {
         "field": "@price_rub",
@@ -5197,11 +5197,11 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "1200",
-      "@price_kind": "средний чек",
-      "@wheelchair": "частично",
+      "@price_kind": "average_check",
+      "@wheelchair": "limited",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @wheelchair IS 'частично' && @price_kind IS 'средний чек' && @price_rub BELOW 1300 && @name IS 'Шалаши'"
+    "ecql": "FETCH [PLACES] WHERE @wheelchair IS 'limited' && @price_kind IS 'average_check' && @price_rub BELOW 1300 && @name IS 'Шалаши'"
   },
   {
     "index": 174,
@@ -5241,7 +5241,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "санаторий"
+        "value": "sanatorium"
       },
       {
         "field": "@name",
@@ -5260,7 +5260,7 @@
     "source_row": {
       "@name": "Санаторий-профилакторий РЖД",
       "@city": "Минеральные Воды",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -5268,7 +5268,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'санаторий' && @name IS 'Санаторий-профилакторий РЖД' && @aspects NOT CONTAINS 'расположение' AS LIST"
+    "ecql": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'номер' && @object_class IS 'sanatorium' && @name IS 'Санаторий-профилакторий РЖД' && @aspects NOT CONTAINS 'расположение' AS LIST"
   },
   {
     "index": 176,
@@ -5319,8 +5319,8 @@
       "@city": "Кисловодск",
       "@category": "lodging",
       "@price_rub": "4500",
-      "@price_kind": "цена за ночь",
-      "@wheelchair": "нет",
+      "@price_kind": "per_night",
+      "@wheelchair": "no",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 4000 && @name IS 'Съёмная квартира' && @city IS 'Кисловодск' AS LIST"
@@ -5358,7 +5358,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "цена за ночь"
+        "value": "per_night"
       }
     ],
     "connective": "&&",
@@ -5369,10 +5369,10 @@
       "@city": "Ессентуки",
       "@category": "lodging",
       "@price_rub": "11300",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 11000 && @price_kind IS 'цена за ночь'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub ABOVE 11000 && @price_kind IS 'per_night'"
   },
   {
     "index": 180,
@@ -5391,7 +5391,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       }
     ],
     "connective": "&&",
@@ -5402,11 +5402,11 @@
       "@city": "Минеральные Воды",
       "@category": "food",
       "@price_rub": "1400",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 1500 && @city IS 'Минеральные Воды' && @price_kind IS 'средний чек'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 1500 && @city IS 'Минеральные Воды' && @price_kind IS 'average_check'"
   },
   {
     "index": 181,
@@ -5431,7 +5431,7 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "1900",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 2000 && @name IS 'Plaza банкетный зал'"
@@ -5459,7 +5459,7 @@
       "@city": "Лермонтов",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @city IS 'Лермонтов' && @name IS 'Лиана'"
@@ -5487,8 +5487,8 @@
       "@city": "Минеральные Воды",
       "@category": "food",
       "@price_rub": "1400",
-      "@price_kind": "средний чек",
-      "@wheelchair": "да",
+      "@price_kind": "average_check",
+      "@wheelchair": "yes",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'food' || @category IS 'nature'"
@@ -5521,7 +5521,7 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "500",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 600 && @name IS 'Nefertiti' && @city IS 'Ессентуки' AS TABLE"
@@ -5552,7 +5552,7 @@
     "source_row": {
       "@name": "Европа",
       "@city": "Минеральные Воды",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "1",
       "@aspects": [
         "расположение"
@@ -5592,7 +5592,7 @@
     "source_row": {
       "@name": "Евразия",
       "@city": "Пятигорск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "4",
       "@aspects": [
         "расположение",
@@ -5624,7 +5624,7 @@
     "source_row": {
       "@name": "Монарх",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -5668,7 +5668,7 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "купе"
+        "value": "kupe"
       },
       {
         "field": "@price_rub",
@@ -5685,13 +5685,13 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Москва",
       "@route_end": "Пятигорск",
-      "@fare_class": "купе",
+      "@fare_class": "kupe",
       "@price_rub": "10740"
     },
-    "ecql": "FETCH [FARES] WHERE @fare_class IS 'купе' && @price_rub BELOW 11000 && @route_start IS 'Москва'"
+    "ecql": "FETCH [FARES] WHERE @fare_class IS 'kupe' && @price_rub BELOW 11000 && @route_start IS 'Москва'"
   },
   {
     "index": 190,
@@ -5707,10 +5707,10 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Казань",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "8800"
     },
     "ecql": "FETCH [FARES] WHERE @route_end IS 'Казань'"
@@ -5765,10 +5765,10 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Новосибирск",
-      "@fare_class": "эконом",
+      "@fare_class": "economy",
       "@price_rub": "14790"
     },
     "ecql": "FETCH [FARES] WHERE @route_end IS 'Новосибирск' && @price_rub ABOVE 14000 && @route_start IS 'Минеральные Воды'"
@@ -5801,7 +5801,7 @@
       "@city": "Минеральные Воды",
       "@category": "lodging",
       "@price_rub": "5400",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'lodging' || @category IS 'shopping' || @category IS 'transport' AS LIST"
@@ -5818,7 +5818,7 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "санаторий"
+        "value": "sanatorium"
       }
     ],
     "connective": "&&",
@@ -5827,14 +5827,14 @@
     "source_row": {
       "@name": "Санаторий \"Нарзан\" корпус №4",
       "@city": "Кисловодск",
-      "@object_class": "санаторий",
+      "@object_class": "sanatorium",
       "@rating": "5",
       "@aspects": [
         "расположение"
       ],
       "name_askable": false
     },
-    "ecql": "FETCH [REVIEWS] WHERE @rating IS 5 && @object_class IS 'санаторий'"
+    "ecql": "FETCH [REVIEWS] WHERE @rating IS 5 && @object_class IS 'sanatorium'"
   },
   {
     "index": 195,
@@ -5855,10 +5855,10 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Екатеринбург",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "28470"
     },
     "ecql": "FETCH [FARES] WHERE @route_end IS 'Екатеринбург' && @price_rub ABOVE 28000"
@@ -5887,7 +5887,7 @@
     "suffix": "AS LIST",
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Нальчик",
       "@route_end": "Минеральные Воды",
       "@price_rub": "320"
@@ -5918,7 +5918,7 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Пятигорск",
       "@route_end": "Нальчик",
       "@price_rub": "270"
@@ -5942,7 +5942,7 @@
       {
         "field": "@price_kind",
         "operator": "NOT",
-        "value": "средний чек"
+        "value": "average_check"
       }
     ],
     "connective": "&&",
@@ -5953,10 +5953,10 @@
       "@city": "Ессентуки",
       "@category": "lodging",
       "@price_rub": "11300",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 12000 && @city IS 'Ессентуки' && @price_kind NOT 'средний чек'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 12000 && @city IS 'Ессентуки' && @price_kind NOT 'average_check'"
   },
   {
     "index": 199,
@@ -5980,7 +5980,7 @@
       {
         "field": "@price_kind",
         "operator": "NOT",
-        "value": "средний чек"
+        "value": "average_check"
       }
     ],
     "connective": "&&",
@@ -5991,10 +5991,10 @@
       "@city": "Минеральные Воды",
       "@category": "lodging",
       "@price_rub": "6500",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 7000 && @city IS 'Минеральные Воды' && @category NOT 'shopping' && @price_kind NOT 'средний чек'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 7000 && @city IS 'Минеральные Воды' && @category NOT 'shopping' && @price_kind NOT 'average_check'"
   },
   {
     "index": 200,
@@ -6080,7 +6080,7 @@
       {
         "field": "@price_kind",
         "operator": "NOT",
-        "value": "цена за ночь"
+        "value": "per_night"
       }
     ],
     "connective": "&&",
@@ -6091,10 +6091,10 @@
       "@city": "Кисловодск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @name IS 'Трактиръ На бульваре' && @price_rub BELOW 400 && @city IS 'Кисловодск' && @price_kind NOT 'цена за ночь' AS TABLE"
+    "ecql": "FETCH [PLACES] WHERE @name IS 'Трактиръ На бульваре' && @price_rub BELOW 400 && @city IS 'Кисловодск' && @price_kind NOT 'per_night' AS TABLE"
   },
   {
     "index": 203,
@@ -6160,7 +6160,7 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'На двоих' && @city IS 'Ессентуки' && @price_rub BELOW 400 && @category NOT 'nature'"
@@ -6184,10 +6184,10 @@
     "suffix": "AS LIST",
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Нижний Новгород",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "26130"
     },
     "ecql": "FETCH [FARES] WHERE @price_rub BELOW 27000 && @route_end IS 'Нижний Новгород' AS LIST"
@@ -6220,7 +6220,7 @@
       "@city": "Минеральные Воды",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @city IS 'Минеральные Воды' || @city IS 'Кисловодск' || @city IS 'Железноводск' AS TABLE"
@@ -6248,7 +6248,7 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "1700",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @city IS 'Ессентуки' || @city IS 'Пятигорск' AS LIST"
@@ -6270,7 +6270,7 @@
       {
         "field": "@wheelchair",
         "operator": "NOT",
-        "value": "нет"
+        "value": "no"
       }
     ],
     "connective": "&&",
@@ -6281,11 +6281,11 @@
       "@city": "Пятигорск",
       "@category": "lodging",
       "@price_rub": "6400",
-      "@price_kind": "цена за ночь",
-      "@wheelchair": "да",
+      "@price_kind": "per_night",
+      "@wheelchair": "yes",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @name IS 'Затерянный рай у Машука' && @price_rub BELOW 7000 && @wheelchair NOT 'нет'"
+    "ecql": "FETCH [PLACES] WHERE @name IS 'Затерянный рай у Машука' && @price_rub BELOW 7000 && @wheelchair NOT 'no'"
   },
   {
     "index": 209,
@@ -6294,25 +6294,25 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "самолёт"
+        "value": "plane"
       },
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "поезд"
+        "value": "train"
       }
     ],
     "connective": "||",
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Санкт-Петербург",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "15330"
     },
-    "ecql": "FETCH [FARES] WHERE @transport IS 'самолёт' || @transport IS 'поезд'"
+    "ecql": "FETCH [FARES] WHERE @transport IS 'plane' || @transport IS 'train'"
   },
   {
     "index": 210,
@@ -6363,8 +6363,8 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "частично",
+      "@price_kind": "average_check",
+      "@wheelchair": "limited",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'Астория' && @price_rub BELOW 400 AS JSON"
@@ -6390,7 +6390,7 @@
     "source_row": {
       "@name": "Квартира посуточно",
       "@city": "Железноводск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "4",
       "@aspects": [
         "номер"
@@ -6421,8 +6421,8 @@
       "@name": "Домашняя церковь-часовня",
       "@city": "Иноземцево",
       "@category": "culture",
-      "@object_kind": "памятник",
-      "@heritage_status": "региональный",
+      "@object_kind": "monument",
+      "@heritage_status": "regional",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'Домашняя церковь-часовня' && @city IS 'Иноземцево'"
@@ -6445,7 +6445,7 @@
       "@city": "вне городов",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'Арго'"
@@ -6467,7 +6467,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "цена за ночь"
+        "value": "per_night"
       }
     ],
     "connective": "&&",
@@ -6478,10 +6478,10 @@
       "@city": "вне городов",
       "@category": "lodging",
       "@price_rub": "4600",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 5000 && @city IS 'вне городов' && @price_kind IS 'цена за ночь'"
+    "ecql": "FETCH [PLACES] WHERE @price_rub BELOW 5000 && @city IS 'вне городов' && @price_kind IS 'per_night'"
   },
   {
     "index": 216,
@@ -6506,7 +6506,7 @@
       "@city": "Минеральные Воды",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'Гирос & Пицца' && @city IS 'Минеральные Воды' AS TABLE"
@@ -6532,7 +6532,7 @@
     "source_row": {
       "@name": "Маск",
       "@city": "Иноземцево",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "3",
       "@aspects": [
         "номер",
@@ -6567,7 +6567,7 @@
       "@city": "Железноводск",
       "@category": "lodging",
       "@price_rub": "5800",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'Эос' && @price_rub BELOW 6000"
@@ -6586,10 +6586,10 @@
     "suffix": "AS JSON",
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Минеральные Воды",
       "@route_end": "Самара",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "20120"
     },
     "ecql": "FETCH [FARES] WHERE @route_end IS 'Самара' AS JSON"
@@ -6601,12 +6601,12 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       },
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       }
     ],
     "connective": "||",
@@ -6615,7 +6615,7 @@
     "source_row": {
       "@name": "Николаевский",
       "@city": "Лермонтов",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -6624,7 +6624,7 @@
       ],
       "name_askable": false
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'гостевой дом' || @object_class IS 'отель'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'guesthouse' || @object_class IS 'hotel'"
   },
   {
     "index": 221,
@@ -6777,7 +6777,7 @@
     "source_row": {
       "@name": "Гостинный Двор",
       "@city": "Минеральные Воды",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "5",
       "@aspects": [
         "чистота",
@@ -6809,7 +6809,7 @@
       {
         "field": "@price_kind",
         "operator": "NOT",
-        "value": "средний чек"
+        "value": "average_check"
       }
     ],
     "connective": "&&",
@@ -6820,10 +6820,10 @@
       "@city": "Кисловодск",
       "@category": "lodging",
       "@price_rub": "8600",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @name IS 'Корона' && @price_rub BELOW 9000 && @category IS 'lodging' && @price_kind NOT 'средний чек' AS TABLE"
+    "ecql": "FETCH [PLACES] WHERE @name IS 'Корона' && @price_rub BELOW 9000 && @category IS 'lodging' && @price_kind NOT 'average_check' AS TABLE"
   },
   {
     "index": 228,
@@ -6846,7 +6846,7 @@
     "source_row": {
       "@name": "Оазис",
       "@city": "Минеральные Воды",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -6872,10 +6872,10 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "самолёт",
+      "@transport": "plane",
       "@route_start": "Санкт-Петербург",
       "@route_end": "Москва",
-      "@fare_class": "бизнес",
+      "@fare_class": "business",
       "@price_rub": "12630"
     },
     "ecql": "FETCH [FARES] WHERE @route_start IS 'Санкт-Петербург'"
@@ -6887,7 +6887,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       },
       {
         "field": "@price_rub",
@@ -6908,10 +6908,10 @@
       "@city": "Кисловодск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'средний чек' && @price_rub ABOVE 200 && @city IS 'Кисловодск'"
+    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'average_check' && @price_rub ABOVE 200 && @city IS 'Кисловодск'"
   },
   {
     "index": 231,
@@ -6936,7 +6936,7 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'БутерBro' && @price_rub BELOW 400"
@@ -6972,7 +6972,7 @@
     "source_row": {
       "@name": "Отель Pechorinn",
       "@city": "Железноводск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "3",
       "@aspects": [
         "шум"
@@ -6988,7 +6988,7 @@
       {
         "field": "@price_kind",
         "operator": "NOT",
-        "value": "цена за ночь"
+        "value": "per_night"
       },
       {
         "field": "@price_rub",
@@ -7004,10 +7004,10 @@
       "@city": "Кисловодск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_kind NOT 'цена за ночь' && @price_rub ABOVE 200"
+    "ecql": "FETCH [PLACES] WHERE @price_kind NOT 'per_night' && @price_rub ABOVE 200"
   },
   {
     "index": 234,
@@ -7031,19 +7031,19 @@
       {
         "field": "@transport",
         "operator": "IS",
-        "value": "автобус"
+        "value": "bus"
       }
     ],
     "connective": "&&",
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Железноводск",
       "@route_end": "Железноводск",
       "@price_rub": "60"
     },
-    "ecql": "FETCH [FARES] WHERE @route_start IS 'Железноводск' && @price_rub BELOW 70 && @route_end IS 'Железноводск' && @transport IS 'автобус'"
+    "ecql": "FETCH [FARES] WHERE @route_start IS 'Железноводск' && @price_rub BELOW 70 && @route_end IS 'Железноводск' && @transport IS 'bus'"
   },
   {
     "index": 235,
@@ -7128,7 +7128,7 @@
     "source_row": {
       "@name": "Астория",
       "@city": "вне городов",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -7164,7 +7164,7 @@
     "source_row": {
       "@name": "Пассаж",
       "@city": "Ессентуки",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "расположение"
@@ -7189,7 +7189,7 @@
     "source_row": {
       "@name": "M5 HOME",
       "@city": "Пятигорск",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -7223,7 +7223,7 @@
       "@city": "Пятигорск",
       "@category": "lodging",
       "@price_rub": "4400",
-      "@price_kind": "цена за ночь",
+      "@price_kind": "per_night",
       "name_askable": true
     },
     "ecql": "FETCH [PLACES] WHERE @name IS 'Пространство лофт' && @price_rub ABOVE 4000"
@@ -7250,19 +7250,19 @@
       {
         "field": "@transport",
         "operator": "NOT",
-        "value": "самолёт"
+        "value": "plane"
       }
     ],
     "connective": "&&",
     "suffix": "AS JSON",
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Кисловодск",
       "@route_end": "Кисловодск",
       "@price_rub": "35"
     },
-    "ecql": "FETCH [FARES] WHERE @route_end IS 'Кисловодск' && @route_start IS 'Кисловодск' && @price_rub BELOW 40 && @transport NOT 'самолёт' AS JSON"
+    "ecql": "FETCH [FARES] WHERE @route_end IS 'Кисловодск' && @route_start IS 'Кисловодск' && @price_rub BELOW 40 && @transport NOT 'plane' AS JSON"
   },
   {
     "index": 242,
@@ -7337,7 +7337,7 @@
     "source_row": {
       "@name": "Орлиные скалы",
       "@city": "Лермонтов",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",
@@ -7366,7 +7366,7 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @city IS 'Пятигорск'"
@@ -7393,7 +7393,7 @@
       {
         "field": "@object_class",
         "operator": "NOT",
-        "value": "хостел"
+        "value": "hostel"
       }
     ],
     "connective": "&&",
@@ -7402,7 +7402,7 @@
     "source_row": {
       "@name": "Курортные истории",
       "@city": "Ессентуки",
-      "@object_class": "гостевой дом",
+      "@object_class": "guesthouse",
       "@rating": "4",
       "@aspects": [
         "номер",
@@ -7411,7 +7411,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @name IS 'Курортные истории' && @city IS 'Ессентуки' && @aspects NOT CONTAINS 'расположение' && @object_class NOT 'хостел'"
+    "ecql": "FETCH [REVIEWS] WHERE @name IS 'Курортные истории' && @city IS 'Ессентуки' && @aspects NOT CONTAINS 'расположение' && @object_class NOT 'hostel'"
   },
   {
     "index": 247,
@@ -7420,7 +7420,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       }
     ],
     "connective": null,
@@ -7431,10 +7431,10 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": false
     },
-    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'средний чек' AS LIST"
+    "ecql": "FETCH [PLACES] WHERE @price_kind IS 'average_check' AS LIST"
   },
   {
     "index": 248,
@@ -7448,20 +7448,20 @@
       {
         "field": "@fare_class",
         "operator": "IS",
-        "value": "плацкарт"
+        "value": "platskart"
       }
     ],
     "connective": "&&",
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "поезд",
+      "@transport": "train",
       "@route_start": "Нальчик",
       "@route_end": "Москва",
-      "@fare_class": "плацкарт",
+      "@fare_class": "platskart",
       "@price_rub": "8320"
     },
-    "ecql": "FETCH [FARES] WHERE @price_rub BELOW 9000 && @fare_class IS 'плацкарт'"
+    "ecql": "FETCH [FARES] WHERE @price_rub BELOW 9000 && @fare_class IS 'platskart'"
   },
   {
     "index": 249,
@@ -7487,7 +7487,7 @@
     "suffix": null,
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Иноземцево",
       "@route_end": "Иноземцево",
       "@price_rub": "35"
@@ -7501,12 +7501,12 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "хостел"
+        "value": "hostel"
       }
     ],
     "connective": "||",
@@ -7515,7 +7515,7 @@
     "source_row": {
       "@name": "Гостиница Минеральные Воды Villa Aila",
       "@city": "Железноводск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "2",
       "@aspects": [
         "номер",
@@ -7523,7 +7523,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'отель' || @object_class IS 'хостел' AS LIST"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'hostel' AS LIST"
   },
   {
     "index": 251,
@@ -7563,12 +7563,12 @@
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "отель"
+        "value": "hotel"
       },
       {
         "field": "@object_class",
         "operator": "IS",
-        "value": "гостевой дом"
+        "value": "guesthouse"
       }
     ],
     "connective": "||",
@@ -7577,7 +7577,7 @@
     "source_row": {
       "@name": "Эко-отель Green House",
       "@city": "Железноводск",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "3",
       "@aspects": [
         "номер",
@@ -7587,7 +7587,7 @@
       ],
       "name_askable": true
     },
-    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'отель' || @object_class IS 'гостевой дом'"
+    "ecql": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'guesthouse'"
   },
   {
     "index": 253,
@@ -7615,7 +7615,7 @@
     "source_row": {
       "@name": "Теплый стан",
       "@city": "Минеральные Воды",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "3",
       "@aspects": [
         "номер"
@@ -7636,7 +7636,7 @@
       {
         "field": "@wheelchair",
         "operator": "NOT",
-        "value": "частично"
+        "value": "limited"
       }
     ],
     "connective": "&&",
@@ -7647,11 +7647,11 @@
       "@city": "Ессентуки",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
-      "@wheelchair": "нет",
+      "@price_kind": "average_check",
+      "@wheelchair": "no",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @name IS 'Почтамтъ' && @wheelchair NOT 'частично'"
+    "ecql": "FETCH [PLACES] WHERE @name IS 'Почтамтъ' && @wheelchair NOT 'limited'"
   },
   {
     "index": 255,
@@ -7693,7 +7693,7 @@
     "suffix": "AS LIST",
     "has_range": false,
     "source_row": {
-      "@transport": "автобус",
+      "@transport": "bus",
       "@route_start": "Железноводск",
       "@route_end": "Железноводск",
       "@price_rub": "35"
@@ -7723,7 +7723,7 @@
       "@city": "Пятигорск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": false
     },
     "ecql": "FETCH [PLACES] WHERE @category IS 'food' && @price_rub ABOVE 200"
@@ -7776,7 +7776,7 @@
       {
         "field": "@price_kind",
         "operator": "IS",
-        "value": "средний чек"
+        "value": "average_check"
       },
       {
         "field": "@price_rub",
@@ -7792,10 +7792,10 @@
       "@city": "Кисловодск",
       "@category": "food",
       "@price_rub": "300",
-      "@price_kind": "средний чек",
+      "@price_kind": "average_check",
       "name_askable": true
     },
-    "ecql": "FETCH [PLACES] WHERE @name IS 'Мангал' && @category IS 'food' && @price_kind IS 'средний чек' && @price_rub ABOVE 200"
+    "ecql": "FETCH [PLACES] WHERE @name IS 'Мангал' && @category IS 'food' && @price_kind IS 'average_check' && @price_rub ABOVE 200"
   },
   {
     "index": 260,
@@ -7813,7 +7813,7 @@
     "source_row": {
       "@name": "Montis",
       "@city": "Иноземцево",
-      "@object_class": "отель",
+      "@object_class": "hotel",
       "@rating": "5",
       "@aspects": [
         "номер",

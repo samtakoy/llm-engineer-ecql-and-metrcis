@@ -10,7 +10,7 @@
   # слот 21 · одно условие · без связки · AS LIST · предмет назван · поля @category · операторы IS
 
 - Какие есть памятники?
-  → FETCH [PLACES] WHERE @object_kind IS 'памятник'
+  → FETCH [PLACES] WHERE @object_kind IS 'monument'
   # слот 47 · одно условие · без связки · без суффикса · предмет назван · поля @object_kind · операторы IS
 
 - Какие тут бытовые услуги?
@@ -26,7 +26,7 @@
   # слот 68 · одно условие · без связки · без суффикса · предмет назван · поля @category · операторы IS
 
 - Что относится к ансамблям?
-  → FETCH [PLACES] WHERE @object_kind IS 'ансамбль'
+  → FETCH [PLACES] WHERE @object_kind IS 'ensemble'
   # слот 73 · одно условие · без связки · без суффикса · предмет назван · поля @object_kind · операторы IS
 
 - Где поесть?
@@ -46,7 +46,7 @@
   # слот 114 · одно условие · без связки · без суффикса · предмет назван · поля @category · операторы IS
 
 - Достопримечательные места — дай json
-  → FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' AS JSON
+  → FETCH [PLACES] WHERE @object_kind IS 'heritage_site' AS JSON
   # слот 120 · одно условие · без связки · AS JSON · предмет назван · поля @object_kind · операторы IS
 
 - Что посмотреть из культурного?
@@ -66,53 +66,53 @@
   # слот 245 · одно условие · без связки · без суффикса · поля @city · операторы IS
 
 - Где указан средний чек? Списком
-  → FETCH [PLACES] WHERE @price_kind IS 'средний чек' AS LIST
+  → FETCH [PLACES] WHERE @price_kind IS 'average_check' AS LIST
   # слот 247 · одно условие · без связки · AS LIST · предмет назван · поля @price_kind · операторы IS
 
 ## Два условия
 
 - Источники, которые считаются памятниками
-  → FETCH [PLACES] WHERE @category IS 'water' && @object_kind IS 'памятник'
+  → FETCH [PLACES] WHERE @category IS 'water' && @object_kind IS 'monument'
   # слот 1 · 2 условия · && · без суффикса · предмет назван · поля @category @object_kind · операторы IS
 
 - Развлечения без доступа для колясок
-  → FETCH [PLACES] WHERE @wheelchair IS 'нет' && @category IS 'activity'
+  → FETCH [PLACES] WHERE @wheelchair IS 'no' && @category IS 'activity'
   # слот 2 · 2 условия · && · без суффикса · предмет назван · поля @wheelchair @category · операторы IS
 
 - Достопримечательные места регионального значения
-  → FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' && @heritage_status IS 'региональный'
+  → FETCH [PLACES] WHERE @object_kind IS 'heritage_site' && @heritage_status IS 'regional'
   # слот 4 · 2 условия · && · без суффикса · предмет назван · поля @object_kind @heritage_status · операторы IS
 
 - Кафе, куда с коляской не заехать
-  → FETCH [PLACES] WHERE @wheelchair IS 'нет' && @category IS 'food'
+  → FETCH [PLACES] WHERE @wheelchair IS 'no' && @category IS 'food'
   # слот 13 · 2 условия · && · без суффикса · предмет назван · поля @wheelchair @category · операторы IS
 
 - Заведения со средним чеком и частичным доступом для колясок
-  → FETCH [PLACES] WHERE @price_kind IS 'средний чек' && @wheelchair IS 'частично'
+  → FETCH [PLACES] WHERE @price_kind IS 'average_check' && @wheelchair IS 'limited'
   # слот 30 · 2 условия · && · без суффикса · предмет назван · поля @price_kind @wheelchair · операторы IS
 
 - Гостиницы без доступа для колясок
-  → FETCH [PLACES] WHERE @category IS 'lodging' && @wheelchair IS 'нет'
+  → FETCH [PLACES] WHERE @category IS 'lodging' && @wheelchair IS 'no'
   # слот 36 · 2 условия · && · без суффикса · предмет назван · поля @category @wheelchair · операторы IS
 
 - Памятники, куда можно подъехать на коляске
-  → FETCH [PLACES] WHERE @object_kind IS 'памятник' && @wheelchair IS 'да'
+  → FETCH [PLACES] WHERE @object_kind IS 'monument' && @wheelchair IS 'yes'
   # слот 46 · 2 условия · && · без суффикса · предмет назван · поля @object_kind @wheelchair · операторы IS
 
 - Магазины с доступом для колясок
-  → FETCH [PLACES] WHERE @category IS 'shopping' && @wheelchair IS 'да'
+  → FETCH [PLACES] WHERE @category IS 'shopping' && @wheelchair IS 'yes'
   # слот 57 · 2 условия · && · без суффикса · предмет назван · поля @category @wheelchair · операторы IS
 
 - Ночлег без доступа для колясок
-  → FETCH [PLACES] WHERE @price_kind IS 'цена за ночь' && @wheelchair IS 'нет'
+  → FETCH [PLACES] WHERE @price_kind IS 'per_night' && @wheelchair IS 'no'
   # слот 63 · 2 условия · && · без суффикса · предмет назван · поля @price_kind @wheelchair · операторы IS
 
 - Памятники регионального значения
-  → FETCH [PLACES] WHERE @object_kind IS 'памятник' && @heritage_status IS 'региональный'
+  → FETCH [PLACES] WHERE @object_kind IS 'monument' && @heritage_status IS 'regional'
   # слот 70 · 2 условия · && · без суффикса · предмет назван · поля @object_kind @heritage_status · операторы IS
 
 - Ансамбли федерального значения
-  → FETCH [PLACES] WHERE @object_kind IS 'ансамбль' && @heritage_status IS 'федеральный'
+  → FETCH [PLACES] WHERE @object_kind IS 'ensemble' && @heritage_status IS 'federal'
   # слот 74 · 2 условия · && · без суффикса · предмет назван · поля @object_kind @heritage_status · операторы IS
 
 - Чем заняться в Пятигорске?
@@ -120,11 +120,11 @@
   # слот 79 · 2 условия · && · без суффикса · предмет назван · поля @category @city · операторы IS
 
 - Культурные объекты без доступа для колясок
-  → FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'нет'
+  → FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'no'
   # слот 89 · 2 условия · && · без суффикса · предмет назван · поля @category @wheelchair · операторы IS
 
 - Жильё, где цена указана за ночь
-  → FETCH [PLACES] WHERE @price_kind IS 'цена за ночь' && @category IS 'lodging'
+  → FETCH [PLACES] WHERE @price_kind IS 'per_night' && @category IS 'lodging'
   # слот 92 · 2 условия · && · без суффикса · предмет назван · поля @price_kind @category · операторы IS
 
 - Что есть в Ессентуках и Кисловодске?
@@ -132,35 +132,35 @@
   # слот 97 · 2 условия · || · без суффикса · поля @city · операторы IS
 
 - Культурные объекты регионального значения, выгрузи json
-  → FETCH [PLACES] WHERE @category IS 'culture' && @heritage_status IS 'региональный' AS JSON
+  → FETCH [PLACES] WHERE @category IS 'culture' && @heritage_status IS 'regional' AS JSON
   # слот 99 · 2 условия · && · AS JSON · предмет назван · поля @category @heritage_status · операторы IS
 
 - Культурные объекты с доступом для колясок
-  → FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'да'
+  → FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'yes'
   # слот 103 · 2 условия · && · без суффикса · предмет назван · поля @category @wheelchair · операторы IS
 
 - Памятники местного значения
-  → FETCH [PLACES] WHERE @heritage_status IS 'местный' && @object_kind IS 'памятник'
+  → FETCH [PLACES] WHERE @heritage_status IS 'local' && @object_kind IS 'monument'
   # слот 106 · 2 условия · && · без суффикса · предмет назван · поля @heritage_status @object_kind · операторы IS
 
 - Источники федерального значения
-  → FETCH [PLACES] WHERE @category IS 'water' && @heritage_status IS 'федеральный'
+  → FETCH [PLACES] WHERE @category IS 'water' && @heritage_status IS 'federal'
   # слот 119 · 2 условия · && · без суффикса · предмет назван · поля @category @heritage_status · операторы IS
 
 - Культурные объекты под местной охраной
-  → FETCH [PLACES] WHERE @heritage_status IS 'местный' && @category IS 'culture'
+  → FETCH [PLACES] WHERE @heritage_status IS 'local' && @category IS 'culture'
   # слот 122 · 2 условия · && · без суффикса · предмет назван · поля @heritage_status @category · операторы IS
 
 - Особняк Тиц, объект местного значения — нужен json
-  → FETCH [PLACES] WHERE @heritage_status IS 'местный' && @name IS 'Особняк Тиц' AS JSON
+  → FETCH [PLACES] WHERE @heritage_status IS 'local' && @name IS 'Особняк Тиц' AS JSON
   # слот 151 · 2 условия · && · AS JSON · предмет назван · поля @heritage_status @name · операторы IS
 
 - Ансамбли, охраняемые федерально
-  → FETCH [PLACES] WHERE @heritage_status IS 'федеральный' && @object_kind IS 'ансамбль'
+  → FETCH [PLACES] WHERE @heritage_status IS 'federal' && @object_kind IS 'ensemble'
   # слот 162 · 2 условия · && · без суффикса · предмет назван · поля @heritage_status @object_kind · операторы IS
 
 - Ночь дороже одиннадцати тысяч
-  → FETCH [PLACES] WHERE @price_rub ABOVE 11000 && @price_kind IS 'цена за ночь'
+  → FETCH [PLACES] WHERE @price_rub ABOVE 11000 && @price_kind IS 'per_night'
   # слот 179 · 2 условия · && · без суффикса · предмет назван · поля @price_rub @price_kind · операторы ABOVE IS
 
 - «Plaza банкетный зал» — уложусь в две тысячи?
@@ -200,7 +200,7 @@
   # слот 231 · 2 условия · && · без суффикса · предмет назван · поля @name @price_rub · операторы IS BELOW
 
 - Дороже двухсот, но это не цена за ночь
-  → FETCH [PLACES] WHERE @price_kind NOT 'цена за ночь' && @price_rub ABOVE 200
+  → FETCH [PLACES] WHERE @price_kind NOT 'per_night' && @price_rub ABOVE 200
   # слот 233 · 2 условия · && · без суффикса · предмет назван · поля @price_kind @price_rub · операторы NOT ABOVE
 
 - «Пространство лофт» дороже четырёх тысяч?
@@ -208,7 +208,7 @@
   # слот 240 · 2 условия · && · без суффикса · предмет назван · поля @name @price_rub · операторы IS ABOVE
 
 - «Почтамтъ» — доступ для колясок там не частичный?
-  → FETCH [PLACES] WHERE @name IS 'Почтамтъ' && @wheelchair NOT 'частично'
+  → FETCH [PLACES] WHERE @name IS 'Почтамтъ' && @wheelchair NOT 'limited'
   # слот 254 · 2 условия · && · без суффикса · предмет назван · поля @name @wheelchair · операторы IS NOT
 
 - Кафе дороже двухсот
@@ -218,11 +218,11 @@
 ## Три условия
 
 - От двухсот до тысячи двухсот, и это не цена за ночь
-  → FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 1200 && @price_kind NOT 'цена за ночь'
+  → FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 1200 && @price_kind NOT 'per_night'
   # слот 3 · 3 условия · && · без суффикса · диапазон · предмет назван · поля @price_rub @price_kind · операторы ABOVE BELOW NOT
 
 - Средний чек от двухсот до четырёхсот, сведи в таблицу
-  → FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'средний чек' AS TABLE
+  → FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'average_check' AS TABLE
   # слот 8 · 3 условия · && · AS TABLE · диапазон · предмет назван · поля @price_rub @price_kind · операторы ABOVE BELOW IS
 
 - Жильё от шести до шестнадцати тысяч
@@ -230,15 +230,15 @@
   # слот 17 · 3 условия · && · без суффикса · диапазон · предмет назван · поля @price_rub @category · операторы ABOVE BELOW IS
 
 - Где средний чек от двухсот до четырёхсот?
-  → FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'средний чек'
+  → FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_rub BELOW 400 && @price_kind IS 'average_check'
   # слот 24 · 3 условия · && · без суффикса · диапазон · предмет назван · поля @price_rub @price_kind · операторы ABOVE BELOW IS
 
 - От девятисот до тысячи двухсот, с доступом для колясок — таблицей
-  → FETCH [PLACES] WHERE @price_rub ABOVE 900 && @price_rub BELOW 1200 && @wheelchair IS 'да' AS TABLE
+  → FETCH [PLACES] WHERE @price_rub ABOVE 900 && @price_rub BELOW 1200 && @wheelchair IS 'yes' AS TABLE
   # слот 26 · 3 условия · && · AS TABLE · диапазон · поля @price_rub @wheelchair · операторы ABOVE BELOW IS
 
 - Ночь от восьми до тринадцати тысяч
-  → FETCH [PLACES] WHERE @price_kind IS 'цена за ночь' && @price_rub ABOVE 8000 && @price_rub BELOW 13000
+  → FETCH [PLACES] WHERE @price_kind IS 'per_night' && @price_rub ABOVE 8000 && @price_rub BELOW 13000
   # слот 35 · 3 условия · && · без суффикса · диапазон · предмет назван · поля @price_kind @price_rub · операторы IS ABOVE BELOW
 
 - «ГироДот» от двухсот до тысячи двухсот, в таблицу
@@ -258,11 +258,11 @@
   # слот 66 · 3 условия · || · без суффикса · предмет назван · поля @category · операторы IS
 
 - Кафе за городом, где указан средний чек
-  → FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'средний чек' && @city IS 'вне городов'
+  → FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'average_check' && @city IS 'вне городов'
   # слот 75 · 3 условия · && · без суффикса · предмет назван · поля @category @price_kind @city · операторы IS
 
 - Достопримечательные места регионального значения, услуги не считаем
-  → FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' && @heritage_status IS 'региональный' && @category NOT 'service'
+  → FETCH [PLACES] WHERE @object_kind IS 'heritage_site' && @heritage_status IS 'regional' && @category NOT 'service'
   # слот 78 · 3 условия · && · без суффикса · предмет назван · поля @object_kind @heritage_status @category · операторы IS NOT
 
 - Культура, магазины или природа
@@ -270,7 +270,7 @@
   # слот 84 · 3 условия · || · без суффикса · предмет назван · поля @category · операторы IS
 
 - Источники Железноводска с частичным доступом для колясок
-  → FETCH [PLACES] WHERE @category IS 'water' && @wheelchair IS 'частично' && @city IS 'Железноводск'
+  → FETCH [PLACES] WHERE @category IS 'water' && @wheelchair IS 'limited' && @city IS 'Железноводск'
   # слот 86 · 3 условия · && · без суффикса · предмет назван · поля @category @wheelchair @city · операторы IS
 
 - Что за «Второй дед» в Железноводске?
@@ -278,7 +278,7 @@
   # слот 108 · 3 условия · && · без суффикса · предмет назван · поля @category @name @city · операторы IS
 
 - Культурные ансамбли, кроме местного значения — сравни в таблице
-  → FETCH [PLACES] WHERE @object_kind IS 'ансамбль' && @category IS 'culture' && @heritage_status NOT 'местный' AS TABLE
+  → FETCH [PLACES] WHERE @object_kind IS 'ensemble' && @category IS 'culture' && @heritage_status NOT 'local' AS TABLE
   # слот 117 · 3 условия · && · AS TABLE · предмет назван · поля @object_kind @category @heritage_status · операторы IS NOT
 
 - Пятигорск, Железноводск или что-нибудь за городом
@@ -294,7 +294,7 @@
   # слот 154 · 3 условия · && · без суффикса · предмет назван · поля @category @name @city · операторы IS
 
 - Особняк Тиц — местное значение, и это не ансамбль?
-  → FETCH [PLACES] WHERE @heritage_status IS 'местный' && @name IS 'Особняк Тиц' && @object_kind NOT 'ансамбль'
+  → FETCH [PLACES] WHERE @heritage_status IS 'local' && @name IS 'Особняк Тиц' && @object_kind NOT 'ensemble'
   # слот 163 · 3 условия · && · без суффикса · предмет назван · поля @heritage_status @name @object_kind · операторы IS NOT
 
 - Что за «Ст. 4, терренкур 2» в Кисловодске?
@@ -306,7 +306,7 @@
   # слот 177 · 3 условия · && · AS LIST · предмет назван · поля @price_rub @name @city · операторы ABOVE IS
 
 - Средний чек в Минводах меньше полутора тысяч
-  → FETCH [PLACES] WHERE @price_rub BELOW 1500 && @city IS 'Минеральные Воды' && @price_kind IS 'средний чек'
+  → FETCH [PLACES] WHERE @price_rub BELOW 1500 && @city IS 'Минеральные Воды' && @price_kind IS 'average_check'
   # слот 180 · 3 условия · && · без суффикса · предмет назван · поля @price_rub @city @price_kind · операторы BELOW IS
 
 - «Nefertiti» в Ессентуках дешевле шестисот — в таблицу
@@ -318,7 +318,7 @@
   # слот 193 · 3 условия · || · AS LIST · предмет назван · поля @category · операторы IS
 
 - Ессентуки дешевле двенадцати тысяч, средний чек не нужен
-  → FETCH [PLACES] WHERE @price_rub BELOW 12000 && @city IS 'Ессентуки' && @price_kind NOT 'средний чек'
+  → FETCH [PLACES] WHERE @price_rub BELOW 12000 && @city IS 'Ессентуки' && @price_kind NOT 'average_check'
   # слот 198 · 3 условия · && · без суффикса · предмет назван · поля @price_rub @city @price_kind · операторы BELOW IS NOT
 
 - Минеральные Воды, Кисловодск, Железноводск — сравнить бы таблицей
@@ -326,41 +326,41 @@
   # слот 206 · 3 условия · || · AS TABLE · поля @city · операторы IS
 
 - «Затерянный рай у Машука» дешевле семи тысяч, и туда можно с коляской
-  → FETCH [PLACES] WHERE @name IS 'Затерянный рай у Машука' && @price_rub BELOW 7000 && @wheelchair NOT 'нет'
+  → FETCH [PLACES] WHERE @name IS 'Затерянный рай у Машука' && @price_rub BELOW 7000 && @wheelchair NOT 'no'
   # слот 208 · 3 условия · && · без суффикса · предмет назван · поля @name @price_rub @wheelchair · операторы IS BELOW NOT
 
 - Ночь за городом дешевле пяти тысяч
-  → FETCH [PLACES] WHERE @price_rub BELOW 5000 && @city IS 'вне городов' && @price_kind IS 'цена за ночь'
+  → FETCH [PLACES] WHERE @price_rub BELOW 5000 && @city IS 'вне городов' && @price_kind IS 'per_night'
   # слот 215 · 3 условия · && · без суффикса · предмет назван · поля @price_rub @city @price_kind · операторы BELOW IS
 
 - Средний чек в Кисловодске выше двухсот
-  → FETCH [PLACES] WHERE @price_kind IS 'средний чек' && @price_rub ABOVE 200 && @city IS 'Кисловодск'
+  → FETCH [PLACES] WHERE @price_kind IS 'average_check' && @price_rub ABOVE 200 && @city IS 'Кисловодск'
   # слот 230 · 3 условия · && · без суффикса · предмет назван · поля @price_kind @price_rub @city · операторы IS ABOVE
 
 ## Четыре условия
 
 - От тысячи двухсот до двух тысяч двухсот, жильё не нужно и полного доступа для колясок нет
-  → FETCH [PLACES] WHERE @price_rub ABOVE 1200 && @price_rub BELOW 2200 && @wheelchair NOT 'да' && @category NOT 'lodging'
+  → FETCH [PLACES] WHERE @price_rub ABOVE 1200 && @price_rub BELOW 2200 && @wheelchair NOT 'yes' && @category NOT 'lodging'
   # слот 11 · 4 условия · && · без суффикса · диапазон · предмет назван · поля @price_rub @wheelchair @category · операторы ABOVE BELOW NOT
 
 - «Смак» за городом — какой там средний чек?
-  → FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'средний чек' && @name IS 'Смак' && @city IS 'вне городов'
+  → FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'average_check' && @name IS 'Смак' && @city IS 'вне городов'
   # слот 76 · 4 условия · && · без суффикса · предмет назван · поля @category @price_kind @name @city · операторы IS
 
 - Исторический центр Пятигорска — он не федерального значения?
-  → FETCH [PLACES] WHERE @category IS 'culture' && @object_kind IS 'достопримечательное место' && @heritage_status NOT 'федеральный' && @name IS 'Исторический центр города Пятигорска'
+  → FETCH [PLACES] WHERE @category IS 'culture' && @object_kind IS 'heritage_site' && @heritage_status NOT 'federal' && @name IS 'Исторический центр города Пятигорска'
   # слот 82 · 4 условия · && · без суффикса · предмет назван · поля @category @object_kind @heritage_status @name · операторы IS NOT
 
 - Исторический центр Пятигорска, не природа — json
-  → FETCH [PLACES] WHERE @object_kind IS 'достопримечательное место' && @heritage_status IS 'региональный' && @name IS 'Исторический центр города Пятигорска' && @category NOT 'nature' AS JSON
+  → FETCH [PLACES] WHERE @object_kind IS 'heritage_site' && @heritage_status IS 'regional' && @name IS 'Исторический центр города Пятигорска' && @category NOT 'nature' AS JSON
   # слот 101 · 4 условия · && · AS JSON · предмет назван · поля @object_kind @heritage_status @name @category · операторы IS NOT
 
 - «Шалаши» — кафе с частичным доступом, и цена там не за ночь?
-  → FETCH [PLACES] WHERE @category IS 'food' && @wheelchair IS 'частично' && @name IS 'Шалаши' && @price_kind NOT 'цена за ночь'
+  → FETCH [PLACES] WHERE @category IS 'food' && @wheelchair IS 'limited' && @name IS 'Шалаши' && @price_kind NOT 'per_night'
   # слот 102 · 4 условия · && · без суффикса · предмет назван · поля @category @wheelchair @name @price_kind · операторы IS NOT
 
 - Ансамбли федерального значения в Железноводске, транспорт не считаем
-  → FETCH [PLACES] WHERE @object_kind IS 'ансамбль' && @heritage_status IS 'федеральный' && @category NOT 'transport' && @city IS 'Железноводск'
+  → FETCH [PLACES] WHERE @object_kind IS 'ensemble' && @heritage_status IS 'federal' && @category NOT 'transport' && @city IS 'Железноводск'
   # слот 134 · 4 условия · && · без суффикса · предмет назван · поля @object_kind @heritage_status @category @city · операторы IS NOT
 
 - Еда, культура, развлечения или магазины
@@ -368,15 +368,15 @@
   # слот 150 · 4 условия · || · без суффикса · предмет назван · поля @category · операторы IS
 
 - «Шалаши»: средний чек меньше тысячи трёхсот, доступ частичный
-  → FETCH [PLACES] WHERE @wheelchair IS 'частично' && @price_kind IS 'средний чек' && @price_rub BELOW 1300 && @name IS 'Шалаши'
+  → FETCH [PLACES] WHERE @wheelchair IS 'limited' && @price_kind IS 'average_check' && @price_rub BELOW 1300 && @name IS 'Шалаши'
   # слот 173 · 4 условия · && · без суффикса · предмет назван · поля @wheelchair @price_kind @price_rub @name · операторы IS BELOW
 
 - Минеральные Воды дешевле семи тысяч, без магазинов и без среднего чека
-  → FETCH [PLACES] WHERE @price_rub BELOW 7000 && @city IS 'Минеральные Воды' && @category NOT 'shopping' && @price_kind NOT 'средний чек'
+  → FETCH [PLACES] WHERE @price_rub BELOW 7000 && @city IS 'Минеральные Воды' && @category NOT 'shopping' && @price_kind NOT 'average_check'
   # слот 199 · 4 условия · && · без суффикса · предмет назван · поля @price_rub @city @category @price_kind · операторы BELOW IS NOT
 
 - «Трактиръ На бульваре» в Кисловодске дешевле четырёхсот, покажи таблицей
-  → FETCH [PLACES] WHERE @name IS 'Трактиръ На бульваре' && @price_rub BELOW 400 && @city IS 'Кисловодск' && @price_kind NOT 'цена за ночь' AS TABLE
+  → FETCH [PLACES] WHERE @name IS 'Трактиръ На бульваре' && @price_rub BELOW 400 && @city IS 'Кисловодск' && @price_kind NOT 'per_night' AS TABLE
   # слот 202 · 4 условия · && · AS TABLE · предмет назван · поля @name @price_rub @city @price_kind · операторы IS BELOW NOT
 
 - «На двоих» в Ессентуках дешевле четырёхсот, это не природный объект
@@ -384,9 +384,9 @@
   # слот 204 · 4 условия · && · без суффикса · предмет назван · поля @name @city @price_rub @category · операторы IS BELOW NOT
 
 - «Корона», жильё дешевле девяти тысяч — таблицей
-  → FETCH [PLACES] WHERE @name IS 'Корона' && @price_rub BELOW 9000 && @category IS 'lodging' && @price_kind NOT 'средний чек' AS TABLE
+  → FETCH [PLACES] WHERE @name IS 'Корона' && @price_rub BELOW 9000 && @category IS 'lodging' && @price_kind NOT 'average_check' AS TABLE
   # слот 227 · 4 условия · && · AS TABLE · предмет назван · поля @name @price_rub @category @price_kind · операторы IS BELOW NOT
 
 - «Мангал»: средний чек выше двухсот
-  → FETCH [PLACES] WHERE @name IS 'Мангал' && @category IS 'food' && @price_kind IS 'средний чек' && @price_rub ABOVE 200
+  → FETCH [PLACES] WHERE @name IS 'Мангал' && @category IS 'food' && @price_kind IS 'average_check' && @price_rub ABOVE 200
   # слот 259 · 4 условия · && · без суффикса · предмет назван · поля @name @category @price_kind @price_rub · операторы IS ABOVE
