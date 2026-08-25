@@ -779,7 +779,7 @@ wheels = [
 [[package]]
 name = "llm-eng-21-training-metrics"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "accelerate" },
     { name = "datasets" },
@@ -803,7 +803,7 @@ dev = [
 requires-dist = [
     { name = "accelerate", specifier = "==1.14.0" },
     { name = "datasets", specifier = "==5.0.1" },
-    { name = "matplotlib", specifier = ">=3.11.1" },
+    { name = "matplotlib", specifier = "==3.11.1" },
     { name = "nltk", specifier = "==3.10.3" },
     { name = "numpy", specifier = "==2.5.2" },
     { name = "peft", specifier = "==0.20.0" },

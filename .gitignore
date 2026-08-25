@@ -22,3 +22,8 @@ __pycache__/
 /output/training/*/checkpoints/
 /prompt/dataset_editor.md
 /prompt/openers.md
+/docs/dz_ECQL.md
+/docs/dz_ECQL_dataset.md
+/docs/dz_ECQL_input_style.md
+/docs/dz_ECQL_task.md
+/docs/placeholders_plan.md
