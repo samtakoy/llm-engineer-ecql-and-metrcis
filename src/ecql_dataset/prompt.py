@@ -11,8 +11,11 @@
 после пополнения датасета промпт меняется сам.
 """
 
+import re
+
 from ecql_dataset.ecql.grammar import (
     CONNECTIVES,
+    EcqlError,
     OPERATORS,
     OUTPUT_FORMATS,
     OUTPUT_KEYWORD,
@@ -31,6 +34,10 @@ from ecql_dataset.ecql.schema import (
 
 # Сколько примеров значений показывать у поля вне перечня.
 FIELD_EXAMPLES = 4
+
+# Значение перечня, записанное латиницей. Русское слово вопроса с таким
+# значением не совпадает, поэтому в схеме оно идёт с расшифровкой.
+LATIN_PATTERN = re.compile(r"[a-z_]+")
 
 # Окончание списка примеров. Отделяет открытое поле от перечня: перечень
 # показан целиком, примеры - начало открытого списка.
@@ -166,14 +173,53 @@ def field_examples(*, entity_name: str, field: FieldSpec, vocabulary: dict) -> l
     return vocabulary["entities"][entity_name]["fields"][field.name]["examples"][:FIELD_EXAMPLES]
 
 
-def render_schema(*, vocabulary: dict) -> str:
+def latin_values(*, values: list[str]) -> list[str]:
+    """Отбирает значения, записанные латиницей.
+
+    Аргументы:
+        values: значения перечислимого поля.
+
+    Возвращает:
+        Значения, которым нужна расшифровка: русское слово вопроса с ними
+        не совпадает, и связь модель выводить неоткуда.
+    """
+    return [value for value in values if LATIN_PATTERN.fullmatch(value)]
+
+
+def render_glossary(*, field_name: str, values: list[str], glossary: dict) -> str:
+    """Собирает расшифровку значений перечислимого поля.
+
+    Аргументы:
+        field_name: имя поля.
+        values: значения, которым нужна расшифровка.
+        glossary: расшифровки значений по полям.
+
+    Возвращает:
+        Строку вида «значение - слова; значение - слова».
+
+    Роняет:
+        EcqlError: у значения нет расшифровки.
+    """
+    described = glossary.get(field_name, {})
+    missing = [value for value in values if value not in described]
+    if missing:
+        raise EcqlError(
+            f"нет расшифровки значений {field_name}: {', '.join(missing)}"
+        )
+    return "; ".join(f"{value} - {described[value]}" for value in values)
+
+
+def render_schema(*, vocabulary: dict, glossary: dict) -> str:
     """Собирает схему данных: сущности, поля и их значения.
 
     Перечислимое поле показывается полным списком допустимых значений,
-    остальные - примерами из словаря.
+    остальные - примерами из словаря. Значения латиницей идут с расшифровкой:
+    без неё связь русского слова вопроса со значением держится только на
+    примерах датасета, а их по два-восемь на значение.
 
     Аргументы:
         vocabulary: словарь значений.
+        glossary: расшифровки значений по полям.
 
     Возвращает:
         Текст схемы.
@@ -189,6 +235,14 @@ def render_schema(*, vocabulary: dict) -> str:
             if field_description["kind"] == "enum":
                 values = ", ".join(field_description["values"])
                 lines.append(f"- {field.name}, {kind}, допустимые значения: {values}")
+                described_values = latin_values(values = field_description["values"])
+                if described_values:
+                    explained = render_glossary(
+                        field_name = field.name,
+                        values = described_values,
+                        glossary = glossary,
+                    )
+                    lines.append(f"  расшифровка: {explained}")
             else:
                 examples = field_examples(
                     entity_name = entity.name,
@@ -285,7 +339,7 @@ def render_rules() -> str:
     return "\n".join(lines)
 
 
-def build_instruction(*, vocabulary: dict, with_rules: bool) -> str:
+def build_instruction(*, vocabulary: dict, glossary: dict, with_rules: bool) -> str:
     """Собирает инструкцию модели.
 
     Инструкция одинакова во всех парах датасета и совпадает с той, что подаётся
@@ -294,13 +348,17 @@ def build_instruction(*, vocabulary: dict, with_rules: bool) -> str:
 
     Аргументы:
         vocabulary: словарь значений.
+        glossary: расшифровки значений по полям.
         with_rules: дописывать ли правила языка - отличие полного промпта от
             короткого.
 
     Возвращает:
         Текст инструкции.
     """
-    instruction = INSTRUCTION_HEADER + "\n" + render_schema(vocabulary = vocabulary)
+    instruction = INSTRUCTION_HEADER + "\n" + render_schema(
+        vocabulary = vocabulary,
+        glossary = glossary,
+    )
     if with_rules:
         instruction = instruction + "\n\n" + render_rules()
     return instruction

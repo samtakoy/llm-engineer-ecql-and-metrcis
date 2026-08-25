@@ -2,9 +2,6 @@
 
 Разбор даёт сущность, условия, связку и суффикс вывода. Строка вне грамматики
 роняет `EcqlError` с описанием места ошибки.
-
-`canonical` приводит запрос к виду, не зависящему от порядка условий:
-им сравнивают ответ модели с эталоном.
 """
 
 import re
@@ -141,22 +138,6 @@ def parse(*, query: str) -> Query:
     parts, connective = split_conditions(text = body)
     conditions = tuple(parse_condition(text = part) for part in parts)
     return Query(entity = entity, conditions = conditions, connective = connective, suffix = suffix)
-
-
-def canonical(*, query: Query) -> tuple:
-    """Приводит запрос к виду, не зависящему от порядка условий.
-
-    Аргументы:
-        query: разобранный запрос.
-
-    Возвращает:
-        Кортеж, пригодный для сравнения и хеширования.
-    """
-    conditions = tuple(sorted(
-        (condition.field, condition.operator, condition.value)
-        for condition in query.conditions
-    ))
-    return (query.entity, conditions, query.connective, query.suffix)
 
 
 def render(*, query: Query) -> str:

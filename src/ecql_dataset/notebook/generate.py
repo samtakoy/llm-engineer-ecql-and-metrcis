@@ -28,11 +28,12 @@ THINKING_MARK = "<think>"
 FENCE_PATTERN = re.compile(r"^```[a-z]*|```$", flags = re.MULTILINE)
 
 
-def load_model(*, model_name: str, dtype: torch.dtype, load_in_4bit: bool) -> tuple:
+def load_model(*, model_name: str, device: str, dtype: torch.dtype, load_in_4bit: bool) -> tuple:
     """Загружает модель и токенизатор.
 
     Аргументы:
         model_name: имя модели на HuggingFace.
+        device: устройство вычислений - cuda, mps или cpu.
         dtype: тип весов при загрузке без квантования.
         load_in_4bit: грузить ли базу в четырёх битах; на Apple Silicon
             недоступно, там bitsandbytes не работает.
@@ -58,6 +59,10 @@ def load_model(*, model_name: str, dtype: torch.dtype, load_in_4bit: bool) -> tu
         arguments["device_map"] = "auto"
 
     model = AutoModelForCausalLM.from_pretrained(model_name, **arguments)
+    if not load_in_4bit:
+        # Без квантования раскладку по устройствам никто не делает: без этой
+        # строки веса остаются на процессоре и прогон идёт впятеро медленнее.
+        model.to(device)
     model.eval()
     return model, tokenizer
 

@@ -1,89 +1,89 @@
 {
- "title": "адаптер r=8",
+ "title": "база, полный промпт",
  "model": "Qwen/Qwen3-0.6B",
- "instruction": "Ты переводишь вопрос человека в запрос на ECQL - внутреннем языке запросов компании.\nОтвечай одной строкой запроса, без пояснений.\n\nСхема данных:\n\n[PLACES]\n- @name, строка, примеры: Фитнесс центр, Дача \"Золотой курган\" Л.К.Менякова, Кофейня Dr.Coff, Интурист и т.д.\n- @city, строка, примеры: Москва, Волгоград, Пятигорск и т.д.; объект вне населённого пункта - 'вне городов'\n- @category, строка, допустимые значения: culture, food, shopping, lodging, nature, service, water, activity, transport\n  расшифровка: culture - памятник, музей, церковь; food - кафе, ресторан, столовая; shopping - магазин, супермаркет, торговый центр; lodging - отель, гостевой дом, ночлег; nature - парк, сквер, озеро; service - терренкур, станция маршрута, галерея; water - источник, бювет, родник; activity - бассейн, спортзал, стадион, канатная дорога; transport - вокзал, автовокзал, аэропорт\n- @price_rub, число, примеры: 300, 400, 500, 1300 и т.д.\n- @price_kind, строка, допустимые значения: average_check, per_night\n  расшифровка: average_check - средний чек; per_night - цена за ночь\n- @object_kind, строка, допустимые значения: monument, ensemble, heritage_site\n  расшифровка: monument - памятник; ensemble - ансамбль; heritage_site - достопримечательное место\n- @heritage_status, строка, допустимые значения: regional, federal, local\n  расшифровка: regional - региональная охрана; federal - федеральная охрана; local - местная охрана\n- @wheelchair, строка, допустимые значения: yes, no, limited\n  расшифровка: yes - доступно с коляской; no - с коляской не попасть; limited - доступно частично\n\n[REVIEWS]\n- @name, строка, примеры: Интурист, Пространство лофт, Кристелла, Олимпия и т.д.\n- @city, строка, примеры: Москва, Волгоград, Пятигорск и т.д.; объект вне населённого пункта - 'вне городов'\n- @object_class, строка, допустимые значения: hotel, guesthouse, sanatorium, hostel\n  расшифровка: hotel - отель; guesthouse - гостевой дом; sanatorium - санаторий; hostel - хостел\n- @rating, число, допустимые значения: 5, 4, 3, 2, 1\n- @aspects, строка из значений через запятую, допустимые значения: номер, расположение, завтрак, персонал, чистота, бассейн и спа, цена, шум, wi-fi, парковка\n\n[PROXIMITY]\n- @name, строка, примеры: Фитнесс центр, Дача \"Золотой курган\" Л.К.Менякова, Кофейня Dr.Coff, Интурист и т.д.\n- @neighbour_category, строка, допустимые значения: culture, food, shopping, nature, lodging, activity, water, service, transport\n  расшифровка: culture - памятник, музей, церковь; food - кафе, ресторан, столовая; shopping - магазин, супермаркет, торговый центр; nature - парк, сквер, озеро; lodging - отель, гостевой дом, ночлег; activity - бассейн, спортзал, стадион, канатная дорога; water - источник, бювет, родник; service - терренкур, станция маршрута, галерея; transport - вокзал, автовокзал, аэропорт\n- @distance_m, число, примеры: 104, 86, 96, 89 и т.д.\n\n[FARES]\n- @transport, строка, допустимые значения: plane, bus, tram, train\n  расшифровка: plane - самолёт; bus - автобус; tram - трамвай; train - поезд\n- @route_start, строка, примеры: Минеральные Воды, Пятигорск, Кисловодск, Москва и т.д.\n- @route_end, строка, примеры: Москва, Санкт-Петербург, Сочи, Екатеринбург и т.д.\n- @fare_class, строка, допустимые значения: economy, business, platskart, kupe\n  расшифровка: economy - эконом; business - бизнес; platskart - плацкарт; kupe - купе\n- @price_rub, число, примеры: 35, 30, 8890, 8090 и т.д.",
+ "instruction": "Ты переводишь вопрос человека в запрос на ECQL - внутреннем языке запросов компании.\nОтвечай одной строкой запроса, без пояснений.\n\nСхема данных:\n\n[PLACES]\n- @name, строка, примеры: Фитнесс центр, Дача \"Золотой курган\" Л.К.Менякова, Кофейня Dr.Coff, Интурист и т.д.\n- @city, строка, примеры: Москва, Волгоград, Пятигорск и т.д.; объект вне населённого пункта - 'вне городов'\n- @category, строка, допустимые значения: culture, food, shopping, lodging, nature, service, water, activity, transport\n  расшифровка: culture - памятник, музей, церковь; food - кафе, ресторан, столовая; shopping - магазин, супермаркет, торговый центр; lodging - отель, гостевой дом, ночлег; nature - парк, сквер, озеро; service - терренкур, станция маршрута, галерея; water - источник, бювет, родник; activity - бассейн, спортзал, стадион, канатная дорога; transport - вокзал, автовокзал, аэропорт\n- @price_rub, число, примеры: 300, 400, 500, 1300 и т.д.\n- @price_kind, строка, допустимые значения: average_check, per_night\n  расшифровка: average_check - средний чек; per_night - цена за ночь\n- @object_kind, строка, допустимые значения: monument, ensemble, heritage_site\n  расшифровка: monument - памятник; ensemble - ансамбль; heritage_site - достопримечательное место\n- @heritage_status, строка, допустимые значения: regional, federal, local\n  расшифровка: regional - региональная охрана; federal - федеральная охрана; local - местная охрана\n- @wheelchair, строка, допустимые значения: yes, no, limited\n  расшифровка: yes - доступно с коляской; no - с коляской не попасть; limited - доступно частично\n\n[REVIEWS]\n- @name, строка, примеры: Интурист, Пространство лофт, Кристелла, Олимпия и т.д.\n- @city, строка, примеры: Москва, Волгоград, Пятигорск и т.д.; объект вне населённого пункта - 'вне городов'\n- @object_class, строка, допустимые значения: hotel, guesthouse, sanatorium, hostel\n  расшифровка: hotel - отель; guesthouse - гостевой дом; sanatorium - санаторий; hostel - хостел\n- @rating, число, допустимые значения: 5, 4, 3, 2, 1\n- @aspects, строка из значений через запятую, допустимые значения: номер, расположение, завтрак, персонал, чистота, бассейн и спа, цена, шум, wi-fi, парковка\n\n[PROXIMITY]\n- @name, строка, примеры: Фитнесс центр, Дача \"Золотой курган\" Л.К.Менякова, Кофейня Dr.Coff, Интурист и т.д.\n- @neighbour_category, строка, допустимые значения: culture, food, shopping, nature, lodging, activity, water, service, transport\n  расшифровка: culture - памятник, музей, церковь; food - кафе, ресторан, столовая; shopping - магазин, супермаркет, торговый центр; nature - парк, сквер, озеро; lodging - отель, гостевой дом, ночлег; activity - бассейн, спортзал, стадион, канатная дорога; water - источник, бювет, родник; service - терренкур, станция маршрута, галерея; transport - вокзал, автовокзал, аэропорт\n- @distance_m, число, примеры: 104, 86, 96, 89 и т.д.\n\n[FARES]\n- @transport, строка, допустимые значения: plane, bus, tram, train\n  расшифровка: plane - самолёт; bus - автобус; tram - трамвай; train - поезд\n- @route_start, строка, примеры: Минеральные Воды, Пятигорск, Кисловодск, Москва и т.д.\n- @route_end, строка, примеры: Москва, Санкт-Петербург, Сочи, Екатеринбург и т.д.\n- @fare_class, строка, допустимые значения: economy, business, platskart, kupe\n  расшифровка: economy - эконом; business - бизнес; platskart - плацкарт; kupe - купе\n- @price_rub, число, примеры: 35, 30, 8890, 8090 и т.д.\n\nПравила языка ECQL:\n\nФормат запроса:\n- запрос начинается словом FETCH;\n- дальше сущность заглавными в квадратных скобках, пример: [PLACES];\n- дальше слово WHERE и условия;\n- в конце может стоять формат вывода, но только если пользователь его ЯВНО попросил, пример: AS LIST; иначе формат вывода опускается;\n\nПоля и значения:\n- поле пишется с префиксом @, пример: @city;\n- строка пишется в кавычках, пример: 'Кисловодск';\n- число пишется без кавычек, пример: 700;\n\nОператоры:\n- IS равно, NOT не равно - допустимы у полей любого типа;\n- ABOVE больше, BELOW меньше - только у числовых полей;\n- CONTAINS содержит значение, NOT CONTAINS не содержит значение - только у строковых полей;\n\nЛогические связки для условий:\n- && это и, || это или;\n- в одном запросе допустимы связки только одного типа: && и || одновременно использовать нельзя;\n\nФормат вывода:\n- AS JSON, AS TABLE, AS LIST;\n- ставится, только когда пользователь явно указал требуемый формат: список - AS LIST; таблица - AS TABLE; json - AS JSON;\n- формат в вопросе не указан - не пишется.\n\nФормат ответа:\n- только итоговый запрос на языке ECQL, в который преобразован вопрос пользователя.\n\nПримеры перевода вопроса в запрос:\n\nВопрос от пользователя: Что пишут про завтраки в гостевых домах?\nОтвет: FETCH [REVIEWS] WHERE @aspects CONTAINS 'завтрак' && @object_class IS 'guesthouse'\n\nВопрос от пользователя: Ессентуки и Пятигорск, давай списком\nОтвет: FETCH [PLACES] WHERE @city IS 'Ессентуки' || @city IS 'Пятигорск' AS LIST\n\nВопрос от пользователя: Поезда до Ростова-на-Дону стоимостью от тысячи до трёх, покажи в формате json\nОтвет: FETCH [FARES] WHERE @transport IS 'train' && @price_rub ABOVE 1000 && @price_rub BELOW 3000 AS JSON\n\nПримеры показывают форму запроса. Значения из них в ответ не переносятся: сущность, поля и значения берутся из вопроса пользователя.\n\nЗапрещено:\n- использовать поля и значения, которых нет в схеме;\n- добавлять пояснения и обрамление кода.",
  "metrics": {
-  "синтаксис": 0.9264705882352942,
-  "логика": 0.25,
-  "сущность": 0.8382352941176471,
-  "поля": 0.5,
-  "операторы": 0.45588235294117646,
-  "значения": 0.3235294117647059,
-  "суффикс": 0.7058823529411765,
-  "галлюцинации": 0.014705882352941176,
-  "строка": 0.17647058823529413,
+  "синтаксис": 0.8823529411764706,
+  "логика": 0.058823529411764705,
+  "сущность": 0.5735294117647058,
+  "поля": 0.22058823529411764,
+  "операторы": 0.22058823529411764,
+  "значения": 0.1323529411764706,
+  "суффикс": 0.20588235294117646,
+  "галлюцинации": 0.2647058823529412,
+  "строка": 0.058823529411764705,
   "ответов": 68
  },
  "answers": [
   {
    "input": "Хочу почитать отзывы по Пятигорску и Лермонтову.",
    "output": "FETCH [REVIEWS] WHERE @city IS 'Пятигорск' || @city IS 'Лермонтов'",
-   "prediction": "FETCH [REVIEWS] WHERE @city IS 'Пятигорск' || @city IS 'Лермонтов'"
+   "prediction": "FETCH [REVIEWS] WHERE @city IS 'Пятигорск' || @city IS 'Лермонтов' AS LIST"
   },
   {
    "input": "Ищу поездку на трамвае за 20-40 рублей, покажи варианты.",
    "output": "FETCH [FARES] WHERE @transport IS 'tram' && @price_rub ABOVE 20 && @price_rub BELOW 40",
-   "prediction": "FETCH [FARES] WHERE @transport IS 'tram' && @price_rub BETWEEN 20 && 40"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'tram' && @price_rub BETWEEN 20 AND 40 AS LIST"
   },
   {
    "input": "Что в отзывах на «Оазис» говорят о чистоте?",
    "output": "FETCH [REVIEWS] WHERE @name IS 'Оазис' && @aspects CONTAINS 'чистота'",
-   "prediction": "FETCH [REVIEWS] WHERE @name IS 'Оазис' && @aspects CONTAINS 'чистота'"
+   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'чистота' AS LIST"
   },
   {
    "input": "Кому из хостелов поставили три балла?",
    "output": "FETCH [REVIEWS] WHERE @object_class IS 'hostel' && @rating IS 3",
-   "prediction": "FETCH [REVIEWS] WHERE @rating IS 3 && @object_class IS 'hostel'"
+   "prediction": "FETCH [PROXIMITY] WHERE @object_class IS 'hostel' && @heritage_status IS 'local' AS LIST"
   },
   {
    "input": "Что в Кисловодске идёт со средним чеком выше 200 рублей?",
    "output": "FETCH [PLACES] WHERE @price_kind IS 'average_check' && @price_rub ABOVE 200 && @city IS 'Кисловодск'",
-   "prediction": "FETCH [PLACES] WHERE @price_rub ABOVE 200 && @price_kind IS 'average_check' && @city IS 'Кисловодск'"
+   "prediction": "FETCH [PLACES] WHERE @price_rub IS '200' && @price_rub ABOVE 200 AS LIST"
   },
   {
    "input": "Найди отзывы на два балла, где парковку обсуждают, а шум не упоминают.",
    "output": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'парковка' && @rating IS 2 && @aspects NOT CONTAINS 'шум'",
-   "prediction": "FETCH [REVIEWS] WHERE @aspects NOT CONTAINS 'шум' && @rating IS 2"
+   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'шум' && @object_class IS 'hostel' AS LIST"
   },
   {
    "input": "Нужны отзывы на отели, санатории и гостевые дома.",
    "output": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'sanatorium' || @object_class IS 'guesthouse'",
-   "prediction": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'sanatorium' || @object_class IS 'hostel'"
+   "prediction": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' || @object_class IS 'hostel' || @object_class IS 'sanatorium' AS LIST"
   },
   {
    "input": "Списком нужны цены на проезд внутри Железноводска",
    "output": "FETCH [FARES] WHERE @route_end IS 'Железноводск' && @route_start IS 'Железноводск' AS LIST",
-   "prediction": "FETCH [FARES] WHERE @route_start IS 'Железноводск'"
+   "prediction": "FETCH [PROXIMITY] WHERE @distance_m IS 'Железноводск' AS LIST"
   },
   {
    "input": "Покажи кафе «Смак» за городом с его средним чеком",
    "output": "FETCH [PLACES] WHERE @category IS 'food' && @price_kind IS 'average_check' && @name IS 'Смак' && @city IS 'вне городов'",
-   "prediction": "FETCH [PLACES] WHERE @price_rub IS 300 && @category IS 'food' && @heritage_status IS 'local' && @city IS 'Смак'"
+   "prediction": "FETCH [REVIEWS] WHERE @price_rub IS 1300 AS LIST"
   },
   {
    "input": "Ищу отели, где про персонал написали, а про номер - ни слова",
    "output": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' && @aspects CONTAINS 'персонал' && @aspects NOT CONTAINS 'номер'",
-   "prediction": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'service'"
+   "prediction": "FETCH [PLACES] WHERE @object_class IS 'hotel' && @aspects CONTAINS 'персонал' AS LIST"
   },
   {
    "input": "Еду поездом в плацкарте, покажи тарифы.",
    "output": "FETCH [FARES] WHERE @fare_class IS 'platskart' && @transport IS 'train'",
-   "prediction": "FETCH [FARES] WHERE @fare_class IS 'platskart'"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'train' && @fare_class IS 'platskart' AS LIST"
   },
   {
    "input": "Перечисли памятники, куда можно заехать с коляской.",
    "output": "FETCH [PLACES] WHERE @object_kind IS 'monument' && @wheelchair IS 'yes'",
-   "prediction": "FETCH [PLACES] WHERE @wheelchair IS 'yes' && @object_kind IS 'monument'"
+   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'monument' && @wheelchair IS 'yes' AS LIST"
   },
   {
    "input": "Беру гостевой дом на пятёрку, где про шум пишут, а про парковку молчат — списком.",
    "output": "FETCH [REVIEWS] WHERE @object_class IS 'guesthouse' && @rating IS 5 && @aspects NOT CONTAINS 'парковка' && @aspects CONTAINS 'шум' AS LIST",
-   "prediction": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'activity' && @distance_m IS 50 AS LIST"
+   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'шум' && @object_class IS 'hotel' AS LIST"
   },
   {
    "input": "Какие трамвайные поездки по Пятигорску стоят дороже 20 рублей?",
    "output": "FETCH [FARES] WHERE @transport IS 'tram' && @route_start IS 'Пятигорск' && @price_rub ABOVE 20 && @route_end IS 'Пятигорск'",
-   "prediction": "FETCH [FARES] WHERE @route_start IS 'Пятигорск' && @price_rub ABOVE 20 && @transport IS 'tram'"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'train' && @price_rub ABOVE 20 && @price_rub BELOW 30 AS JSON"
   },
   {
    "input": "Собери списком отзывы, где жалуются на шум.",
@@ -93,137 +93,137 @@
   {
    "input": "В какие отели с коляской не попасть?",
    "output": "FETCH [PLACES] WHERE @category IS 'lodging' && @wheelchair IS 'no'",
-   "prediction": "FETCH [PLACES] WHERE @wheelchair IS 'limited'"
+   "prediction": "FETCH [PLACES] WHERE @wheelchair IS 'limited' AS LIST"
   },
   {
    "input": "Что относится к ансамблям?",
    "output": "FETCH [PLACES] WHERE @object_kind IS 'ensemble'",
-   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'ensemble'"
+   "prediction": "FETCH [PROXIMITY] WHERE @object_class IS 'ensemble' AS LIST"
   },
   {
    "input": "Перечисли места, рядом с которыми есть отель или гостевой дом",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'lodging'",
-   "prediction": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'lodging' || @neighbour_category IS 'shopping' || @neighbour_category IS 'culture' || @neighbour_category IS 'service'"
+   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'lodging' || @object_kind IS 'guesthouse' AS LIST"
   },
   {
    "input": "Что стоит дороже 11000 рублей за ночь?",
    "output": "FETCH [PLACES] WHERE @price_rub ABOVE 11000 && @price_kind IS 'per_night'",
-   "prediction": "FETCH [PLACES] WHERE @price_kind IS 'per_night' && @price_rub ABOVE 11000 AS LIST"
+   "prediction": "FETCH [PLACES] WHERE @price_rub ABOVE 11000 AS LIST"
   },
   {
    "input": "Что стоит в пределах 400 метров от Храма Смоленской иконы Божией Матери, списком.",
    "output": "FETCH [PROXIMITY] WHERE @name IS 'Храм Смоленской иконы Божией Матери' && @distance_m BELOW 400 AS LIST",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m BELOW 400 && @name IS 'Храма Смоленской иконы Божией Матери'"
+   "prediction": "FETCH [PLACES] WHERE @distance_m BELOW 400 && @object_class IS 'monument' AS LIST"
   },
   {
    "input": "Ищу отзывы об «Отель Pechorinn» в Железноводске, где не единица и молчат про бассейн и спа.",
    "output": "FETCH [REVIEWS] WHERE @name IS 'Отель Pechorinn' && @city IS 'Железноводск' && @aspects NOT CONTAINS 'бассейн и спа' && @rating NOT 1",
-   "prediction": "FETCH [REVIEWS] WHERE @city IS 'Железноводск' && @object_class IS 'hotel' && @aspects NOT CONTAINS 'бассейн' && @aspects NOT CONTAINS 'spa'"
+   "prediction": "FETCH [REVIEWS] WHERE @city IS 'Железноводск' && @object_class IS 'hotel' && @aspects CONTAINS 'бассейн' && @aspects CONTAINS 'spa' AS LIST"
   },
   {
    "input": "Что ходит по Иноземцево дешевле 40 рублей?",
    "output": "FETCH [FARES] WHERE @route_end IS 'Иноземцево' && @route_start IS 'Иноземцево' && @price_rub BELOW 40",
-   "prediction": "FETCH [FARES] WHERE @price_rub BELOW 40 && @route_start IS 'Иноземцево'"
+   "prediction": "FETCH [PLACES] WHERE @price_rub BELOW 40 AS LIST"
   },
   {
    "input": "Где остановиться?",
    "output": "FETCH [PLACES] WHERE @category IS 'lodging'",
-   "prediction": "FETCH [PLACES] WHERE @category IS 'lodging' || @category IS 'shopping' || @category IS 'nature' || @category IS 'service' || @category IS 'transport'"
+   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'lodge' AS LIST"
   },
   {
    "input": "Собери таблицу по церковным ансамблям, что не под местной охраной.",
    "output": "FETCH [PLACES] WHERE @object_kind IS 'ensemble' && @category IS 'culture' && @heritage_status NOT 'local' AS TABLE",
-   "prediction": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @object_kind IS 'ensemble'"
+   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site' && @heritage_status IS 'local' AS TABLE"
   },
   {
    "input": "Выведи кафе «Шалаши» с частичным доступом, где цена не за ночь.",
    "output": "FETCH [PLACES] WHERE @category IS 'food' && @wheelchair IS 'limited' && @name IS 'Шалаши' && @price_kind NOT 'per_night'",
-   "prediction": "FETCH [PLACES] WHERE @category IS 'food' && @wheelchair IS 'limited' && @price_rub NOT BETWEEN 300 && 1300"
+   "prediction": "FETCH [COFF] WHERE @wheelchair IS 'limited' && @price_rub BELOW 1000 AS LIST"
   },
   {
    "input": "Есть информация по Домашней церкови-часовни в Иноземцево?",
    "output": "FETCH [PLACES] WHERE @name IS 'Домашняя церковь-часовня' && @city IS 'Иноземцево'",
-   "prediction": "FETCH [PLACES] WHERE @name IS 'Домашняя церковь-часовни' && @category IS 'service' && @heritage_status IS 'local'"
+   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'monument' AND @heritage_status IS 'local' AS LIST"
   },
   {
    "input": "Хочу списком почитать отзывы про завтраки",
    "output": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'завтрак' AS LIST",
-   "prediction": "FETCH [REVIEWS] WHERE @object_class IS 'hotel' && @aspects CONTAINS 'завтрак'"
+   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'завтрак' AS LIST"
   },
   {
    "input": "Чем занять ребёнка в Кисловодске?",
    "output": "FETCH [PLACES] WHERE @city IS 'Кисловодск' && @category IS 'activity'",
-   "prediction": "FETCH [FARES] WHERE @route_start IS 'Кисловодск'"
+   "prediction": "FETCH [PLACES] WHERE @city IS 'Кисловодск' AS LIST"
   },
   {
    "input": "Отбери музеи и церкви, куда пускают с коляской.",
    "output": "FETCH [PLACES] WHERE @category IS 'culture' && @wheelchair IS 'yes'",
-   "prediction": "FETCH [PLACES] WHERE @wheelchair IS 'yes' && @category IS 'culture' || @category IS 'service'"
+   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'monument' && @wheelchair IS 'yes' AS LIST"
   },
   {
    "input": "В каких отзывах вообще упоминают спа?",
    "output": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'спа'",
-   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'spa'"
+   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'spa' AS LIST"
   },
   {
    "input": "Где в Минводах закупиться сувенирами?",
    "output": "FETCH [PLACES] WHERE @city IS 'Минеральные Воды' && @category IS 'shopping'",
-   "prediction": "FETCH [PLACES] WHERE @city IS 'Минеральные Воды' && @category IS 'shopping'"
+   "prediction": "FETCH [PLACES] WHERE @city IS 'Минводы' AS LIST"
   },
   {
    "input": "Покажи в json Особняк Тиц с местной охраной.",
    "output": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @name IS 'Особняк Тиц' AS JSON",
-   "prediction": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @name IS 'Особняк Тиц' AS JSON"
+   "prediction": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @object_kind IS 'monument' && @object_class IS 'monument' AS JSON"
   },
   {
    "input": "Стою у «Ресторана Парк» — какие магазины дальше 130 метров?",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'shopping' && @distance_m ABOVE 130 && @name IS 'Ресторан Парк'",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m ABOVE 130 && @name IS 'Ресторана Парк'"
+   "prediction": "FETCH [PLACES] WHERE @distance_m ABOVE 130 AS LIST"
   },
   {
    "input": "Списком покажи перелёты из Мин-Вод бизнес-классом дешевле 24000 рублей.",
    "output": "FETCH [FARES] WHERE @fare_class IS 'business' && @transport IS 'plane' && @route_start IS 'Минеральные Воды' && @price_rub BELOW 24000 AS LIST",
-   "prediction": "FETCH [FARES] WHERE @route_start IS 'Минеральные Воды' && @route_end IS 'Сочи' && @fare_class IS 'business' && @price_rub BELOW 24000"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'train' && @price_rub BELOW 24000 && @fare_class IS 'business' AS LIST"
   },
   {
    "input": "Интересуют бюветы под федеральной охраной.",
    "output": "FETCH [PLACES] WHERE @category IS 'water' && @heritage_status IS 'federal'",
-   "prediction": "FETCH [PLACES] WHERE @heritage_status IS 'federal'"
+   "prediction": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @object_kind IS 'water' AS LIST"
   },
   {
    "input": "Назови места, у которых по соседству есть кафе или столовая.",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'food'",
-   "prediction": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'food' || @neighbour_category IS 'shopping' || @neighbour_category IS 'culture' || @neighbour_category IS 'service'"
+   "prediction": "FETCH [PLACES] WHERE @neighbour_category IS 'food' || @neighbour_category IS 'shopping' AS LIST"
   },
   {
    "input": "Ищу места, у которых кафе в пределах 20 метров.",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'food' && @distance_m BELOW 20",
-   "prediction": "FETCH [PLACES] WHERE @distance_m BELOW 20 && @category IS 'food'"
+   "prediction": "FETCH [REVIEWS] WHERE @distance_m BELOW 20 AS LIST"
   },
   {
    "input": "Таблицей покажи, что есть в Мин-Водах, Кисловодске и Железноводске.",
    "output": "FETCH [PLACES] WHERE @city IS 'Минеральные Воды' || @city IS 'Кисловодск' || @city IS 'Железноводск' AS TABLE",
-   "prediction": "FETCH [PLACES] WHERE @city IS 'Минеральные Воды' || @city IS 'Кисловодск' || @city IS 'Железноводск'"
+   "prediction": "FETCH [PLACES] WHERE @city IS 'Мин-Водах' || @city IS 'Кисловодске' || @city IS 'Железноводске' AS TABLE"
   },
   {
    "input": "Выпиши списком отзывы с двойкой, в которых ругают персонал.",
    "output": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'персонал' && @rating IS 2 AS LIST",
-   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'персонал' && @rating IS 1"
+   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'персонал' && @aspects CONTAINS 'ругают' AS LIST"
   },
   {
    "input": "Какие объекты стоят от «Ventuno» дальше 600 метров?",
    "output": "FETCH [PROXIMITY] WHERE @name IS 'Ventuno' && @distance_m ABOVE 600",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m ABOVE 600 && @name IS 'Ventuno'"
+   "prediction": "FETCH [PLACES] WHERE @distance_m > 600 AS LIST"
   },
   {
    "input": "Какие места стоят по соседству с супермаркетом, автовокзалом или гостевым домом?",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'shopping' || @neighbour_category IS 'transport' || @neighbour_category IS 'lodging'",
-   "prediction": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'shopping' || @neighbour_category IS 'lodging' || @neighbour_category IS 'activity'"
+   "prediction": "FETCH [PROXIMITY] WHERE @object_class IS 'hotel' || @object_class IS 'guesthouse' || @object_class IS 'transport' AS LIST"
   },
   {
    "input": "У кого в отзывах про вайфай оценка ниже трёх?",
    "output": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'wi-fi' && @rating BELOW 3",
-   "prediction": "FETCH [REVIEWS] WHERE @rating BELOW 3"
+   "prediction": "FETCH [REVIEWS] WHERE @rating BELOW 3 AS LIST"
   },
   {
    "input": "Как отзываются о персонале? Перечисли списком.",
@@ -233,62 +233,62 @@
   {
    "input": "Нужна таблица: какие музеи и церкви ближе 700 метров от «Мини отеля»?",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'culture' && @name IS 'Мини отель' && @distance_m BELOW 700 AS TABLE",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m ABOVE 700 && @name IS 'Мини отеля' && @neighbour_category IS 'culture'"
+   "prediction": "FETCH [PLACES] WHERE @distance_m IS 700 AS TABLE"
   },
   {
    "input": "Дай таблицу с ценами на трамвайный проезд.",
    "output": "FETCH [FARES] WHERE @transport IS 'tram' AS TABLE",
-   "prediction": "FETCH [FARES] WHERE @transport IS 'tram' AS TABLE"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'train' AS TABLE"
   },
   {
    "input": "Выведи таблицей парки, скверы и озёра.",
    "output": "FETCH [PLACES] WHERE @category IS 'nature' AS TABLE",
-   "prediction": "FETCH [PLACES] WHERE @category IS 'nature' || @category IS 'service' || @category IS 'water'"
+   "prediction": "FETCH [PLACES] WHERE @category IS 'nature' || @category IS 'skyscraper' || @category IS 'water' AS TABLE"
   },
   {
    "input": "Нужна таблица по плацкарту из Москвы, автобусы не подходят.",
    "output": "FETCH [FARES] WHERE @fare_class IS 'platskart' && @transport NOT 'bus' && @route_start IS 'Москва' AS TABLE",
-   "prediction": "FETCH [FARES] WHERE @transport IS 'bus' || @transport IS 'tram' || @transport IS 'train'"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'bus' && @route_start IS 'Москва' AS TABLE"
   },
   {
    "input": "Нужен ночлег «Корона» дешевле 9000 рублей, и дело не в среднем чеке — таблицей.",
    "output": "FETCH [PLACES] WHERE @name IS 'Корона' && @price_rub BELOW 9000 && @category IS 'lodging' && @price_kind NOT 'average_check' AS TABLE",
-   "prediction": "FETCH [PLACES] WHERE @price_rub BELOW 9000 && @price_kind NOT 'average_check' AS TABLE"
+   "prediction": "FETCH [PLACES] WHERE @price_rub < 9000 && @price_rub IS NOT average_check AS TABLE"
   },
   {
    "input": "Списком покажи места, у которых по соседству есть магазин, кафе или парк.",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'shopping' || @neighbour_category IS 'food' || @neighbour_category IS 'nature' AS LIST",
-   "prediction": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'shopping' || @neighbour_category IS 'food' || @neighbour_category IS 'nature' AS LIST"
+   "prediction": "FETCH [PLACES] WHERE @object_class IS 'shopping' || @object_class IS 'cafe' || @object_class IS 'nature' AS LIST"
   },
   {
    "input": "Оформи таблицей места от 900 до 1200 рублей, куда пускают с коляской.",
    "output": "FETCH [PLACES] WHERE @price_rub ABOVE 900 && @price_rub BELOW 1200 && @wheelchair IS 'yes' AS TABLE",
-   "prediction": "FETCH [PLACES] WHERE @price_rub BETWEEN 900 && 1200 && @wheelchair IS 'yes' AS TABLE"
+   "prediction": "FETCH [PLACES] WHERE @price_rub BETWEEN 900 AND 1200 && @wheelchair IS 'yes' AS TABLE"
   },
   {
    "input": "Какие отзывы оставляют о «Montis»?",
    "output": "FETCH [REVIEWS] WHERE @name IS 'Montis'",
-   "prediction": "FETCH [REVIEWS] WHERE @object_class IS 'monument' AS LIST"
+   "prediction": "FETCH [REVIEWS] WHERE @name CONTAINS 'Montis' AS LIST"
   },
   {
    "input": "В таблице покажи места, у которых музей дальше 600 метров.",
    "output": "FETCH [PROXIMITY] WHERE @neighbour_category IS 'culture' && @distance_m ABOVE 600 AS TABLE",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m ABOVE 600 && @neighbour_category IS 'culture'"
+   "prediction": "FETCH [PLACES] WHERE @distance_m > 600 AS LIST"
   },
   {
    "input": "Какие тарифы бывают на самолёт или поезд?",
    "output": "FETCH [FARES] WHERE @transport IS 'plane' || @transport IS 'train'",
-   "prediction": "FETCH [FARES] WHERE @transport IS 'plane' || @transport IS 'train' || @transport IS 'bus'"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'plane' || @transport IS 'train' AS LIST"
   },
   {
    "input": "Что посмотреть в Мин-Водах, Кисловодске или Пятигорске?",
    "output": "FETCH [PLACES] WHERE @city IS 'Минеральные Воды' || @city IS 'Кисловодск' || @city IS 'Пятигорск'",
-   "prediction": "FETCH [REVIEWS] WHERE @city IS 'Минеральные Воды' || @city IS 'Кисловодск' || @city IS 'Пятигорск'"
+   "prediction": "FETCH [PLACES] WHERE @city IS 'Мин-Водах' || @city IS 'Кисловодске' || @city IS 'Пятигорске' AS LIST"
   },
   {
    "input": "Расскажи про терренкур «Второй дед» в Железноводске",
    "output": "FETCH [PLACES] WHERE @category IS 'service' && @name IS 'Второй дед' && @city IS 'Железноводск'",
-   "prediction": "FETCH [PLACES] WHERE @name IS 'Второй дед' && @city IS 'Железноводск' && @category IS 'service'"
+   "prediction": "FETCH [PLACES] WHERE @object_class IS 'lodge' && @city IS 'Железноводске' AS LIST"
   },
   {
    "input": "В json собери тарифы на автобусные рейсы",
@@ -298,27 +298,27 @@
   {
    "input": "Покажи, что попадает в 1200 метров от «Palazzo».",
    "output": "FETCH [PROXIMITY] WHERE @name IS 'Palazzo' && @distance_m BELOW 1200",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m IS 1200 && @name IS 'Palazzo'"
+   "prediction": "FETCH [PROXIMITY] WHERE @distance_m IS 1200 AS LIST"
   },
   {
    "input": "Нужны вокзалы и станции Пятигорска, а не билеты",
    "output": "FETCH [PLACES] WHERE @city IS 'Пятигорск' && @category IS 'transport'",
-   "prediction": "FETCH [FARES] WHERE @transport IS 'train' && @route_start IS 'Пятигорск'"
+   "prediction": "FETCH [PROXIMITY] WHERE @city IS 'Пятигорск' || @city IS 'вне городов' AS LIST"
   },
   {
    "input": "Долететь до Москвы экономом тысяч за десять - есть варианты?",
    "output": "FETCH [FARES] WHERE @route_end IS 'Москва' && @fare_class IS 'economy' && @price_rub BELOW 10000",
-   "prediction": "FETCH [FARES] WHERE @transport IS 'plane' && @fare_class IS 'economy' && @route_start IS 'Москва' && @route_end IS 'Москва' && @price_rub BELOW 10000"
+   "prediction": "FETCH [FARES] WHERE @transport IS 'plane' && @price_rub ABOVE 1000 && @price_rub BELOW 10000 AS JSON"
   },
   {
    "input": "Развлечься бы не дальше пятисот метров от Колодца желаний",
    "output": "FETCH [PROXIMITY] WHERE @name IS 'Колодец желаний' && @neighbour_category IS 'activity' && @distance_m BELOW 500",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m BELOW 500 && @name IS 'Колодца желаний'"
+   "prediction": "FETCH [PLACES] WHERE @distance_m BELOW 500 AS LIST"
   },
   {
    "input": "Достопримечательные места - именно места, не памятники",
    "output": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site'",
-   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site'"
+   "prediction": "FETCH [PLACES] WHERE @object_kind IS 'heritage_site' AND @object_class IS 'monument' AND @object_kind IS 'monument' AS LIST"
   },
   {
    "input": "Источник ближе ста метров - бывает такое?",
@@ -328,32 +328,32 @@
   {
    "input": "Четвёрки, в которых хвалят расположение",
    "output": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'расположение' && @rating IS 4",
-   "prediction": "FETCH [REVIEWS] WHERE @city IS 'Пятигорск' && @object_class IS 'hostel' && @rating IS 4"
+   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'расположение' AS LIST"
   },
   {
    "input": "Что под охраной края, а не страны?",
    "output": "FETCH [PLACES] WHERE @heritage_status IS 'regional'",
-   "prediction": "FETCH [PLACES] WHERE @heritage_status IS 'local' && @object_kind IS 'heritage_site'"
+   "prediction": "FETCH [PROXIMITY] WHERE @heritage_status IS 'local' AND @object_kind IS 'monument' AS LIST"
   },
   {
    "input": "Всё в Железноводске, кроме магазинов, просто назови списком",
    "output": "FETCH [PLACES] WHERE @city IS 'Железноводск' && @category NOT 'shopping' AS LIST",
-   "prediction": "FETCH [PLACES] WHERE @city IS 'Железноводск' && @category NOT IN ['shopping', 'food'] AS LIST"
+   "prediction": "FETCH [PLACES] WHERE @city IS 'Железноводске' AS LIST"
   },
   {
    "input": "Есть бытовые услуги не дальше трёхсот метров от Арабики?",
    "output": "FETCH [PROXIMITY] WHERE @name IS 'Арабика' && @neighbour_category IS 'service' && @distance_m BELOW 300",
-   "prediction": "FETCH [PROXIMITY] WHERE @distance_m BELOW 300 && @name IS 'Арабики'"
+   "prediction": "FETCH [PLACES] WHERE @distance_m ABOVE 300 && @object_kind IS 'lodge' AS LIST"
   },
   {
    "input": "Купе куда угодно, кроме Москвы",
    "output": "FETCH [FARES] WHERE @fare_class IS 'kupe' && @route_end NOT 'Москва'",
-   "prediction": "FETCH [FARES] WHERE @fare_class IS 'kupe' && @route_start NOT CONTAINS 'Москва'"
+   "prediction": "FETCH [PLACES] WHERE @city IS 'вне городов' || @object_class IS 'lodge' AS LIST"
   },
   {
    "input": "Отзывы, где обсуждают цену",
    "output": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена'",
-   "prediction": "FETCH [REVIEWS] WHERE @aspects CONTAINS 'цена'"
+   "prediction": "FETCH [REVIEWS] WHERE @rating IS 5 AS LIST"
   }
  ]
 }

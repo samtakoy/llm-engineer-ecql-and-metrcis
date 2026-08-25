@@ -20,3 +20,5 @@ __pycache__/
 # Промежуточные веса эпох: нужны только на время обучения, лучшая эпоха
 # подставляется обратно в модель и сохраняется отдельно.
 /output/training/*/checkpoints/
+/prompt/dataset_editor.md
+/prompt/openers.md

@@ -12,6 +12,7 @@
         --source dataset/ecql/source \\
         --output dataset/ecql \\
         --vocabulary dataset/ecql/source/vocabulary.json
+        --glossary dataset/ecql/source/enum_glossary.json
 """
 
 import argparse
@@ -418,12 +419,18 @@ def cli() -> None:
     parser.add_argument("--source", required = True, type = Path, help = "каталог листов")
     parser.add_argument("--output", required = True, type = Path, help = "каталог датасета")
     parser.add_argument("--vocabulary", required = True, type = Path, help = "словарь значений")
+    parser.add_argument("--glossary", required = True, type = Path, help = "расшифровки значений")
     arguments = parser.parse_args()
 
     vocabulary = json.loads(arguments.vocabulary.read_text(encoding = "utf-8"))
+    glossary = json.loads(arguments.glossary.read_text(encoding = "utf-8"))
     pairs = collect_pairs(directory = arguments.source, vocabulary = vocabulary)
     splits = split_pairs(pairs = pairs)
-    instruction = build_instruction(vocabulary = vocabulary, with_rules = False)
+    instruction = build_instruction(
+        vocabulary = vocabulary,
+        glossary = glossary,
+        with_rules = False,
+    )
 
     arguments.output.mkdir(parents = True, exist_ok = True)
     for split, split_pairs_list in splits.items():
